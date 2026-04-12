@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>아이돌봄팀 업무 매뉴얼</title>
+<!-- 아이콘 -->
+<link rel="icon" type="image/x-icon" href="./은달이.png">
+<style>
+  /* ── 전체 기본 ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f5f4f0;
+    --surface: #ffffff;
+    --surface2: #f0efe9;
+    --border: #e2e0d8;
+    --border2: #cccab8;
+    --text: #1a1916;
+    --text2: #5a5850;
+    --text3: #9a9888;
+    --green: #1D9E75;
+    --green-bg: #E1F5EE;
+    --green-text: #0F6E56;
+    --blue: #185FA5;
+    --blue-bg: #E6F1FB;
+    --blue-text: #0C447C;
+    --amber: #854F0B;
+    --amber-bg: #FAEEDA;
+    --red: #A32D2D;
+    --red-bg: #FCEBEB;
+    --purple: #534AB7;
+    --purple-bg: #EEEDFE;
+    --gray-bg: #F1EFE8;
+    --gray-text: #5F5E5A;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+  body {
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 14px;
+  }
+
+  /* ── 헤더 ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+  }
+  .site-header .logo {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: -0.5px;
+  }
+  .site-header .subtitle {
+    font-size: 12px;
+    color: var(--text3);
+    border-left: 1px solid var(--border);
+    padding-left: 12px;
+    margin-left: 4px;
+  }
+  .edit-badge {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--text3);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3px 10px;
+  }
+
+  /* ── 레이아웃 ── */
+  .layout {
+    display: flex;
+    min-height: calc(100vh - 57px);
+  }
+
+  /* ── 사이드바 ── */
+  .sidebar {
+    width: 200px;
+    min-width: 200px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 57px;
+    height: calc(100vh - 57px);
+    overflow-y: auto;
+  }
+  .sidebar-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text3);
+    padding: 0 1.25rem 0.5rem;
+    text-transform: uppercase;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.6rem 1.25rem;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: all 0.15s;
+    color: var(--text2);
+    font-size: 13px;
+  }
+  .nav-item:hover { background: var(--surface2); color: var(--text); }
+  .nav-item.active { border-left-color: var(--green); background: var(--green-bg); color: var(--green-text); font-weight: 600; }
+  .nav-item .nav-icon { font-size: 15px; }
+
+  /* ── 메인 콘텐츠 ── */
+  .main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 860px;
+  }
+
+  /* ── 섹션 ── */
+  .section { display: none; }
+  .section.active { display: block; }
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .icon { font-size: 24px; }
+
+  /* ── 알림 박스 ── */
+  .alert {
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 13px;
+    line-height: 1.65;
+    border-left: 3px solid;
+  }
+  .alert.info    { background: var(--blue-bg);   color: var(--blue-text); border-color: #378ADD; }
+  .alert.success { background: var(--green-bg);  color: var(--green-text); border-color: var(--green); }
+  .alert.warn    { background: var(--amber-bg);  color: var(--amber);     border-color: #EF9F27; }
+  .alert.danger  { background: var(--red-bg);    color: var(--red);       border-color: #E24B4A; }
+
+  /* ── 카드 ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 0.875rem 1.25rem;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .card-header:hover { filter: brightness(0.97); }
+  .card-title { font-size: 14px; font-weight: 600; flex: 1; color: var(--text); }
+  .card-toggle { color: var(--text3); font-size: 12px; transition: transform 0.2s; }
+  .card-toggle.open { transform: rotate(180deg); }
+  .card-body { padding: 1.25rem; display: none; }
+  .card-body.open { display: block; }
+
+  /* ── 뱃지 ── */
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 20px;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .badge.green  { background: var(--green-bg); color: var(--green-text); }
+  .badge.blue   { background: var(--blue-bg);  color: var(--blue-text); }
+  .badge.amber  { background: var(--amber-bg); color: var(--amber); }
+  .badge.red    { background: var(--red-bg);   color: var(--red); }
+  .badge.purple { background: var(--purple-bg); color: var(--purple); }
+  .badge.gray   { background: var(--gray-bg);  color: var(--gray-text); }
+
+  /* ── 스크립트 박스 ── */
+  .script {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.875rem 1rem;
+    margin: 0.5rem 0;
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--text);
+  }
+  .script b { color: var(--green); font-weight: 600; }
+
+  /* ── Q&A ── */
+  .qa { border-left: 2px solid var(--border2); margin-bottom: 1rem; padding-left: 1rem; }
+  .qa-q { font-size: 12px; font-weight: 600; color: var(--text3); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .qa-a { font-size: 13px; color: var(--text); line-height: 1.7; }
+  .qa-a ul { padding-left: 1.2rem; margin-top: 4px; }
+  .qa-a li { margin-bottom: 3px; }
+
+  /* ── 플로우 스텝 ── */
+  .flow { display: flex; flex-direction: column; gap: 6px; margin: 0.5rem 0; }
+  .flow-step { display: flex; align-items: flex-start; gap: 10px; }
+  .step-num {
+    min-width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--green);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .step-text { font-size: 13px; color: var(--text); line-height: 1.65; }
+
+  /* ── 테이블 ── */
+  .tbl { width: 100%; border-collapse: collapse; font-size: 13px; margin: 0.75rem 0; }
+  .tbl th {
+    background: var(--surface2);
+    color: var(--text2);
+    font-weight: 600;
+    padding: 7px 10px;
+    border: 1px solid var(--border);
+    text-align: left;
+    font-size: 12px;
+  }
+  .tbl td { padding: 7px 10px; border: 1px solid var(--border); color: var(--text); vertical-align: top; }
+  .tbl tr:hover td { background: var(--surface2); }
+
+  /* ── 구분선 ── */
+  hr { border: none; border-top: 1px solid var(--border); margin: 1rem 0; }
+
+  /* ── 검색 ── */
+  .search-wrap { margin-bottom: 1.5rem; }
+  .search-input {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .search-input:focus { border-color: var(--green); }
+
+  /* ── 모바일 ── */
+  @media (max-width: 640px) {
+    .sidebar { display: none; }
+    .main { padding: 1rem; }
+    .mob-tabs { display: flex; overflow-x: auto; gap: 6px; margin-bottom: 1.25rem; padding-bottom: 4px; }
+    .mob-tab {
+      padding: 6px 14px;
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      font-size: 12px;
+      white-space: nowrap;
+      cursor: pointer;
+      background: var(--surface);
+      color: var(--text2);
+    }
+    .mob-tab.active { background: var(--green); border-color: var(--green); color: #fff; font-weight: 600; }
+  }
+  @media (min-width: 641px) { .mob-tabs { display: none; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">📞 아이돌봄팀</div>
+  <span class="subtitle">아돌 업무 매뉴얼</span>
+  <span class="edit-badge">✏️ 메모장/VS Code로 수정 가능</span>
+</header>
+
+<div class="layout">
+
+  <!-- 사이드바 -->
+  <nav class="sidebar">
+    <div class="sidebar-label">메뉴</div>
+    <div class="nav-item active" onclick="switchSection('greeting', this)"><span class="nav-icon">📢</span> 응대 기본</div>
+    <div class="nav-item" onclick="switchSection('user', this)"><span class="nav-icon">👨‍👩‍👧</span> 이용자</div>
+    <div class="nav-item" onclick="switchSection('schedule', this)"><span class="nav-icon">📅</span> 일정 관리</div>
+    <div class="nav-item" onclick="switchSection('carer', this)"><span class="nav-icon">👩‍🍼</span> 돌보미</div>
+    <div class="nav-item" onclick="switchSection('system', this)"><span class="nav-icon">🖥</span> 시스템</div>
+    <div class="nav-item" onclick="switchSection('admin', this)"><span class="nav-icon">📋</span> 행정/예산</div>
+    <div class="nav-item" onclick="switchSection('caution', this)"><span class="nav-icon">⚠️</span> 주의사항</div>
+  </nav>
+
+  <!-- 메인 -->
+  <main class="main">
+
+    <!-- 모바일 탭 -->
+    <div class="mob-tabs">
+      <div class="mob-tab active" onclick="switchSection('greeting', this)">📢 응대 기본</div>
+      <div class="mob-tab" onclick="switchSection('user', this)">👨‍👩‍👧 이용자</div>
+      <div class="mob-tab" onclick="switchSection('schedule', this)">📅 일정</div>
+      <div class="mob-tab" onclick="switchSection('carer', this)">👩‍🍼 돌보미</div>
+      <div class="mob-tab" onclick="switchSection('system', this)">🖥 시스템</div>
+      <div class="mob-tab" onclick="switchSection('admin', this)">📋 행정</div>
+      <div class="mob-tab" onclick="switchSection('caution', this)">⚠️ 주의</div>
+    </div>
+
+    <!-- ═══ 응대 기본 ═══ -->
+    <div id="greeting" class="section active">
+      <h1 class="section-title"><span class="icon">📢</span> 응대 기본</h1>
+
+      <div class="alert info">전화 응대 원칙: 천천히 용건을 듣고 → 필요한 답변을 드린다. 모르면 기다려달라하고 확인 후 다시 전화한다.</div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge green">기본 멘트</span>
+          <span class="card-title">상황별 기본 응대 스크립트</span>
+          <span class="card-toggle open">▲</span>
+        </div>
+        <div class="card-body open">
+          <div class="qa">
+            <div class="qa-q">📞 전화 받을 때 (첫인사)</div>
+            <div class="script">네, 아이돌봄팀 ○○○입니다.</div>
+          </div>
+          <div class="qa">
+            <div class="qa-q">📞 전화 걸 때 (발신)</div>
+            <div class="script">안녕하세요, 아이돌봄팀입니다~<br>안녕하세요, 방금 전에 전화드린 아이돌봄팀 ○○○입니다.</div>
+          </div>
+          <div class="qa">
+            <div class="qa-q">🔄 다른 담당자로 연결할 때</div>
+            <div class="script">잠시만요. 담당 선생님께 연결해 드리겠습니다.</div>
+          </div>
+          <div class="qa">
+            <div class="qa-q">🔍 정보 검색할 때 (대기 요청)</div>
+            <div class="script">아, 잠시만요 이용자님/선생님. 제가 확인해 보겠습니다. 잠시만 기다려주세요.</div>
+          </div>
+          <div class="qa">
+            <div class="qa-q">❓ 모르거나 검색해도 안 나올 때</div>
+            <div class="script">제가 이 문의사항에 대해서 확인하고 안내드리겠습니다. 잠시만 기다려주세요.<br><br>(다시 연결됐을 때) 네, 여보세요.<br>(오래 걸렸을 때) 오래 기다려주셔서 감사합니다~</div>
+          </div>
+          <div class="qa">
+            <div class="qa-q">✅ 끝인사</div>
+            <div class="script">네, 감사합니다~</div>
+          </div>
+          <hr>
+          <div class="alert warn">❌ 절대 금지 표현<br>· "빠르게 알아보겠다" → "알아보겠습니다"로 대체<br>· "밴드/공지에 올리겠다" → 절대 금지<br>· 확인 전에 확답 주기 → 반드시 확인 후 안내</div>
+          <div class="alert success">✅ 전화 후 반드시 할 것<br>1. 해당 업무처리 (일대일 문의 답변, 신청-배정-승인 등)<br>2. 카톡방에 기록 남기기<br>3. 업무 중 전화 오면 → 하던 것 정확히 끝내고 나서 처리!</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge green">정기 공지</span>
+          <span class="card-title">일정 신청 안내 알림톡 문구</span>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="script">
+            안녕하세요, 은평구 아이돌봄서비스입니다.<br><br>
+            4월 일정은 4월 1일 ~ 25일 사이에,<br>
+            5월 일정은 4월 11일 ~ 25일 사이에 신청 가능하시며,<br>
+            지나간 날과 당일 일정 건은 센터로 문의 부탁드립니다.<br><br>
+            감사합니다.
+          </div>
+          <div class="alert warn">문자 알림톡은 정확한 내용만! 반드시 다른 선생님 확인 후 발송할 것</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge green">1:1 문의 답변</span>
+          <span class="card-title">일대일 문의 기본 답변 문구</span>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="script">안녕하세요, 은평구 아이돌봄팀입니다.<br>일정 변경되었습니다.<br>감사합니다.</div>
+          <div class="alert info">일대일 문의 남기는 이유 안내 시: "근거를 남기기 위해서입니다"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 이용자 ═══ -->
+    <div id="user" class="section">
+      <h1 class="section-title"><span class="icon">👨‍👩‍👧</span> 이용자</h1>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge blue">서비스 안내</span>
+          <span class="card-title">서비스 종류 및 요금</span>
+          <span class="card-toggle open">▲</span>
+        </div>
+        <div class="card-body open">
+          <table class="tbl">
+            <tr><th>서비스 종류</th><th>대상</th><th>기본 요금</th><th>주요 특징</th></tr>
+            <tr><td>시간제 기본형</td><td>3개월~12세</td><td>12,790원/시간</td><td>하원, 임시보육, 놀이, 간식챙기기 (조리 불가, 36개월↑ 목욕 불가)</td></tr>
+            <tr><td>시간제 종합형</td><td>3개월~12세</td><td>16,620원/시간</td><td>기본형 + 아동관련 가사 (세탁, 청소, 조리, 설거지)</td></tr>
+            <tr><td>영아종일제</td><td>3~36개월</td><td>별도</td><td>이유식, 젖병세척, 기저귀, 목욕 등 / 월 80~200시간 지원</td></tr>
+            <tr><td>긴급돌봄</td><td>시간제 대상</td><td>12,790원 + 3,000원/건</td><td>2시간 전 단기 신청</td></tr>
+            <tr><td>야간긴급돌봄</td><td>시간제 대상</td><td>12,790원 + 야간할증 50% + 3,000원</td><td>야간 특화</td></tr>
+          </table>
+          <div class="alert info">💡 금액 안내 시: 1시간 금액 안내 후 모의계산표로 직접 계산하시는 게 가장 정확함을 안내</div>
+          <div class="alert warn">기본형 · 종합형은 택1 (병행 불가) <br>기본형: 가스불 사용 불가 / 종합형: 가스불 사용 가능<br>영아종일제 용어: 소독 아니고 <b>세척</b>!</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge blue">신규 신청</span>
+          <span class="card-title">서비스 신청 방법 안내 (처음 이용 시)</span>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="flow">
+            <div class="flow-step"><div class="step-num">1</div><div class="step-text">국민행복카드 준비</div></div>
+            <div class="flow-step"><div class="step-num">2</div><div class="step-text">아이돌봄서비스 이용자 홈페이지(파란색) 회원가입</div></div>
+            <div class="flow-step"><div class="step-num">3</div><div class="step-text">정부지원판정 신청: 부모 둘 다 직장가입자 → 복지로 온라인 / 그 외 → 주소지 주민센터 방문 (필요서류 미리 전화 확인하고 가시라고 안내)</div></div>
+            <div class="flow-step"><div class="step-num">4</div><div class="step-text">3가지 모두 동일인 명의로 처리</div></div>
+          </div>
+          <div class="alert warn">정부지원판정 결과가 '지원대상 아님'으로 나오면 → 아직 소득판정이 안됐거나 진행 중인 상태 (판정에 3~5일 소요). 이의제기는 주민센터 또는 복지로 앱으로 문의 안내</div>
+          <div class="alert danger">⚠️ 정부지원판정 신청 시 전체 아동 반드시 신청! 2명 중 1명만 신청하면 안 됨 - 민원 잦은 항목!</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge blue">회원 관리</span>
+          <span class="card-title">주소변경 · 이관 처리 · 예치금</span>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="qa"><div class="qa-q">가~라형 주소변경</div><div class="qa-a">일지 완료 + 미납금 해소 → 이용자가 주소 변경 → 타구에서 정부판정 다시 받으면 자동으로 타구로 이동됨</div></div>
+          <div class="qa"><div class="qa-q">마형 주소변경</div><div class="qa-a">일지 완료 + 예치금 0원이면 지역 &gt; 센터 검색에서 바로 이관 처리</div></div>
+          <div class="qa"><div class="qa-q">이관 처리 조건</div><div class="qa-a"><ul><li>정부지원판정 받은 상태면 이관 불가 → 전입신고 후 새로 판정</li><li>예치금 0원이어야 함</li><li>활동일지 완료 후 이관 가능</li><li>이용자 개인정보 지우고 보내기!</li></ul></div></div>
+          <div class="qa"><div class="qa-q">예치금 환불</div><div class="qa-a">이용자가 직접 환불요청 버튼 누르도록 안내 (내가 누르는 거 아님!) → 처리 후 다인 선생님께 반드시 보고</div></div>
+          <div class="qa"><div class="qa-q">단기서비스 예치금</div><div class="qa-a">단기는 예치금 있어야만 가능. 현금가상계좌는 즉시, 신용카드는 2~3일 소요</div></div>
+          <div class="alert info">휴면회원 → 로그인하면 자동으로 해제됨</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge blue">대기 관련</span>
+          <span class="card-title">대기 문의 응대</span>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="qa">
+            <div class="qa-q">대기가 왜 이렇게 오래 걸리나요?</div>
+            <div class="script">이용 원하시는 가정들이 많아서 오래 걸리고 있습니다. 오전의 경우 3개월 이상, 오후(하원)의 경우 6개월 이상 대기가 필요하실 수 있습니다.</div>
+          </div>
+          <div class="qa">
+            <div class="qa-q">대기 오래 했는데 왜 아직도 안 되나요? (화남)</div>
+            <div class="script">네, 저희가 조건에 적합한 돌보미 선생님들 연계 도와드리려고 계속 찾고 있는데 아직 연계가 안 되어서 오래 기다리게 해서 정말 죄송한 마음입니다. 저희가 더 알아보고 연락드리겠습니다.</div>
+          </div>
+          <div class="qa">
+            <div class="qa-q">가점 반영이 안 돼요</div>
+            <div class="qa-a">맞벌이 5점, 다둥이 3점, 대기 1달에 1점 자동 적립. 타 가정의 가점은 공개되지 않음. 대기순번도 공개 안 됨.</div>
+          </div>
+          <div class="alert warn">대기아동 상태에서 정기서비스 신청 불가 / 단기서비스 신청은 가능</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 일정 관리 ═══ -->
+    <div id="schedule" class="section">
+      <h1 class="section-title"><span class="icon">📅</span> 일정 관리</h1>
+      <div class="alert success">원칙: 무조건 선 신청 후 활동! (다칠 경우 보험 배상 문제)</div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge amber">일정 신청</span>
+          <span class="card-title">정기 / 단기 서비스 신청 안내</span>
+          <span class="card-toggle open">▲</span>
+        </div>
+        <div class="card-body open">
+          <div class="qa">
+            <div class="qa-q">정기서비스 신청 기간</div>
+            <div class="qa-a"><ul>
+              <li>당월 일정: 1~25일에 신청 가능</li>
+              <li>익월 일정: 11~25일에 신청 가능</li>
+              <li>당일·지나간 일정은 이용자 신청 불가 → <b>센터에서 처리</b></li>
+              <li>내일 이후 일정은 이용자가 앱으로 직접 신청</li>
+            </ul></div>
+          </div>
+          <div class="qa">
+            <div class="qa-q">단기서비스</div>
+            <div class="qa-a">5일 전 ~ 4시간 전 신청 가능 / AI 매칭 (30분 내 배정 없으면 자동 취소) / 매번 신청 필요 / 돌보미 바뀔 수 있음</div>
+          </div>
+          <div class="qa">
+            <div class="qa-q">동시돌봄 신청</div>
+            <div class="qa-a">동시돌봄은 무조건 <b>정기</b>로만 신청 가능 (단기 불가)<br><br>요금: 2명 동시돌봄 = 기본금 × 1.5<br>다자녀할인(가~라형): × 0.9 / 마형: 동시돌봄할인만 적용</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge red">취소 처리</span>
+          <span class="card-title">일정 취소 응대 플로우 ★핵심★</span>
+          <span class="card-toggle open">▲</span>
+        </div>
+        <div class="card-body open">
+          <div class="flow">
+            <div class="flow-step"><div class="step-num">1</div><div class="step-text"><b>시간 확인</b>: 몇 시간 전인가?</div></div>
+            <div class="flow-step"><div class="step-num">2</div><div class="step-text"><b>사유 확인</b>: ① 이용자 개인사유 / ② 아이 아픔 / ③ 돌보미 사유</div></div>
+            <div class="flow-step"><div class="step-num">3</div><div class="step-text"><b>협의 확인</b>: 이용자/돌보미와 협의했는지?</div></div>
+          </div>
+          <hr>
+          <table class="tbl">
+            <tr><th>시간 기준</th><th>이용자 사유</th><th>아이 아픔</th><th>돌보미 사유</th></tr>
+            <tr><td>배정 후 1시간 이내</td><td>수수료 없음 (무료)</td><td>수수료 없음</td><td>수수료 없음</td></tr>
+            <tr><td>72시간 이후 ~ 24시간 초과</td><td>페널티 없음</td><td>수수료 없음</td><td>수수료 없음</td></tr>
+            <tr><td>24시간 이내 ~ 1시간 초과</td><td>수수료 12,790원 (이용자 부담)</td><td>약봉투 등 증빙서류 제출 → 정부지원금 대체</td><td>수수료 없음</td></tr>
+            <tr><td>72시간 이내 (이용자 사유)</td><td>페널티 발생 (월 3건 시 이용제한)</td><td>진료확인서 → 일대일 문의 첨부</td><td>페널티 없음</td></tr>
+          </table>
+          <div class="alert danger">취소는 이용자 본인이 앱/사이트에서 하는 것이 원칙. 센터가 대신 취소할 때는 반드시 이용자와 협의 필수!</div>
+          <div class="alert warn">취소 수수료·패널티 건은 반드시 시트에 기록! (급여정산에 필요)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 돌보미 ═══ -->
+    <div id="carer" class="section">
+      <h1 class="section-title"><span class="icon">👩‍🍼</span> 돌보미</h1>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge purple">신규 연계</span>
+          <span class="card-title">신규 연계 프로세스</span>
+          <span class="card-toggle open">▲</span>
+        </div>
+        <div class="card-body open">
+          <div class="alert info">중간시간대: 09:00~15:00 / 하원시간대: 16:00 이후 (신규 연계 시 주의!)</div>
+          <div class="flow">
+            <div class="flow-step"><div class="step-num">1</div><div class="step-text">카카오맵 + 대기자 파일에서 돌보미 근처 이용자 후보 선정 (대중교통 30분 이내, 환승 없음)</div></div>
+            <div class="flow-step"><div class="step-num">2</div><div class="step-text">돌보미에게 후보 중 괜찮은 가정 선택 요청</div></div>
+            <div class="flow-step"><div class="step-num">3</div><div class="step-text">이용자 전화: CCTV, 반려동물, 다른 아동 여부, 돌봄활동 종류, 거리 안내</div></div>
+            <div class="flow-step"><div class="step-num">4</div><div class="step-text">돌보미 전화: 이용자 정보 안내, 일시연계 일정 조율</div></div>
+            <div class="flow-step"><div class="step-num">5</div><div class="step-text">이용자 전화: 돌보미 정보 안내, 일정 확정, 서약서 2가지 갱신, 결제카드 확인, 금액 안내</div></div>
+            <div class="flow-step"><div class="step-num">6</div><div class="step-text">일시연계 신청-배정-승인 처리 후 돌보미에게 연계 완료 및 이용자 요청사항 안내</div></div>
+          </div>
+          <div class="alert warn">신규 연계는 1명 면접/일시연계가 원칙 (3명씩 안 함)<br>3개월 미만 아동은 연계 불가 (서약서 내도 안 됨)</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge purple">연차 관리</span>
+          <span class="card-title">돌보미 연차 처리</span>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body">
+          <table class="tbl">
+            <tr><th>상황</th><th>처리 방법</th></tr>
+            <tr><td>72시간 이후 날짜</td><td>돌보미 본인이 앱에서 직접 신청 가능</td></tr>
+            <tr><td>72시간 이내 날짜</td><td>일대일 문의 남기라고 안내</td></tr>
+            <tr><td>연차 취소</td><td>본인이 못 함 → 1:1 문의 요청 → 내가 처리 후 카톡 공유</td></tr>
+            <tr><td>신청 가능 시간</td><td>10:00~18:00, 30분 단위, 하루 8시간 이내, 월 40시간 이내</td></tr>
+            <tr><td>신청 불가</td><td>휴일(월~토만 가능), 연장근로 있는 경우, 휴직 중, 지나간 날</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge purple">각종 수당</span>
+          <span class="card-title">수당 종류 안내</span>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body">
+          <table class="tbl">
+            <tr><th>수당 항목</th><th>내용</th></tr>
+            <tr><td>기본수당</td><td>11,120원/시간</td></tr>
+            <tr><td>종합형 가산</td><td>+3,830원/시간</td></tr>
+            <tr><td>질병감염아동</td><td>+3,340원/시간</td></tr>
+            <tr><td>영아(36개월↓) 돌봄</td><td>+2,000원/시간 (아동 1인 기준)</td></tr>
+            <tr><td>유아(3~5세) 돌봄</td><td>+1,000원/시간 (아동 1인 기준)</td></tr>
+            <tr><td>야간긴급돌봄</td><td>+5,000원/일 (22시~익일 06시)</td></tr>
+            <tr><td>등하원교통비</td><td>월 최대 50,000원 (월 5회 이상, 2시간 이내, 시간제만)</td></tr>
+            <tr><td>병원동행</td><td>월 최대 50,000원 (비전염성·예방접종만 해당)</td></tr>
+            <tr><td>영아전담(서울형)</td><td>월 최대 100,000원 (지정 + 월 60시간 이상)</td></tr>
+            <tr><td>둘째출산 종료수당</td><td>50,000원 1회 (90일 경과 시)</td></tr>
+          </table>
+          <div class="alert warn">대체공휴일 이용 시: 이용자는 평일요금, 돌보미는 휴일수당 적용</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge purple">채용 안내</span>
+          <span class="card-title">아이돌보미 채용 문의 응대</span>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="script">
+            자격증(보육교사/유치원교사/초중등교사/간호사) 있으신가요?<br><br>
+            <b>[자격증 있는 경우]</b> 별도 교육 없이 아이돌보미 홈페이지(주황색)에서 모집공고 보시고 지원하시면 됩니다.<br><br>
+            <b>[자격증 없는 경우]</b> 아이돌보미 양성교육 수료하셔야 합니다. 은평여성인력개발센터(☎ 02-389-1976)로 문의하세요.<br><br>
+            채용 공고는 수시로 올라오며, 별도 연락 드리지 않습니다. 사이트 수시 확인 부탁드립니다.
+          </div>
+          <div class="alert info">채용 순서: 서류접수 → 합격자발표 → 인적성검사 → 면접 → 최종합격</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 시스템 ═══ -->
+    <div id="system" class="section">
+      <h1 class="section-title"><span class="icon">🖥</span> 시스템</h1>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge gray">기본 조회</span>
+          <span class="card-title">시스템 정보 검색 경로</span>
+          <span class="card-toggle open">▲</span>
+        </div>
+        <div class="card-body open">
+          <table class="tbl">
+            <tr><th>확인 항목</th><th>경로</th></tr>
+            <tr><td>이용자 정보/결제카드</td><td>이용자관리 &gt; 개인회원 &gt; 정회원</td></tr>
+            <tr><td>정기서비스 일정</td><td>서비스관리 &gt; 정기이용서비스 &gt; 이용자이름 검색</td></tr>
+            <tr><td>단기서비스 일정</td><td>서비스관리 &gt; 단기서비스 &gt; 배정대기+수동배정 체크</td></tr>
+            <tr><td>1:1 문의 확인</td><td>업무지원 &gt; 문의관리 &gt; 시스템문의</td></tr>
+            <tr><td>대기자 명단</td><td>구글시트 대기자 파일 (즐겨찾기)</td></tr>
+            <tr><td>돌보미 정보</td><td>소속 아이돌보미에서 검색</td></tr>
+            <tr><td>SMS 발송 내역</td><td>서비스관리 &gt; 메시지관리 &gt; SMS발송관리</td></tr>
+            <tr><td>활동일지</td><td>활동일지관리 &gt; 제출 &gt; 대기 &gt; 100페이지</td></tr>
+          </table>
+          <div class="alert warn">조회 안 될 때 체크리스트: 50페이지 설정 → 카테고리 확인 → 날짜 기간 확인 → 동명이인 확인 → 오타 확인</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge gray">배정 처리</span>
+          <span class="card-title">배정 · 승인 처리 순서</span>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="qa">
+            <div class="qa-q">정기서비스 배정</div>
+            <div class="qa-a">서비스관리 &gt; 전체 선택 &gt; 선택돌보미매칭 &gt; 돌보미검색 &gt; 조회 &gt; 시간선택 &gt; 저장 &gt; 확인</div>
+          </div>
+          <div class="qa">
+            <div class="qa-q">결재 요청(승인)</div>
+            <div class="qa-a">해당 달 &gt; 이용자이름조회 &gt; 50페이지 설정 &gt; 전체선택 &gt; 선택승인 → 진행상태 '승인', 돌보미 확인</div>
+          </div>
+          <div class="qa">
+            <div class="qa-q">시간 변경</div>
+            <div class="qa-a">신청서 번호 더블클릭 (돌보미 이름 먼저 메모!) &gt; 수정 &gt; 팝업 맨 밑 수정버튼 클릭 &gt; 시간변경 &gt; 선택돌보미배정 &gt; 저장 &gt; 결재요청승인 &gt; 1:1 문의 답변, 카톡 공유</div>
+          </div>
+          <div class="alert warn">배정 후 반드시 승인까지 완료해야 함!</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge gray">회원 처리</span>
+          <span class="card-title">정회원 승인 순서</span>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="flow">
+            <div class="flow-step"><div class="step-num">1</div><div class="step-text">정회원 &gt; 승인요청 &gt; 대기회원에서 이름+번호 내 카톡에 메모 (동명이인 방지)</div></div>
+            <div class="flow-step"><div class="step-num">2</div><div class="step-text">정회원 선택 &gt; 승인</div></div>
+            <div class="flow-step"><div class="step-num">3</div><div class="step-text">승인한 사람에게 SMS 발송 (정기서비스 대기 신청 문구 복붙)</div></div>
+            <div class="flow-step"><div class="step-num">4</div><div class="step-text">아이돌봄 카톡방에 공유</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 행정/예산 ═══ -->
+    <div id="admin" class="section">
+      <h1 class="section-title"><span class="icon">📋</span> 행정/예산</h1>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge green">근태 관리</span>
+          <span class="card-title">월 근태 작성 및 제출</span>
+          <span class="card-toggle open">▲</span>
+        </div>
+        <div class="card-body open">
+          <div class="qa"><div class="qa-q">근태 파일 경로</div><div class="qa-a">이케피포유: 행정 &gt; 근태보고서출력 &gt; 보고서양식 &gt; 4번, 7번 &gt; 조회기간 해당월로 출력</div></div>
+          <div class="qa"><div class="qa-q">나스 엑셀 파일 작업</div><div class="qa-a">해당월 엑셀에서 내 이름만 필터 적용 → 복사 → 내 이름 시트에 붙여넣기</div></div>
+          <div class="qa"><div class="qa-q">제출 서류</div><div class="qa-a">근무상황부 1장 + 시간외사전승인요청서 2장(세로)</div></div>
+          <div class="alert warn">팀회의·전체회의 회의록 꼭 첨부 + 사진 찍기!</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge green">예산 집행</span>
+          <span class="card-title">예산 및 공문 처리 주의사항</span>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="alert danger">쿠팡 주문 전 반드시 장바구니 캡처! 품의서는 결제 전에 작성해서 결재 받는 것!</div>
+          <div class="alert warn">품의서 한 개 만들었으면 똑같은 거 다시 복사하지 말 것<br>이나라는 복사 안 되니 지난 번 꺼 잘 비교하며 작성</div>
+          <table class="tbl">
+            <tr><th>항목</th><th>내용</th></tr>
+            <tr><td>내부공문</td><td>~호 (호 있음)</td></tr>
+            <tr><td>발신공문</td><td>호 없음</td></tr>
+            <tr><td>결재라인 (4/3 기준)</td><td>본인 → 주임님 → 센터장님</td></tr>
+            <tr><td>시간외 등록</td><td>등록 날짜 당일 안 됨 → 전날로 변경</td></tr>
+          </table>
+          <div class="alert info">붙임 서류명 형식:<br>붙임 1. 서류명1 1부.<br>2. 서류명2 1부. 끝.<br><br>사본 첨부서류: '원본과 같다는 도장' + 내 도장 날인 필수</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge green">월 마감</span>
+          <span class="card-title">월 마감 체크리스트</span>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="flow">
+            <div class="flow-step"><div class="step-num">1</div><div class="step-text">정기·단기 각각 다운로드 (해당월 1~31일)</div></div>
+            <div class="flow-step"><div class="step-num">2</div><div class="step-text">전체 병합 해제, 둘째 행 삭제, 단기 긴급돌봄수당 열 삭제</div></div>
+            <div class="flow-step"><div class="step-num">3</div><div class="step-text">단기 첫 줄 지우고 정기 밑에 단기 전체 붙임 → 원본시트명으로 저장</div></div>
+            <div class="flow-step"><div class="step-num">4</div><div class="step-text">옆에 복사본 시트 복제 → 필터 걸고 완료 제외한 건 다 보기</div></div>
+            <div class="flow-step"><div class="step-num">5</div><div class="step-text">취소수수료 확인 / 판정등급 마 제외 전체 보기 / K열(이용시간-정부시간) 0 아닌 건 확인</div></div>
+          </div>
+          <div class="alert info">실적: 15일 새벽 업데이트. 13일부터 매일 확인. 업데이트되면 팀장님께 보고</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 주의사항 ═══ -->
+    <div id="caution" class="section">
+      <h1 class="section-title"><span class="icon">⚠️</span> 주의사항</h1>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge red">절대 금지</span>
+          <span class="card-title">절대 하면 안 되는 것들</span>
+          <span class="card-toggle open">▲</span>
+        </div>
+        <div class="card-body open">
+          <div class="alert danger">
+            ❌ 이용자/돌보미 말만 믿지 말 것 → 반드시 실무자, 카톡, 메모 확인<br>
+            ❌ "밴드/공지에 올리겠다" 절대 금지<br>
+            ❌ 이용자 예치금 환불 버튼 내가 누르면 안 됨<br>
+            ❌ 단기는 센터가 신청 못 함 (이용자가 직접, 5일~4시간 전)<br>
+            ❌ 활동일지 12·13번 확인 없이 승인하지 말 것 (전염병 여부 확인 필수)<br>
+            ❌ 정부지원판정 시 일부 아동만 신청 안내 금지 (반드시 전체 아동 신청)
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge red">자주 실수</span>
+          <span class="card-title">자주 실수하는 항목</span>
+          <span class="card-toggle open">▲</span>
+        </div>
+        <div class="card-body open">
+          <div class="qa"><div class="qa-q">검색 안 될 때</div><div class="qa-a">정기에서 안 나오면 단기에서도 찾아볼 것 / 배정 안 된 건은 돌보미로 검색 안 되고 이용자로 검색해야 함</div></div>
+          <div class="qa"><div class="qa-q">배정 시</div><div class="qa-a">정부판정유형 꼭 확인 / 50페이지 설정 / 지난달 정보와 비교 / 동일 아동이 요일별로 다른 돌보미인 경우 있으니 꼭 확인</div></div>
+          <div class="qa"><div class="qa-q">카톡방 공유 시</div><div class="qa-a">이용자·돌보미 전화번호 조회해서 이름 정확하게 쓰기</div></div>
+          <div class="qa"><div class="qa-q">시간 변경 시</div><div class="qa-a">돌보미 이름 반드시 먼저 메모! 시간 바꾸면 돌보미 정보가 사라짐</div></div>
+          <div class="qa"><div class="qa-q">활동일지 승인 시</div><div class="qa-a">12·13번 특이사항 꼭 확인 (전염병이면 질병감염으로 서비스 전환 필요, 진료확인서 필요)</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <span class="badge red">민원 대비</span>
+          <span class="card-title">민원 발생 주의 항목</span>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="alert danger">
+            안전사고 발생 시 → 팀 보고 → 센터장님 보고 (반드시 즉시)<br>
+            부모급여 관련 → 우리는 중단 여부만 알고 있음. 정확한 내용은 주민센터에 문의하라고 안내<br>
+            선생님 배정 주소 안내 → 개인정보라 말씀드리기 어렵고, 앱에서 아동 이름 누르시면 확인 가능
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  function switchSection(id, el) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.nav-item, .mob-tab').forEach(n => n.classList.remove('active'));
+    document.querySelectorAll('[onclick*="' + id + '"]').forEach(n => n.classList.add('active'));
+  }
+  function toggleCard(header) {
+    const body = header.nextElementSibling;
+    const icon = header.querySelector('.card-toggle');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    icon.classList.toggle('open', !isOpen);
+    icon.textContent = isOpen ? '▼' : '▲';
+  }
+</script>
+</body>
+</html>
