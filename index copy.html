@@ -39,7 +39,7 @@
     --radius-sm: 6px;
   }
   body {
-    font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system, sans-serif;
     background: var(--bg);
     color: var(--text);
     line-height: 1.7;
@@ -267,66 +267,7 @@
   }
   .search-input:focus { border-color: var(--green); }
 
-  /* ── FAQ ── */
-  .faq-item { border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 0.5rem; overflow: hidden; }
-  .faq-header {
-    display: flex; align-items: center; gap: 10px;
-    padding: 0.65rem 1rem;
-    background: var(--bg);
-    cursor: pointer; user-select: none;
-  }
-  .faq-header:hover { background: var(--surface2); }
-  .faq-tag {
-    font-size: 10px; font-weight: 700;
-    background: var(--blue-bg); color: var(--blue-text);
-    padding: 2px 7px; border-radius: 10px;
-    white-space: nowrap; flex-shrink: 0;
-  }
-  .faq-title { font-size: 13px; font-weight: 500; color: var(--text); flex: 1; }
-  .faq-toggle { font-size: 11px; color: var(--text3); flex-shrink: 0; }
-  .faq-body { display: none; padding: 0.75rem 1rem; background: var(--surface); }
-  .faq-body.open { display: block; }
-  .faq-memo {
-    min-height: 80px;
-    width: 100%;
-    border: 1px dashed var(--border2);
-    border-radius: var(--radius-sm);
-    padding: 0.65rem 0.875rem;
-    font-size: 13px; color: var(--text);
-    line-height: 1.7;
-    outline: none;
-    background: var(--surface2);
-    transition: border-color 0.15s, background 0.15s;
-    font-family: inherit;
-  }
-  .faq-memo:focus { border-color: var(--green); background: var(--surface); border-style: solid; }
-  .faq-memo:empty::before { content: attr(placeholder); color: var(--text3); pointer-events: none; }
-
-  /* ── 서브섹션 ── */
-  .sub-section { margin-bottom: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
-  .sub-header {
-    display: flex; align-items: center; gap: 10px;
-    padding: 0.65rem 1rem;
-    background: var(--bg);
-    cursor: pointer;
-    user-select: none;
-  }
-  .sub-header:hover { background: var(--surface2); }
-  .sub-num {
-    min-width: 20px; height: 20px;
-    border-radius: 50%;
-    background: var(--green);
-    color: #fff;
-    font-size: 11px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .sub-title { font-size: 13px; font-weight: 600; color: var(--text); flex: 1; }
-  .sub-toggle { font-size: 11px; color: var(--text3); }
-  .sub-body { padding: 0.875rem 1rem; display: none; background: var(--surface); }
-  .sub-body.open { display: block; }
-
-
+  /* ── 모바일 ── */
   @media (max-width: 640px) {
     .sidebar { display: none; }
     .main { padding: 1rem; }
@@ -362,11 +303,10 @@
     <div class="nav-item active" onclick="switchSection('greeting', this)"><span class="nav-icon">🍀</span> 응대 기본</div>
     <div class="nav-item" onclick="switchSection('user', this)"><span class="nav-icon">👨‍👩‍👧</span> 이용자</div>
     <div class="nav-item" onclick="switchSection('schedule', this)"><span class="nav-icon">📅</span> 일정 관리</div>
-    <div class="nav-item" onclick="switchSection('carer', this)"><span class="nav-icon">👩‍🍼</span> 선생님</div>
+    <div class="nav-item" onclick="switchSection('carer', this)"><span class="nav-icon">👩‍🍼</span> 돌보미</div>
     <div class="nav-item" onclick="switchSection('system', this)"><span class="nav-icon">🖥</span> 시스템</div>
     <div class="nav-item" onclick="switchSection('admin', this)"><span class="nav-icon">📋</span> 행정/예산</div>
     <div class="nav-item" onclick="switchSection('caution', this)"><span class="nav-icon">⚠️</span> 주의사항</div>
-    <div class="nav-item" onclick="switchSection('duties', this)"><span class="nav-icon">📌</span> 담당 업무</div>
   </nav>
 
   <!-- 메인 -->
@@ -377,18 +317,17 @@
       <div class="mob-tab active" onclick="switchSection('greeting', this)">🍀 응대 기본</div>
       <div class="mob-tab" onclick="switchSection('user', this)">👨‍👩‍👧 이용자</div>
       <div class="mob-tab" onclick="switchSection('schedule', this)">📅 일정</div>
-      <div class="mob-tab" onclick="switchSection('carer', this)">👩‍🍼 선생님</div>
+      <div class="mob-tab" onclick="switchSection('carer', this)">👩‍🍼 돌보미</div>
       <div class="mob-tab" onclick="switchSection('system', this)">🖥 시스템</div>
       <div class="mob-tab" onclick="switchSection('admin', this)">📋 행정</div>
       <div class="mob-tab" onclick="switchSection('caution', this)">⚠️ 주의</div>
-      <div class="mob-tab" onclick="switchSection('duties', this)">📌 담당업무</div>
     </div>
 
     <!-- ═══ 응대 기본 ═══ -->
     <div id="greeting" class="section active">
       <h1 class="section-title"><span class="icon">📢</span> 응대 기본</h1>
 
-      <div class="alert info">전화 응대 원칙: 천천히 용건을 듣고 → 필요한 답변을 드린다. 모르면 기다려달라하고 확인 후 다시 전화한다.</div>
+      <div class="alert info">전화 응대: 천천히 용건을 듣고 → 필요한 답변을 드린다. 질문이 뭔지 정확히 되물어 확인한다. 캐물어야한다. 병원갔다고 하면 입원이 필요한건지, 애매하게 말하면 날짜,시간, 어떤 아동인지 캐물어야한다. 질문 답변이 오래걸릴 것 같으면 다시 연락드린다고 하고 확인 후 다시 전화한다. 선생님 활동시간 아닐 때 전화해야함(안전문제)</div>
 
       <div class="card">
         <div class="card-header" onclick="toggleCard(this)">
@@ -429,114 +368,19 @@
 
       <div class="card">
         <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge green">알림톡</span>
-          <span class="card-title">알림톡 문구</span>
+          <span class="badge green">정기 공지</span>
+          <span class="card-title">일정 신청 안내 알림톡 문구</span>
           <span class="card-toggle">▼</span>
         </div>
         <div class="card-body">
-
-          <!-- 서브섹션 1: 작성 시 주의사항 -->
-          <div class="sub-section">
-            <div class="sub-header" onclick="toggleSub(this)">
-              <span class="sub-num">1</span>
-              <span class="sub-title">알림톡 작성 시 주의사항</span>
-              <span class="sub-toggle open">▲</span>
-            </div>
-            <div class="sub-body open">
-              <div class="alert danger">
-                ❌ 확인되지 않은 내용 작성 금지<br>
-                ❌ 발송 전 반드시 보라T, 부장님 태그해서 업무톡방 보고 후 발송<br>
-                ❌ 이용자에게 "카페/공지에 올리겠다" 표현 금지
-              </div>
-              <div class="alert warn">
-                ✏️ 문구는 정확하고 간결하게<br>
-                · 날짜·시간 오타 필수 확인<br>
-                · 발송 대상 (이용자 / 선생님) 구분 확인<br>
-                · 발송 후 내용 캡처해서 카톡방 공유
-              </div>
-            </div>
+          <div class="script">
+            안녕하세요, 은평구 아이돌봄서비스입니다.<br><br>
+            4월 일정은 4월 1일 ~ 25일 사이에,<br>
+            5월 일정은 4월 11일 ~ 25일 사이에 신청 가능하시며,<br>
+            지나간 날과 당일 일정 건은 센터로 문의 부탁드립니다.<br><br>
+            감사합니다.
           </div>
-
-          <!-- 서브섹션 2: 대상 선택 -->
-          <div class="sub-section">
-            <div class="sub-header" onclick="toggleSub(this)">
-              <span class="sub-num">2</span>
-              <span class="sub-title">대상 선택 방법</span>
-              <span class="sub-toggle">▼</span>
-            </div>
-            <div class="sub-body">
-              <div class="qa">
-                <div class="qa-q">전체 이용자 / 선생님 대상</div>
-                <div class="qa-a">SMS 발송관리 → 수신자 그룹 선택 → <b>전체 이용자</b> 또는 <b>전체 선생님</b> 선택 후 발송</div>
-              </div>
-              <div class="qa">
-                <div class="qa-q">특정 대상 선택 (엑셀 템플릿)</div>
-                <div class="qa-a">
-                  SMS 발송관리 → 엑셀 업로드 선택 → 템플릿 다운로드 → 대상자 전화번호 입력 후 업로드 → 발송<br>
-                  <div class="alert info" style="margin-top:8px;">💡 엑셀 템플릿 열 구성: 이름 / 전화번호 (형식: 010-0000-0000)<br>저장 형식은 .xlsx, 인코딩 주의 (UTF-8)</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 서브섹션 3: 문구 예시 -->
-          <div class="sub-section">
-            <div class="sub-header" onclick="toggleSub(this)">
-              <span class="sub-num">3</span>
-              <span class="sub-title">문구 예시</span>
-              <span class="sub-toggle">▼</span>
-            </div>
-            <div class="sub-body">
-              <div class="qa">
-                <div class="qa-q">📅 정기 신청 안내</div>
-                <div class="script">
-                  안녕하세요, 은평구 아이돌봄서비스입니다.<br><br>
-                  4월 일정은 4월 1일 ~ 25일 사이에,<br>
-                  5월 일정은 4월 11일 ~ 25일 사이에 신청 가능하시며,<br>
-                  지나간 날과 당일 일정 건은 센터로 문의 부탁드립니다.<br><br>
-                  감사합니다.
-                </div>
-              </div>
-              <div class="qa">
-                <div class="qa-q">⚡ 단기 신청 안내</div>
-                <div class="script">
-                  안녕하세요, 은평구 아이돌봄서비스입니다.<br><br>
-                  단기서비스는 이용일 5일 전 ~ 4시간 전까지 이용자 본인이 앱/홈페이지에서 직접 신청 가능합니다.<br>
-                  센터에서는 단기 신청이 불가하오니 참고 부탁드립니다.<br><br>
-                  감사합니다.
-                </div>
-              </div>
-              <div class="qa">
-                <div class="qa-q">☀️ 하루돌봄 안내</div>
-                <div class="script">
-                  안녕하세요, 은평구 아이돌봄서비스입니다.<br><br>
-                  하루돌봄 서비스 이용을 원하시는 경우,<br>
-                  이용일 기준 5일 전까지 센터로 문의해 주시기 바랍니다.<br><br>
-                  감사합니다.
-                </div>
-              </div>
-              <div class="qa">
-                <div class="qa-q">📢 교육 안내</div>
-                <div class="script">
-                  안녕하세요, 은평구 아이돌봄서비스입니다.<br><br>
-                  ○월 ○일(○) ○○:○○ 〔교육명〕이 진행될 예정입니다.<br>
-                  장소: ○○○ / 대상: ○○○<br><br>
-                  참석 여부를 ○월 ○일까지 회신 부탁드립니다.<br><br>
-                  감사합니다.
-                </div>
-              </div>
-              <div class="qa">
-                <div class="qa-q">🌿 연차 신청 안내 (선생님 대상)</div>
-                <div class="script">
-                  안녕하세요, 은평구 아이돌봄서비스입니다.<br><br>
-                  연차 신청은 이용일 72시간 이후 날짜의 경우 앱에서 직접 신청 가능하며,<br>
-                  72시간 이내 날짜는 일대일 문의로 날짜·시간을 정확히 남겨주시기 바랍니다.<br><br>
-                  감사합니다.
-                </div>
-              </div>
-            </div>
-          </div>
-
+          <div class="alert warn">문자 알림톡은 정확한 내용만! 발송 전 보라T, 부장님 태그해서 업무톡방 보고 후 발송</div>
         </div>
       </div>
 
@@ -639,102 +483,13 @@
           </div>
           <div class="qa">
             <div class="qa-q">대기 오래 했는데 왜 아직도 안 되나요? (화남) 다른 이용자들도 많이 기다리고 있던데 어쩌구 저쩌구 </div>
-            <div class="script">네, 저희가 조건에 적합한 선생님들 연계 도와드리려고 계속 찾고 있습니다. 오래 기다리게 해서 정말 죄송합니다. 저희가 더 알아보고 연락드리겠습니다.</div>
+            <div class="script">네, 저희가 조건에 적합한 돌보미 선생님들 연계 도와드리려고 계속 찾고 있습니다. 오래 기다리게 해서 정말 죄송합니다. 저희가 더 알아보고 연락드리겠습니다.</div>
           </div>
           <div class="qa">
             <div class="qa-q">저 대기 가점이 얼마예요?</div>
             <div class="qa-a">맞벌이 5점, 다둥이 3점, 대기 1달에 1점 자동 적립. 타 가정의 가점은 공개되지 않음. 대기순번도 공개 안 됨. 다른 분들도 대기가점이 다 비슷하게 많으셔서 사실 큰 의미가 없고 대기기간과 선생님의 조건이 맞는게 더 중요하다..</div>
           </div>
           <div class="alert warn">대기아동 상태에서 정기서비스 신청 불가 / 단기서비스 신청은 가능 / 동시돌봄이나 질병아동이어서 정기로 전환되는 경우도 있음 </div>
-        </div>
-      </div>
-
-      <!-- 자주하는 질문 -->
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge blue">자주하는 질문</span>
-          <span class="card-title">이용자 자주하는 질문 응대</span>
-          <span class="card-toggle open">▲</span>
-        </div>
-        <div class="card-body open">
-
-          <div class="faq-item">
-            <div class="faq-header" onclick="toggleFaq(this)">
-              <span class="faq-tag">Q1</span>
-              <span class="faq-title">일정 바꿔주세요 / 정기 이용 중인데 신청이 안 눌려요</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-body">
-              <div class="faq-memo" contenteditable="true" placeholder="여기에 응대 내용을 입력하세요..."></div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-header" onclick="toggleFaq(this)">
-              <span class="faq-tag">Q2</span>
-              <span class="faq-title">저 대기 얼마나 걸려요?</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-body">
-              <div class="faq-memo" contenteditable="true" placeholder="여기에 응대 내용을 입력하세요..."></div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-header" onclick="toggleFaq(this)">
-              <span class="faq-tag">Q3</span>
-              <span class="faq-title">둘째출산 신청하려는데요. 그게 뭐예요?</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-body">
-              <div class="faq-memo" contenteditable="true" placeholder="여기에 응대 내용을 입력하세요..."></div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-header" onclick="toggleFaq(this)">
-              <span class="faq-tag">Q4</span>
-              <span class="faq-title">선생님이 이날 활동 못한대요. 선생님 구해주세요.</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-body">
-              <div class="faq-memo" contenteditable="true" placeholder="여기에 응대 내용을 입력하세요..."></div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-header" onclick="toggleFaq(this)">
-              <span class="faq-tag">Q5</span>
-              <span class="faq-title">지금 하는 선생님이랑 종료하고 싶어요 ㅠㅠ</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-body">
-              <div class="faq-memo" contenteditable="true" placeholder="여기에 응대 내용을 입력하세요..."></div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-header" onclick="toggleFaq(this)">
-              <span class="faq-tag">Q6</span>
-              <span class="faq-title">민원 (대기 오래 걸림 / 안전사고 / 선생님 태도 등)</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-body">
-              <div class="faq-memo" contenteditable="true" placeholder="여기에 응대 내용을 입력하세요..."></div>
-            </div>
-          </div>
-
-          <div class="faq-item faq-item-add">
-            <div class="faq-header" onclick="toggleFaq(this)">
-              <span class="faq-tag" style="background:#e0e7ff;color:#4338ca;">+</span>
-              <span class="faq-title" style="color:var(--text3);">추가 예정</span>
-              <span class="faq-toggle">▼</span>
-            </div>
-            <div class="faq-body">
-              <div class="faq-memo" contenteditable="true" placeholder="여기에 응대 내용을 입력하세요..."></div>
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
@@ -780,12 +535,12 @@
         <div class="card-body open">
           <div class="flow">
             <div class="flow-step"><div class="step-num">1</div><div class="step-text"><b>시간 확인</b>: 몇 시간 전인가?</div></div>
-            <div class="flow-step"><div class="step-num">2</div><div class="step-text"><b>사유 확인</b>: ① 이용자 개인사유 / ② 아이 아픔 / ③ 선생님 사유</div></div>
-            <div class="flow-step"><div class="step-num">3</div><div class="step-text"><b>협의 확인</b>: 이용자/선생님과 협의했는지?</div></div>
+            <div class="flow-step"><div class="step-num">2</div><div class="step-text"><b>사유 확인</b>: ① 이용자 개인사유 / ② 아이 아픔 / ③ 돌보미 사유</div></div>
+            <div class="flow-step"><div class="step-num">3</div><div class="step-text"><b>협의 확인</b>: 이용자/돌보미와 협의했는지?</div></div>
           </div>
           <hr>
           <table class="tbl">
-            <tr><th>시간 기준</th><th>이용자 사유</th><th>아이 아픔</th><th>선생님 사유</th></tr>
+            <tr><th>시간 기준</th><th>이용자 사유</th><th>아이 아픔</th><th>돌보미 사유</th></tr>
             <tr><td>배정 후 1시간 이내</td><td>수수료 없음 (무료)</td><td>수수료 없음</td><td>수수료 없음</td></tr>
             <tr><td>72시간 이내</td><td>페널티 발생 (월 3건 시 이용제한)</td><td>수수료 없음</td><td>수수료 없음</td></tr>
             <tr><td>24시간 이내 ~ 1시간 </td><td>수수료 12,790원 (이용자 부담)</td><td>약봉투 등 증빙서류 제출 → 정부지원금 대체</td><td>수수료 없음</td></tr>
@@ -796,9 +551,9 @@
       </div>
     </div>
 
-    <!-- ═══ 선생님 ═══ -->
+    <!-- ═══ 돌보미 ═══ -->
     <div id="carer" class="section">
-      <h1 class="section-title"><span class="icon">👩‍🍼</span> 선생님</h1>
+      <h1 class="section-title"><span class="icon">👩‍🍼</span> 돌보미</h1>
 
       <div class="card">
         <div class="card-header" onclick="toggleCard(this)">
@@ -809,12 +564,12 @@
         <div class="card-body open">
           <div class="alert info">중간시간대: 09:00~15:00 / 하원시간대: 16:00 이후 (신규 연계 시 주의!)</div>
           <div class="flow">
-            <div class="flow-step"><div class="step-num">1</div><div class="step-text">카카오맵 + 대기자 파일에서 선생님 근처 이용자 후보 선정 (대중교통 30분 이내, 환승 없음)</div></div>
-            <div class="flow-step"><div class="step-num">2</div><div class="step-text">선생님에게 후보 중 괜찮은 가정 선택 요청</div></div>
+            <div class="flow-step"><div class="step-num">1</div><div class="step-text">카카오맵 + 대기자 파일에서 돌보미 근처 이용자 후보 선정 (대중교통 30분 이내, 환승 없음)</div></div>
+            <div class="flow-step"><div class="step-num">2</div><div class="step-text">돌보미에게 후보 중 괜찮은 가정 선택 요청</div></div>
             <div class="flow-step"><div class="step-num">3</div><div class="step-text">이용자 전화: CCTV, 반려동물, 다른 아동 여부, 돌봄활동 종류, 거리 안내</div></div>
-            <div class="flow-step"><div class="step-num">4</div><div class="step-text">선생님 전화: 이용자 정보 안내, 일시연계 일정 조율</div></div>
-            <div class="flow-step"><div class="step-num">5</div><div class="step-text">이용자 전화: 선생님 정보 안내, 일정 확정, 서약서 2가지 갱신, 결제카드 확인, 금액 안내</div></div>
-            <div class="flow-step"><div class="step-num">6</div><div class="step-text">일시연계 신청-배정-승인 처리 후 선생님에게 연계 완료 및 이용자 요청사항 안내</div></div>
+            <div class="flow-step"><div class="step-num">4</div><div class="step-text">돌보미 전화: 이용자 정보 안내, 일시연계 일정 조율</div></div>
+            <div class="flow-step"><div class="step-num">5</div><div class="step-text">이용자 전화: 돌보미 정보 안내, 일정 확정, 서약서 2가지 갱신, 결제카드 확인, 금액 안내</div></div>
+            <div class="flow-step"><div class="step-num">6</div><div class="step-text">일시연계 신청-배정-승인 처리 후 돌보미에게 연계 완료 및 이용자 요청사항 안내</div></div>
           </div>
           <div class="alert warn">신규 연계는 1명 면접/일시연계가 원칙 (3명씩 안 함)<br>3개월 미만 아동은 연계 불가 (서약서 내도 안 됨)</div>
         </div>
@@ -823,13 +578,13 @@
       <div class="card">
         <div class="card-header" onclick="toggleCard(this)">
           <span class="badge purple">연차 관리</span>
-          <span class="card-title">선생님 연차 처리</span>
+          <span class="card-title">돌보미 연차 처리</span>
           <span class="card-toggle">▼</span>
         </div>
         <div class="card-body">
           <table class="tbl">
             <tr><th>상황</th><th>처리 방법</th></tr>
-            <tr><td>72시간 이후 날짜</td><td>선생님 본인이 앱에서 직접 신청 가능</td></tr>
+            <tr><td>72시간 이후 날짜</td><td>돌보미 본인이 앱에서 직접 신청 가능</td></tr>
             <tr><td>72시간 이내 날짜</td><td>일대일 문의 남기라고 안내</td></tr>
             <tr><td>연차 취소</td><td>본인이 못 함 → 1:1 문의 요청 → 내가 처리 후 카톡 공유</td></tr>
             <tr><td>신청 가능 시간</td><td>10:00~18:00, 30분 단위, 하루 8시간 이내, 월 40시간 이내</td></tr>
@@ -858,7 +613,7 @@
             <tr><td>영아전담(서울형)</td><td>월 최대 100,000원 (지정 + 월 60시간 이상)</td></tr>
             <tr><td>둘째출산 종료수당</td><td>50,000원 1회 (90일 경과 시)</td></tr>
           </table>
-          <div class="alert warn">대체공휴일 이용 시: 이용자는 평일요금, 선생님은 휴일수당 적용</div>
+          <div class="alert warn">대체공휴일 이용 시: 이용자는 평일요금, 돌보미는 휴일수당 적용</div>
         </div>
       </div>
 
@@ -898,7 +653,7 @@
             <tr><td>단기서비스 일정</td><td>서비스관리 &gt; 단기서비스 &gt; 배정대기+수동배정 체크</td></tr>
             <tr><td>1:1 문의 확인</td><td>업무지원 &gt; 문의관리 &gt; 시스템문의</td></tr>
             <tr><td>대기자 명단</td><td>구글시트 대기자 파일 (즐겨찾기)</td></tr>
-            <tr><td>선생님 정보</td><td>소속 아이돌봄사에서 검색</td></tr>
+            <tr><td>돌보미 정보</td><td>소속 아이돌보미에서 검색</td></tr>
             <tr><td>SMS 발송 내역</td><td>서비스관리 &gt; 메시지관리 &gt; SMS발송관리</td></tr>
             <tr><td>활동일지</td><td>활동일지관리 &gt; 제출 &gt; 대기 &gt; 100페이지</td></tr>
           </table>
@@ -915,15 +670,15 @@
         <div class="card-body">
           <div class="qa">
             <div class="qa-q">정기서비스 배정</div>
-            <div class="qa-a">서비스관리 &gt; 전체 선택 &gt; 선택아이돌봄사매칭 &gt; 선생님 검색 &gt; 조회 &gt; 시간선택 &gt; 저장 &gt; 확인</div>
+            <div class="qa-a">서비스관리 &gt; 전체 선택 &gt; 선택돌보미매칭 &gt; 돌보미검색 &gt; 조회 &gt; 시간선택 &gt; 저장 &gt; 확인</div>
           </div>
           <div class="qa">
             <div class="qa-q">결재 요청(승인)</div>
-            <div class="qa-a">해당 달 &gt; 이용자이름조회 &gt; 50페이지 설정 &gt; 전체선택 &gt; 선택승인 → 진행상태 '승인', 선생님 확인</div>
+            <div class="qa-a">해당 달 &gt; 이용자이름조회 &gt; 50페이지 설정 &gt; 전체선택 &gt; 선택승인 → 진행상태 '승인', 돌보미 확인</div>
           </div>
           <div class="qa">
             <div class="qa-q">시간 변경</div>
-            <div class="qa-a">신청서 번호 더블클릭 (선생님 이름 먼저 메모!) &gt; 수정 &gt; 팝업 맨 밑 수정버튼 클릭 &gt; 시간변경 &gt; 선택아이돌봄사배정 &gt; 저장 &gt; 결재요청승인 &gt; 1:1 문의 답변, 카톡 공유</div>
+            <div class="qa-a">신청서 번호 더블클릭 (돌보미 이름 먼저 메모!) &gt; 수정 &gt; 팝업 맨 밑 수정버튼 클릭 &gt; 시간변경 &gt; 선택돌보미배정 &gt; 저장 &gt; 결재요청승인 &gt; 1:1 문의 답변, 카톡 공유</div>
           </div>
           <div class="alert warn">배정 후 반드시 승인까지 완료해야 함!</div>
         </div>
@@ -1015,7 +770,7 @@
         </div>
         <div class="card-body open">
           <div class="alert danger">
-            ❌ 이용자/선생님 말만 믿지 말 것 → 반드시 실무자, 카톡, 메모 확인<br>
+            ❌ 이용자/돌보미 말만 믿지 말 것 → 반드시 실무자, 카톡, 메모 확인<br>
             ❌ "이용자에게 카페/공지에 올리겠다" 절대 금지<br>
             ❌ 이용자 예치금 환불 버튼 내가 누르면 안 됨<br>
             ❌ 단기서비스는 센터가 신청 못 함 (이용자가 직접, 5일 ~ 4시간 전, 건당)<br>
@@ -1032,10 +787,10 @@
           <span class="card-toggle open">▲</span>
         </div>
         <div class="card-body open">
-          <div class="qa"><div class="qa-q">검색 안 될 때</div><div class="qa-a">정기에서 안 나오면 단기에서도 찾아볼 것 / 배정 안 된 건은 선생님으로 검색 안 되고 이용자로 검색해야 함</div></div>
-          <div class="qa"><div class="qa-q">배정 시</div><div class="qa-a">정부판정유형 꼭 확인 / 50페이지 설정 / 지난달 정보와 비교 / 동일 아동이 요일별로 다른 선생님인 경우 있으니 꼭 확인(이거 짜증내는 이용자들 있음)</div></div>
-          <div class="qa"><div class="qa-q">카톡방 공유 시</div><div class="qa-a">이용자·선생님 전화번호 조회해서 이름 정확하게 쓰기</div></div>
-          <div class="qa"><div class="qa-q">신청서 시간 변경 시</div><div class="qa-a">선생님 이름 반드시 먼저 메모! 시간 바꾸면 선생님 정보가 사라짐</div></div>
+          <div class="qa"><div class="qa-q">검색 안 될 때</div><div class="qa-a">정기에서 안 나오면 단기에서도 찾아볼 것 / 배정 안 된 건은 돌보미로 검색 안 되고 이용자로 검색해야 함</div></div>
+          <div class="qa"><div class="qa-q">배정 시</div><div class="qa-a">정부판정유형 꼭 확인 / 50페이지 설정 / 지난달 정보와 비교 / 동일 아동이 요일별로 다른 돌보미인 경우 있으니 꼭 확인(이거 짜증내는 이용자들 있음)</div></div>
+          <div class="qa"><div class="qa-q">카톡방 공유 시</div><div class="qa-a">이용자·돌보미 전화번호 조회해서 이름 정확하게 쓰기</div></div>
+          <div class="qa"><div class="qa-q">신청서 시간 변경 시</div><div class="qa-a">돌보미 이름 반드시 먼저 메모! 시간 바꾸면 돌보미 정보가 사라짐</div></div>
           <div class="qa"><div class="qa-q">활동일지 승인 시</div><div class="qa-a">12·13번 특이사항 꼭 확인 (전염병이면 질병감염으로 서비스 전환 필요, 진료확인서 필요/ 안전사고 발생 시 꼭 공유, 안전사고 보고서)</div></div>
         </div>
       </div>
@@ -1056,117 +811,6 @@
       </div>
     </div>
 
-    <!-- ═══ 담당 업무 ═══ -->
-    <div id="duties" class="section">
-      <h1 class="section-title"><span class="icon">📌</span> 담당 업무</h1>
-
-      <!-- 회계 -->
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge amber">회계</span>
-          <span class="card-title">회계</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">1</span><span class="faq-title">항목 1</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">2</span><span class="faq-title">항목 2</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">3</span><span class="faq-title">항목 3</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">4</span><span class="faq-title">항목 4</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">5</span><span class="faq-title">항목 5</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">6</span><span class="faq-title">항목 6</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">7</span><span class="faq-title">항목 7</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">8</span><span class="faq-title">항목 8</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">9</span><span class="faq-title">항목 9</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">10</span><span class="faq-title">항목 10</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-        </div>
-      </div>
-
-      <!-- 서울형 -->
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge blue">서울형</span>
-          <span class="card-title">서울형</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">1</span><span class="faq-title">항목 1</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">2</span><span class="faq-title">항목 2</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">3</span><span class="faq-title">항목 3</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">4</span><span class="faq-title">항목 4</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">5</span><span class="faq-title">항목 5</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">6</span><span class="faq-title">항목 6</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">7</span><span class="faq-title">항목 7</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">8</span><span class="faq-title">항목 8</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">9</span><span class="faq-title">항목 9</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">10</span><span class="faq-title">항목 10</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-        </div>
-      </div>
-
-      <!-- 채용 -->
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge green">채용</span>
-          <span class="card-title">채용</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">1</span><span class="faq-title">항목 1</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">2</span><span class="faq-title">항목 2</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">3</span><span class="faq-title">항목 3</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">4</span><span class="faq-title">항목 4</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">5</span><span class="faq-title">항목 5</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">6</span><span class="faq-title">항목 6</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">7</span><span class="faq-title">항목 7</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">8</span><span class="faq-title">항목 8</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">9</span><span class="faq-title">항목 9</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">10</span><span class="faq-title">항목 10</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-        </div>
-      </div>
-
-      <!-- 연계 -->
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge purple">연계</span>
-          <span class="card-title">연계</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">1</span><span class="faq-title">항목 1</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">2</span><span class="faq-title">항목 2</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">3</span><span class="faq-title">항목 3</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">4</span><span class="faq-title">항목 4</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">5</span><span class="faq-title">항목 5</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">6</span><span class="faq-title">항목 6</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">7</span><span class="faq-title">항목 7</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">8</span><span class="faq-title">항목 8</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">9</span><span class="faq-title">항목 9</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">10</span><span class="faq-title">항목 10</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-        </div>
-      </div>
-
-      <!-- 사례관리 -->
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge gray">사례관리</span>
-          <span class="card-title">사례관리</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">1</span><span class="faq-title">항목 1</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">2</span><span class="faq-title">항목 2</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">3</span><span class="faq-title">항목 3</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">4</span><span class="faq-title">항목 4</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">5</span><span class="faq-title">항목 5</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">6</span><span class="faq-title">항목 6</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">7</span><span class="faq-title">항목 7</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">8</span><span class="faq-title">항목 8</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">9</span><span class="faq-title">항목 9</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-          <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">10</span><span class="faq-title">항목 10</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-memo" contenteditable="true" placeholder="내용을 입력하세요..."></div></div></div>
-        </div>
-      </div>
-
-    </div>
-
   </main>
 </div>
 
@@ -1176,20 +820,6 @@
     document.getElementById(id).classList.add('active');
     document.querySelectorAll('.nav-item, .mob-tab').forEach(n => n.classList.remove('active'));
     document.querySelectorAll('[onclick*="' + id + '"]').forEach(n => n.classList.add('active'));
-  }
-  function toggleFaq(header) {
-    const body = header.nextElementSibling;
-    const icon = header.querySelector('.faq-toggle');
-    const isOpen = body.classList.contains('open');
-    body.classList.toggle('open', !isOpen);
-    icon.textContent = isOpen ? '▼' : '▲';
-  }
-  function toggleSub(header) {
-    const body = header.nextElementSibling;
-    const icon = header.querySelector('.sub-toggle');
-    const isOpen = body.classList.contains('open');
-    body.classList.toggle('open', !isOpen);
-    icon.textContent = isOpen ? '▼' : '▲';
   }
   function toggleCard(header) {
     const body = header.nextElementSibling;
