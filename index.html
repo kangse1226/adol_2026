@@ -344,6 +344,67 @@
     .mob-tab.active { background: var(--green); border-color: var(--green); color: #fff; font-weight: 600; }
   }
   @media (min-width: 641px) { .mob-tabs { display: none; } }
+
+  /* ── 검색 ── */
+  .search-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .search-input {
+    width: 440px;
+    padding: 6px 36px 6px 14px;
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    font-size: 13px;
+    font-family: 'Pretendard', sans-serif;
+    background: var(--surface2);
+    color: var(--text);
+    outline: none;
+    transition: all 0.2s;
+  }
+  .search-input:focus {
+    border-color: var(--green);
+    background: var(--surface);
+    width: 500px;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+  }
+  .search-clear {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--text3);
+    font-size: 14px;
+    display: none;
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
+  }
+  .search-clear.visible { display: block; }
+  .search-count {
+    font-size: 11px;
+    color: var(--text3);
+    white-space: nowrap;
+    min-width: 50px;
+    text-align: right;
+  }
+  .search-count.found { color: var(--green); font-weight: 600; }
+  .search-count.none { color: var(--red); }
+  mark {
+    background: #fef08a;
+    color: #713f12;
+    border-radius: 2px;
+    padding: 0 1px;
+  }
+  .search-hidden { display: none !important; }
+  .search-active .section { display: block !important; }
+  .search-active .card-body { display: block !important; }
+  .search-active .faq-body { display: block !important; }
+  .search-active .sub-body { display: block !important; }
 </style>
 </head>
 <body>
@@ -351,7 +412,12 @@
 <header class="site-header">
   <div class="logo">🩵 아이돌봄팀</div>
   <span class="subtitle">2026 아돌 업무 매뉴얼</span>
-  <span class="edit-badge">✏️ 수정은 갠톡으로 알려주세용 </span>
+  <!-- <span class="edit-badge">✏️ 수정은 갠톡으로 알려주세용 </span> -->
+  <div class="search-wrap">
+    <span class="search-count" id="searchCount"></span>
+    <input class="search-input" id="searchInput" type="text" placeholder="🔍 전체 검색..." oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')clearSearch()">
+    <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+  </div>
 </header>
 
 <div class="layout">
@@ -1176,6 +1242,97 @@
     document.getElementById(id).classList.add('active');
     document.querySelectorAll('.nav-item, .mob-tab').forEach(n => n.classList.remove('active'));
     document.querySelectorAll('[onclick*="' + id + '"]').forEach(n => n.classList.add('active'));
+  }
+
+  /* ── 검색 ── */
+  // 원본 텍스트 저장 (최초 1회)
+  let originalContents = null;
+  function saveOriginals() {
+    if (originalContents) return;
+    originalContents = [];
+    document.querySelectorAll(
+      '.card-title, .qa-q, .qa-a, .script, .alert, .step-text, ' +
+      '.faq-title, .faq-memo, .sub-title, .tbl td, .tbl th, .section-title'
+    ).forEach(el => {
+      originalContents.push({ el, html: el.innerHTML });
+    });
+  }
+
+  function restoreOriginals() {
+    if (!originalContents) return;
+    originalContents.forEach(({ el, html }) => { el.innerHTML = html; });
+  }
+
+  function doSearch(query) {
+    saveOriginals();
+    const main = document.querySelector('.main');
+    const countEl = document.getElementById('searchCount');
+    const clearBtn = document.getElementById('searchClear');
+    const q = query.trim();
+
+    // 초기화
+    restoreOriginals();
+    document.querySelectorAll('.search-hidden').forEach(el => el.classList.remove('search-hidden'));
+
+    if (!q) {
+      main.classList.remove('search-active');
+      clearBtn.classList.remove('visible');
+      countEl.textContent = '';
+      countEl.className = 'search-count';
+      // 원래 탭 상태 복원
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById('greeting').classList.add('active');
+      return;
+    }
+
+    clearBtn.classList.add('visible');
+    main.classList.add('search-active');
+
+    const regex = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+    let matchCount = 0;
+
+    // 하이라이트 적용
+    originalContents.forEach(({ el, html }) => {
+      if (regex.test(html.replace(/<[^>]*>/g, ''))) {
+        const plain = html.replace(/<[^>]*>/g, '');
+        if (regex.test(plain)) {
+          regex.lastIndex = 0;
+          el.innerHTML = html.replace(/<[^>]*>|[^<]+/g, seg => {
+            if (seg.startsWith('<')) return seg;
+            return seg.replace(regex, m => { matchCount++; return `<mark>${m}</mark>`; });
+          });
+          regex.lastIndex = 0;
+        }
+      }
+    });
+
+    // 결과 없는 카드 숨기기
+    document.querySelectorAll('.card').forEach(card => {
+      const hasMatch = card.querySelector('mark');
+      card.classList.toggle('search-hidden', !hasMatch);
+    });
+
+    // 결과 없는 섹션 숨기기
+    document.querySelectorAll('.section').forEach(sec => {
+      const hasMatch = sec.querySelector('mark');
+      sec.classList.toggle('search-hidden', !hasMatch);
+    });
+
+    // 카운트 표시
+    if (matchCount === 0) {
+      countEl.textContent = '결과 없음';
+      countEl.className = 'search-count none';
+    } else {
+      countEl.textContent = `${matchCount}개 발견`;
+      countEl.className = 'search-count found';
+    }
+  }
+
+  function clearSearch() {
+    const input = document.getElementById('searchInput');
+    input.value = '';
+    doSearch('');
+    input.focus();
   }
   function toggleFaq(header) {
     const body = header.nextElementSibling;
