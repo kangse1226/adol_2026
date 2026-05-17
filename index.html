@@ -443,7 +443,7 @@
         </div>
         <div class="checklist-item" onclick="toggleCheck(this,'m6')">
           <input type="checkbox" id="m6"><label for="m6">11일 이후 → 익월 정기배정 미리미리 하기(특히 1:1문의 있는 경우)</label>
-      
+        </div>
       </div>
 
       <div class="calendar-wrap">
@@ -770,8 +770,7 @@
               <li>비정기 연계 게시 시 반드시 문자 동시 발송 (주의!)</li>
               <li>대기가점 순으로 연계표 공개 → 올리기 전 선생님 개별 전화 NO (투명연계 원칙)</li>
               <li>정기연계 없는 분들이 많아 다 연락드리기 어려움 → 연계표 위주로 확인하라 당부</li>
-              <li>댓글을 먼저 달아주셔야 접수됨을 안내(유선연락, 1:1문의 접수X) </li>
-              <!-- <li>영아·등하원 건은 개별 연락 가능 (단, 조용히 처리)</li> -->
+              <li>댓글을 먼저 달아주셔야 접수됨을 안내(유선연락, 1:1문의 접수X)</li>
               <li>아주 긴급한 건만 개별연락</li>
             </ul>
           </div></div>
@@ -1141,7 +1140,6 @@
       <h1 class="section-title"><span class="icon">📌</span> 담당 업무</h1>
       <div class="alert info">각 항목을 클릭해서 내용을 직접 입력하세요.</div>
 
-      <!-- 월별 정기업무 (달력 연동) -->
       <div class="card">
         <div class="card-header" onclick="toggleCard(this)">
           <span class="badge red">📅 달력 연동</span>
@@ -1153,7 +1151,7 @@
           <div id="fixed-schedule-editor"></div>
           <div style="margin-top:0.75rem;">
             <button onclick="addFixedScheduleRow()" style="font-size:12px;padding:5px 12px;border:1px dashed var(--border2);border-radius:6px;background:var(--surface2);color:var(--text2);cursor:pointer;font-family:inherit;">+ 업무 추가</button>
-            <button onclick="saveFixedSchedule()" style="font-size:12px;padding:5px 12px;border:1px solid var(--green);border-radius:6px;background:var(--green);color:#fff;cursor:pointer;font-family:inherit;margin-left:6px;">💾 저장 & 달력 반영</button>
+            <button onclick="saveFixedSchedule()" style="font-size:12px;padding:5px 12px;border:1px solid var(--green);border-radius:6px;background:var(--green);color:#fff;cursor:pointer;font-family:inherit;margin-left:6px;">💾 저장 &amp; 달력 반영</button>
           </div>
           <div class="alert info" style="margin-top:0.75rem;">💡 <b>날짜 입력 방법:</b> 매월 고정 날짜는 숫자(예: 14), 범위는 "1~25", 말일은 "말일", 특정 요일은 "2·4주 화" 형식으로 입력하세요.</div>
         </div>
@@ -1274,7 +1272,6 @@ function closeSidebar() {
 
 // ─── 섹션 전환 ───
 function switchSection(id, el) {
-  console.log("🔥 메뉴 클릭됨! 이동할 ID:", id);
   clearSearch();
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -1299,7 +1296,6 @@ let calYear = new Date().getFullYear();
 let calMonth = new Date().getMonth();
 let selectedDate = null;
 let selectedColor = 'blue';
-let editingIdx = null;
 const STORAGE_KEY = 'adol_calendar_events_2026';
 const CHECKLIST_KEY = 'adol_checklist_date';
 
@@ -1342,7 +1338,7 @@ function renderCalendar() {
   const lastDate = new Date(calYear, calMonth + 1, 0).getDate();
   const prevLastDate = new Date(calYear, calMonth, 0).getDate();
   const userEvents = loadEvents();
-  const fixedEvents = getFixedEventsForMonth(calYear, calMonth); // 정기업무
+  const fixedEvents = getFixedEventsForMonth(calYear, calMonth);
 
   let html = '';
   let dayCount = 1;
@@ -1374,15 +1370,13 @@ function renderCalendar() {
       ? `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`
       : null;
 
-    // 정기업무(fixed) + 개인 이벤트 병합
     const fixedDay  = (dateKey && fixedEvents[dateKey]) ? fixedEvents[dateKey] : [];
     const userDay   = (dateKey && userEvents[dateKey])  ? userEvents[dateKey]  : [];
     const allEvents = [...fixedDay, ...userDay];
 
     const holiday = dateKey ? HOLIDAYS_2026[dateKey] : null;
-    if (holiday && isCurrentMonth) cls += ' sunday'; // 공휴일도 빨간색
+    if (holiday && isCurrentMonth) cls += ' sunday';
 
-    // 공휴일 이벤트 (맨 앞에 표시)
     const holidayHtml = holiday
       ? `<div class="cal-event red" style="font-size:9px;">${holiday}</div>` : '';
 
@@ -1446,6 +1440,11 @@ function openModal(dateKey) {
   document.getElementById('modalOverlay').classList.add('open');
   setTimeout(() => document.getElementById('eventInput').focus(), 100);
 }
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modalOverlay')) {
+    document.getElementById('modalOverlay').classList.remove('open');
+  }
+}
 
 function renderModalEvents() {
   const userEvents = loadEvents();
@@ -1460,7 +1459,6 @@ function renderModalEvents() {
 
   let html = '';
 
-  // 정기업무 (수정/삭제 불가, 잠금 표시)
   if (fixedDay.length > 0) {
     html += `<div style="font-size:10px;font-weight:600;color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em;">📅 정기 업무</div>`;
     html += fixedDay.map(ev => `
@@ -1472,7 +1470,6 @@ function renderModalEvents() {
     if (userDay.length > 0) html += `<div style="height:6px;"></div>`;
   }
 
-  // 개인 이벤트
   if (userDay.length > 0) {
     if (fixedDay.length > 0) html += `<div style="font-size:10px;font-weight:600;color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em;">✏️ 내 일정</div>`;
     html += userDay.map((ev, i) => `
@@ -1544,6 +1541,7 @@ function selectColor(el) {
 }
 
 // ─── 체크리스트 (날짜 기반 자동 리셋) ───
+// ✅ 버그 수정: loadChecklist()에서 undefined 변수 'item' 참조 제거
 function toggleCheck(item, key) {
   const cb = item.querySelector('input[type=checkbox]');
   cb.checked = !cb.checked;
@@ -1557,7 +1555,7 @@ function getTodayStr() {
 }
 
 function saveChecklist() {
-  const allIds = ['m0','m1','m2','m3','m4','m5','m6','e0','e1','e2','e3','e4'];
+  const allIds = ['m0','m1','m2','m3','m4','m5','m6'];
   const states = {};
   allIds.forEach(id => {
     const el = document.getElementById(id);
@@ -1574,8 +1572,11 @@ function loadChecklist() {
     const el = document.getElementById(id);
     if (el) {
       el.checked = checked;
-      if (checked) el.closest('.checklist-item').classList.add('checked');
-      if (item) item.classList.add('checked'); // 부모 태그가 존재할 때만 안전하게 실행!
+      // 부모 .checklist-item 요소에 checked 클래스 적용
+      if (checked) {
+        const itemEl = el.closest('.checklist-item');
+        if (itemEl) itemEl.classList.add('checked');
+      }
     }
   });
 }
@@ -1606,7 +1607,7 @@ function saveFixedSchedule() {
     if (day && label) data.push({ day, label, color });
   });
   storage.set(FIXED_SCHEDULE_KEY, data);
-  renderCalendar(); // 달력 즉시 반영
+  renderCalendar();
   showToast('✅ 저장되고 달력에 반영되었습니다!');
 }
 
@@ -1672,13 +1673,11 @@ function removeFixedRow(btn) {
   btn.closest('.fs-row').remove();
 }
 
-// 정기업무를 해당 월 날짜에 매핑
 function getFixedEventsForMonth(year, month) {
   const data = loadFixedSchedule();
   const lastDay = new Date(year, month + 1, 0).getDate();
-  const result = {}; // dateKey -> [{text, color}]
+  const result = {};
 
-  // 2·4주 화요일 계산
   function getNthWeekday(year, month, weekday, nths) {
     const dates = [];
     let count = 0;
@@ -1700,11 +1699,9 @@ function getFixedEventsForMonth(year, month) {
 
   data.forEach(({ day, label, color }) => {
     const d = day.trim();
-
     if (d === '말일') {
       addToResult(lastDay, label, color);
     } else if (/^(\d+)~(\d+)$/.test(d)) {
-      // 범위: 신청 기간 → 시작일과 마지막일에만 표시 (달력이 너무 복잡해지지 않게)
       const [, s, e] = d.match(/^(\d+)~(\d+)$/);
       addToResult(Number(s), `${label} 시작`, color);
       addToResult(Number(e), `${label} 마감`, color);
@@ -1717,7 +1714,6 @@ function getFixedEventsForMonth(year, month) {
     } else if (/매주\s*월/.test(d)) {
       getNthWeekday(year, month, 1, [1,2,3,4,5]).forEach(n => addToResult(n, label, color));
     }
-    // 필요 시 패턴 추가 가능
   });
 
   return result;
