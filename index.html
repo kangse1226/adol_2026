@@ -148,7 +148,7 @@
 
   /* ── 섹션 ── */
   .section { display: none; }
-  .section.active { display: block; }
+  .section.active { display: block;}
   .section-title { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 10px; }
   .section-title .icon { font-size: 22px; }
 
@@ -1274,6 +1274,7 @@ function closeSidebar() {
 
 // ─── 섹션 전환 ───
 function switchSection(id, el) {
+  console.log("🔥 메뉴 클릭됨! 이동할 ID:", id);
   clearSearch();
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -1574,6 +1575,7 @@ function loadChecklist() {
     if (el) {
       el.checked = checked;
       if (checked) el.closest('.checklist-item').classList.add('checked');
+      if (item) item.classList.add('checked'); // 부모 태그가 존재할 때만 안전하게 실행!
     }
   });
 }
