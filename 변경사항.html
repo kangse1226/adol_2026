@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>자료 페이지</title>
+
+  <!-- Pretendard -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background-color: #f8f9fb;
+      color: #2f3437;
+      font-family: "Pretendard", sans-serif;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .item {
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid #dde3ea;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #3d6ea8;
+      margin-bottom: 16px;
+    }
+
+    .image {
+      width: 100%;
+      max-width: 1000px;
+      border-radius: 10px;
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .pdf-link {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: #3d6ea8;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .pdf-link:hover {
+      text-decoration: underline;
+    }
+
+    .description {
+      font-size: 16px;
+      color: #4a4f55;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- 이미지 예시 -->
+    <div class="item">
+      <div class="title">돌봄사 연차</div>
+
+      <img src="image.jpg" alt="이미지 설명" class="image" />
+
+      <div class="description">
+        여기에 이미지에 대한 설명 텍스트를 작성합니다.
+      </div>
+    </div>
+
+     <!-- 이미지 예시 -->
+    <div class="item">
+      <div class="title">돌봄사 주휴수당</div>
+
+      <img src="./image/주휴수당 계산식.png" alt="주휴수당 계산식" class="image" />
+
+      <div class="description">
+        여기에 이미지에 대한 설명 텍스트를 작성합니다.
+      </div>
+    </div>
+    <!-- 이미지 예시 -->
+    <div class="item">
+      <div class="title">추가</div>
+
+      <img src="./image/통상임금.png" alt="통상임금" class="image" />
+
+      <div class="description">
+        여기에 이미지에 대한 설명 텍스트를 작성합니다.
+      </div>
+    </div>
+
+    <!-- PDF 링크 예시 -->
+    <div class="item">
+      <div class="title">통상임금 관련</div>
+
+      <a href="./image/통상임금 관련 질의에 대한 회신(1차).pdf" target="_blank" class="pdf-link">
+        통상임금 답변
+      </a>
+       <a href="./image/통상임금 관련 질의에 대한 회신(2차).pdf" target="_blank" class="pdf-link">
+        통상임금 답변
+      </a>
+
+      <div class="description">
+        PDF 파일에 대한 간단한 설명을 작성합니다.
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
