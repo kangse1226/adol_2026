@@ -1637,11 +1637,18 @@ const FIXED_SCHEDULE_KEY = 'adol_fixed_schedule_2026';
 const DEFAULT_FIXED = [
   { day: '1~25',    label: '당월 정기신청 기간',   color: 'blue' },
   { day: '11~25',   label: '익월 정기신청 기간',   color: 'green' },
-  { day: '13',      label: '실적 확인 시작',        color: 'amber' },
-  { day: '14',      label: '이나라 집행 마감',      color: 'red' },
+  { day: '10',      label: '공과금, 원천세 이체',        color: 'amber' },
+  { day: '25',      label: '공과금 이체',        color: 'amber' },
+  { day: '14',      label: '이나라 집행 마감, 기타내역작성',      color: 'red' },
   { day: '15',      label: '급여이체',    color: 'red' },
-  { day: '말일',    label: '판정등급 재계산 체크',  color: 'purple' },
+  { day: '말일',    label: '월마감, 판정등급 재계산 체크',  color: 'purple' },
   { day: '2·4주 화', label: '정기연계표 게시',     color: 'green' },
+  { day: '매주 수', label: '주15시간 안내',     color: 'blue' },
+  { day: '22', label: '이용자, 선생님 월마감 안내',     color: 'red' },
+  { day: '매주 목', label: '아돌 팀회의(17시)',     color: 'gray' },
+  // 매주 수요일마다 '주15시간 안내' 일정이 자동으로 생성되도록 설정
+
+
 ];
 
 function loadFixedSchedule() {
@@ -1761,8 +1768,11 @@ function getFixedEventsForMonth(year, month) {
       getNthWeekday(year, month, 2, [2, 4]).forEach(n => addToResult(n, label, color));
     } else if (/1·3주\s*화/.test(d) || /1,3주\s*화/.test(d)) {
       getNthWeekday(year, month, 2, [1, 3]).forEach(n => addToResult(n, label, color));
-    } else if (/매주\s*월/.test(d)) {
-      getNthWeekday(year, month, 1, [1,2,3,4,5]).forEach(n => addToResult(n, label, color));
+    } else if (/매주\s*수/.test(d)) {
+      getNthWeekday(year, month, 3, [1,2,3,4,5]).forEach(n => addToResult(n, label, color));
+    }
+     else if (/매주\s*목/.test(d)) {
+      getNthWeekday(year, month, 4, [1,2,3,4,5]).forEach(n => addToResult(n, label, color));
     }
   });
 
