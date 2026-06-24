@@ -35,13 +35,14 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .chip.selected{background:var(--primary);border-color:var(--primary);color:#fff;font-weight:700}
 .chip.selected:hover{background:var(--primary-light);border-color:var(--primary-light)}
 .chip.unavailable{opacity:.28;cursor:not-allowed;pointer-events:none}
-.children-row{display:flex;gap:10px}
-.children-chip{flex:1;padding:12px 8px;text-align:center;border-radius:var(--radius-sm);border:1.5px solid var(--border-dark);background:#fff;font-size:22px;font-weight:900;color:var(--text-mid);cursor:pointer;transition:all .18s;line-height:1;font-family:'Noto Sans KR',sans-serif}
+.children-row{display:flex;gap:8px;flex-wrap:wrap}
+.children-chip{flex:1;min-width:56px;max-width:80px;padding:12px 4px;text-align:center;border-radius:var(--radius-sm);border:1.5px solid var(--border-dark);background:#fff;font-size:20px;font-weight:900;color:var(--text-mid);cursor:pointer;transition:all .18s;line-height:1;font-family:'Noto Sans KR',sans-serif}
 .children-chip small{display:block;font-size:11px;font-weight:400;margin-top:4px;color:var(--text-light)}
-.children-chip:hover:not(.unavailable){border-color:var(--primary-light);color:var(--primary);background:var(--result-bg)}
+.children-chip:hover{border-color:var(--primary-light);color:var(--primary);background:var(--result-bg)}
 .children-chip.selected{background:var(--primary);border-color:var(--primary);color:#fff}
 .children-chip.selected small{color:rgba(255,255,255,.7)}
-.children-chip.unavailable{opacity:.28;cursor:not-allowed;pointer-events:none}
+
+/* 결과 카드 */
 .result-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border-left:5px solid var(--primary);overflow:hidden;animation:slideUp .3s ease}
 @keyframes slideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .result-header{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 100%);color:#fff;padding:20px 24px}
@@ -49,27 +50,49 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .result-tags{display:flex;flex-wrap:wrap;gap:6px}
 .result-tag{background:rgba(255,255,255,.2);border-radius:4px;padding:3px 10px;font-size:13px;font-weight:600}
 .result-body{padding:24px}
-.fee-section-label{font-size:13px;font-weight:700;color:var(--primary);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
-.fee-section-label.multi{color:#7a5010}
-.fee-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px}
-@media(min-width:560px){.fee-grid{grid-template-columns:repeat(4,1fr)}}
+
+/* 할인 배지 */
+.discount-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.badge-item{background:var(--accent-light);border:1.5px solid #f0c060;border-radius:20px;padding:4px 12px;font-size:12px;font-weight:700;color:#7a5010}
+
+/* 요금 섹션 */
+.fee-section{margin-bottom:20px}
+.fee-section:last-child{margin-bottom:0}
+.fee-section-label{font-size:13px;font-weight:700;color:var(--primary);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.fee-section-label .label-badge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;background:var(--result-bg);color:var(--primary-light)}
+.fee-section-label.total-label{color:#7a5010}
+.fee-section-label.total-label .label-badge{background:#fff8e8;color:#c07808}
+
+.fee-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:480px){.fee-grid{grid-template-columns:repeat(4,1fr)}}
+
 .fee-box{background:var(--result-bg);border:1.5px solid #c5e0a0;border-radius:var(--radius-sm);padding:14px 10px;text-align:center;position:relative;overflow:hidden}
 .fee-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--primary-light)}
 .fee-box-label{font-size:12px;color:var(--text-light);font-weight:600;margin-bottom:6px}
 .fee-box-amount{font-size:20px;font-weight:900;color:var(--primary);font-family:'DM Mono',monospace;letter-spacing:-.5px}
 .fee-box-unit{font-size:11px;color:var(--primary-light);margin-top:2px;font-weight:500}
-.fee-grid.multi .fee-box{background:#fff8e8;border-color:#f0c878}
-.fee-grid.multi .fee-box::before{background:var(--accent)}
-.fee-grid.multi .fee-box-amount{color:#7a5010}
-.fee-grid.multi .fee-box-unit{color:var(--accent)}
-.multi-note{background:var(--accent-light);border:1.5px solid #f0c060;border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:16px;font-size:13px;color:#7a5010;line-height:1.6}
-.multi-note strong{color:#c07808}
+
+.fee-box.total{background:#fff8e8;border-color:#f0c878}
+.fee-box.total::before{background:var(--accent)}
+.fee-box.total .fee-box-amount{color:#7a5010}
+.fee-box.total .fee-box-unit{color:var(--accent)}
+
+/* 계산 과정 표시 */
+.calc-breakdown{background:#f8f6f3;border:1px solid var(--border-dark);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:16px;font-size:12px;color:var(--text-mid);line-height:1.9}
+.calc-breakdown .calc-row{display:flex;justify-content:space-between;align-items:center}
+.calc-breakdown .calc-row.divider{border-top:1px dashed var(--border-dark);margin-top:6px;padding-top:6px}
+.calc-breakdown .calc-row strong{color:var(--primary);font-weight:700}
+.calc-breakdown .calc-label{flex:1}
+.calc-breakdown .calc-value{font-family:'DM Mono',monospace;font-weight:600;font-size:13px;white-space:nowrap}
+
 .notice{background:#f8f6f3;border:1px solid var(--border-dark);border-radius:var(--radius-sm);padding:14px 16px;margin-top:16px;font-size:12px;color:var(--text-mid);line-height:1.7}
 .notice ul{padding-left:16px}
 .notice li{margin-bottom:3px}
+
 .no-result{background:#fff3f3;border:1.5px solid #f0a0a0;border-radius:var(--radius);padding:28px;text-align:center;color:#b04040;font-size:14px;font-weight:600;line-height:1.7;box-shadow:var(--shadow)}
 .incomplete-prompt{text-align:center;padding:36px 20px;color:var(--text-light);font-size:14px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow)}
 .incomplete-prompt .icon{font-size:32px;margin-bottom:10px}
+
 @media(max-width:480px){.form-card{padding:20px 16px}.result-body{padding:16px}.page-title{font-size:22px}}
 </style>
 </head>
@@ -88,192 +111,329 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 <div class="main-wrap">
   <div class="page-title">이용요금 계산기</div>
   <p class="page-sub">조건을 선택하시면 <strong>2026년 본인부담금</strong>을 즉시 확인할 수 있습니다.</p>
+
   <div class="form-card">
     <div class="form-card-title">서비스 조건</div>
+
     <div class="option-group">
       <div class="option-label">가정 유형 <span class="req">*</span></div>
       <div class="chip-row" id="family-group">
         <button class="chip" data-field="family" data-value="일반가정">일반가정</button>
-        <button class="chip" data-field="family" data-value="한부모가족">한부모가족</button>
-        <button class="chip" data-field="family" data-value="청소년부모">청소년부모</button>
+        <button class="chip" data-field="family" data-value="한부모가족">한부모가족 <small style="font-size:11px;opacity:.7">(청소년부모·조손·장애부모·장애아동)</small></button>
       </div>
     </div>
+
     <div class="option-group">
       <div class="option-label">서비스 유형 <span class="req">*</span></div>
       <div class="chip-row" id="service-group">
-        <button class="chip" data-field="service" data-value="시간제 기본형">시간제 기본형</button>
-        <button class="chip" data-field="service" data-value="시간제 종합형">시간제 종합형</button>
-        <button class="chip" data-field="service" data-value="영아종일제">영아종일제</button>
-        <button class="chip" data-field="service" data-value="질병감염아동지원">질병감염아동지원</button>
+        <button class="chip" data-field="service" data-value="시간제기본형">시간제 기본형 <small style="font-size:11px;opacity:.7">12,790원/h</small></button>
+        <button class="chip" data-field="service" data-value="시간제종합형">시간제 종합형 <small style="font-size:11px;opacity:.7">16,620원/h</small></button>
+        <button class="chip" data-field="service" data-value="영아종일제">영아종일제 <small style="font-size:11px;opacity:.7">12,790원/h · 취학전만</small></button>
+        <button class="chip" data-field="service" data-value="질병감염아동지원">질병감염아동지원 <small style="font-size:11px;opacity:.7">15,340원/h</small></button>
       </div>
     </div>
+
+    <div class="option-group">
+      <div class="option-label">아동 유형 <span class="req">*</span>
+        <span class="option-hint">A형: 취학전(2019.1.1 이후 출생) / B형: 취학후(2018.12.31 이전 출생)</span>
+      </div>
+      <div class="chip-row" id="child-type-group">
+        <button class="chip" data-field="child_type" data-value="A">A형 (취학전)</button>
+        <button class="chip" data-field="child_type" data-value="B">B형 (취학후)</button>
+      </div>
+    </div>
+
+    <div class="option-group">
+      <div class="option-label">정부지원 판정 유형 <span class="req">*</span>
+        <span class="option-hint">마형: 미판정(전액 본인부담)</span>
+      </div>
+      <div class="chip-row" id="grade-group">
+        <button class="chip" data-field="grade" data-value="가">가형 <small style="font-size:11px;opacity:.7">중위75%이하</small></button>
+        <button class="chip" data-field="grade" data-value="나">나형 <small style="font-size:11px;opacity:.7">중위120%이하</small></button>
+        <button class="chip" data-field="grade" data-value="다">다형 <small style="font-size:11px;opacity:.7">중위150%이하</small></button>
+        <button class="chip" data-field="grade" data-value="라">라형 <small style="font-size:11px;opacity:.7">중위250%이하</small></button>
+        <button class="chip" data-field="grade" data-value="마">마형 <small style="font-size:11px;opacity:.7">250%초과</small></button>
+      </div>
+    </div>
+
     <div class="option-group">
       <div class="option-label">이용 시간대 <span class="req">*</span></div>
       <div class="chip-row" id="time-group">
-        <button class="chip" data-field="time_type" data-value="평일 주간">평일 주간</button>
-        <button class="chip" data-field="time_type" data-value="심야/휴일">심야 / 휴일</button>
-      </div>
-    </div>
-    <div class="option-group">
-      <div class="option-label">아동 유형 <span class="req">*</span> <span class="option-hint">A: 만 3~36개월 / B: 만 36개월~만 12세</span></div>
-      <div class="chip-row" id="child-type-group">
-        <button class="chip" data-field="child_type" data-value="A">A형 (영아)</button>
-        <button class="chip" data-field="child_type" data-value="B">B형 (유아·아동)</button>
-      </div>
-    </div>
-    <div class="option-group">
-      <div class="option-label">정부지원 판정 유형 <span class="req">*</span> <span class="option-hint">마형: 미판정(전액 본인부담)</span></div>
-      <div class="chip-row" id="grade-group">
-        <button class="chip" data-field="grade" data-value="가형">가형</button>
-        <button class="chip" data-field="grade" data-value="나형">나형</button>
-        <button class="chip" data-field="grade" data-value="다형">다형</button>
-        <button class="chip" data-field="grade" data-value="라형">라형</button>
-        <button class="chip" data-field="grade" data-value="마형">마형</button>
+        <button class="chip" data-field="time_type" data-value="평일주간">평일 주간</button>
+        <button class="chip" data-field="time_type" data-value="야간휴일">야간(22시~06시) / 휴일(일·공휴일)</button>
       </div>
     </div>
   </div>
+
   <div class="form-card">
     <div class="form-card-title">아동 수 (동시 돌봄)</div>
     <div class="children-row" id="children-group">
       <button class="children-chip" data-field="children" data-value="1">1<small>명</small></button>
       <button class="children-chip" data-field="children" data-value="2">2<small>명</small></button>
       <button class="children-chip" data-field="children" data-value="3">3<small>명</small></button>
+      <button class="children-chip" data-field="children" data-value="4">4<small>명</small></button>
+      <button class="children-chip" data-field="children" data-value="5">5<small>명</small></button>
     </div>
   </div>
+
   <div id="result-wrapper">
     <div class="incomplete-prompt"><div class="icon">🧮</div>위 조건을 모두 선택하면 이용요금이 자동 계산됩니다.</div>
   </div>
 </div>
+
 <script>
-var FEE_DATA = [{"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 959, "fee_1h": 1918, "fee_2h": 3836, "fee_4h": 7672}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 2558, "fee_1h": 5116, "fee_2h": 10232, "fee_4h": 20464}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 4476, "fee_1h": 8952, "fee_2h": 17904, "fee_4h": 35808}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 5435, "fee_1h": 10870, "fee_2h": 21740, "fee_4h": 43480}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 6395, "fee_1h": 12790, "fee_2h": 25580, "fee_4h": 51160}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 2874, "fee_1h": 5748, "fee_2h": 11496, "fee_4h": 22992}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 4473, "fee_1h": 8946, "fee_2h": 17892, "fee_4h": 35784}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 6391, "fee_1h": 12782, "fee_2h": 25564, "fee_4h": 51128}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 7350, "fee_1h": 14700, "fee_2h": 29400, "fee_4h": 58800}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 8310, "fee_1h": 16620, "fee_2h": 33240, "fee_4h": 66480}, {"family": "일반가정", "service": "영아종일제", "time_type": "평일 주간", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 959, "fee_1h": 1918, "fee_2h": 3836, "fee_4h": 7672}, {"family": "일반가정", "service": "영아종일제", "time_type": "평일 주간", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 2558, "fee_1h": 5116, "fee_2h": 10232, "fee_4h": 20464}, {"family": "일반가정", "service": "영아종일제", "time_type": "평일 주간", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 4476, "fee_1h": 8952, "fee_2h": 17904, "fee_4h": 35808}, {"family": "일반가정", "service": "영아종일제", "time_type": "평일 주간", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 5435, "fee_1h": 10870, "fee_2h": 21740, "fee_4h": 43480}, {"family": "일반가정", "service": "영아종일제", "time_type": "평일 주간", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 6395, "fee_1h": 12790, "fee_2h": 25580, "fee_4h": 51160}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 1918, "fee_1h": 3836, "fee_2h": 7672, "fee_4h": 15344}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 3357, "fee_1h": 6714, "fee_2h": 13428, "fee_4h": 26856}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 4076, "fee_1h": 8152, "fee_2h": 16304, "fee_4h": 32608}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 4796, "fee_1h": 9592, "fee_2h": 19184, "fee_4h": 38368}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 719, "fee_1h": 1438, "fee_2h": 2876, "fee_4h": 5752}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 2155, "fee_1h": 4310, "fee_2h": 8620, "fee_4h": 17240}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 3354, "fee_1h": 6708, "fee_2h": 13416, "fee_4h": 26832}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 4793, "fee_1h": 9586, "fee_2h": 19172, "fee_4h": 38344}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 5512, "fee_1h": 11024, "fee_2h": 22048, "fee_4h": 44096}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 6232, "fee_1h": 12464, "fee_2h": 24928, "fee_4h": 49856}, {"family": "일반가정", "service": "영아종일제", "time_type": "평일 주간", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 719, "fee_1h": 1438, "fee_2h": 2876, "fee_4h": 5752}, {"family": "일반가정", "service": "영아종일제", "time_type": "평일 주간", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 1918, "fee_1h": 3836, "fee_2h": 7672, "fee_4h": 15344}, {"family": "일반가정", "service": "영아종일제", "time_type": "평일 주간", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 3357, "fee_1h": 6714, "fee_2h": 13428, "fee_4h": 26856}, {"family": "일반가정", "service": "영아종일제", "time_type": "평일 주간", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 4076, "fee_1h": 8152, "fee_2h": 16304, "fee_4h": 32608}, {"family": "일반가정", "service": "영아종일제", "time_type": "평일 주간", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 4796, "fee_1h": 9592, "fee_2h": 19184, "fee_4h": 38368}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 1705, "fee_1h": 3410, "fee_2h": 6820, "fee_4h": 13640}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 2984, "fee_1h": 5968, "fee_2h": 11936, "fee_4h": 23872}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 3623, "fee_1h": 7246, "fee_2h": 14492, "fee_4h": 28984}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 4263, "fee_1h": 8526, "fee_2h": 17052, "fee_4h": 34104}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 639, "fee_1h": 1278, "fee_2h": 2556, "fee_4h": 5112}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 2982, "fee_1h": 5964, "fee_2h": 11928, "fee_4h": 23856}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 4261, "fee_1h": 8522, "fee_2h": 17044, "fee_4h": 34088}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 4900, "fee_1h": 9800, "fee_2h": 19600, "fee_4h": 39200}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 5540, "fee_1h": 11080, "fee_2h": 22160, "fee_4h": 44320}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 1916, "fee_1h": 3832, "fee_2h": 7664, "fee_4h": 15328}, {"family": "일반가정", "service": "영아종일제", "time_type": "평일 주간", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 639, "fee_1h": 1278, "fee_2h": 2556, "fee_4h": 5112}, {"family": "일반가정", "service": "영아종일제", "time_type": "평일 주간", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 1705, "fee_1h": 3410, "fee_2h": 6820, "fee_4h": 13640}, {"family": "일반가정", "service": "영아종일제", "time_type": "평일 주간", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 2984, "fee_1h": 5968, "fee_2h": 11936, "fee_4h": 23872}, {"family": "일반가정", "service": "영아종일제", "time_type": "평일 주간", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 3623, "fee_1h": 7246, "fee_2h": 14492, "fee_4h": 28984}, {"family": "일반가정", "service": "영아종일제", "time_type": "평일 주간", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 4263, "fee_1h": 8526, "fee_2h": 17052, "fee_4h": 34104}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "가형", "child_type": "B", "fee_30m": 1279, "fee_1h": 2558, "fee_2h": 5116, "fee_4h": 10232}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "나형", "child_type": "B", "fee_30m": 3197, "fee_1h": 6394, "fee_2h": 12788, "fee_4h": 25576}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "다형", "child_type": "B", "fee_30m": 4796, "fee_1h": 9592, "fee_2h": 19184, "fee_4h": 38368}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "라형", "child_type": "B", "fee_30m": 5755, "fee_1h": 11510, "fee_2h": 23020, "fee_4h": 46040}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "마형", "child_type": "B", "fee_30m": 6395, "fee_1h": 12790, "fee_2h": 25580, "fee_4h": 51160}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "가형", "child_type": "B", "fee_30m": 3194, "fee_1h": 6388, "fee_2h": 12776, "fee_4h": 25552}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "나형", "child_type": "B", "fee_30m": 5112, "fee_1h": 10224, "fee_2h": 20448, "fee_4h": 40896}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "다형", "child_type": "B", "fee_30m": 6711, "fee_1h": 13422, "fee_2h": 26844, "fee_4h": 53688}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "라형", "child_type": "B", "fee_30m": 7670, "fee_1h": 15340, "fee_2h": 30680, "fee_4h": 61360}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "마형", "child_type": "B", "fee_30m": 8310, "fee_1h": 16620, "fee_2h": 33240, "fee_4h": 66480}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "가형", "child_type": "B", "fee_30m": 959, "fee_1h": 1918, "fee_2h": 3836, "fee_4h": 7672}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "나형", "child_type": "B", "fee_30m": 2398, "fee_1h": 4796, "fee_2h": 9592, "fee_4h": 19184}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "다형", "child_type": "B", "fee_30m": 3597, "fee_1h": 7194, "fee_2h": 14388, "fee_4h": 28776}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "라형", "child_type": "B", "fee_30m": 4316, "fee_1h": 8632, "fee_2h": 17264, "fee_4h": 34528}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "마형", "child_type": "B", "fee_30m": 4796, "fee_1h": 9592, "fee_2h": 19184, "fee_4h": 38368}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "가형", "child_type": "B", "fee_30m": 2395, "fee_1h": 4790, "fee_2h": 9580, "fee_4h": 19160}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "나형", "child_type": "B", "fee_30m": 3834, "fee_1h": 7668, "fee_2h": 15336, "fee_4h": 30672}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "다형", "child_type": "B", "fee_30m": 5033, "fee_1h": 10066, "fee_2h": 20132, "fee_4h": 40264}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "라형", "child_type": "B", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "마형", "child_type": "B", "fee_30m": 6232, "fee_1h": 12464, "fee_2h": 24928, "fee_4h": 49856}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "가형", "child_type": "B", "fee_30m": 852, "fee_1h": 1704, "fee_2h": 3408, "fee_4h": 6816}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "나형", "child_type": "B", "fee_30m": 2131, "fee_1h": 4262, "fee_2h": 8524, "fee_4h": 17048}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "다형", "child_type": "B", "fee_30m": 3197, "fee_1h": 6394, "fee_2h": 12788, "fee_4h": 25576}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "라형", "child_type": "B", "fee_30m": 3836, "fee_1h": 7672, "fee_2h": 15344, "fee_4h": 30688}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "마형", "child_type": "B", "fee_30m": 4263, "fee_1h": 8526, "fee_2h": 17052, "fee_4h": 34104}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "가형", "child_type": "B", "fee_30m": 2129, "fee_1h": 4258, "fee_2h": 8516, "fee_4h": 17032}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "나형", "child_type": "B", "fee_30m": 3408, "fee_1h": 6816, "fee_2h": 13632, "fee_4h": 27264}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "다형", "child_type": "B", "fee_30m": 4474, "fee_1h": 8948, "fee_2h": 17896, "fee_4h": 35792}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "라형", "child_type": "B", "fee_30m": 5113, "fee_1h": 10226, "fee_2h": 20452, "fee_4h": 40904}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "마형", "child_type": "B", "fee_30m": 5540, "fee_1h": 11080, "fee_2h": 22160, "fee_4h": 44320}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 1150, "fee_1h": 2300, "fee_2h": 4600, "fee_4h": 9200}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "가형", "child_type": "B", "fee_30m": 1534, "fee_1h": 3068, "fee_2h": 6136, "fee_4h": 12272}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 3068, "fee_1h": 6136, "fee_2h": 12272, "fee_4h": 24544}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "나형", "child_type": "B", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "다형", "child_type": "B", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "라형", "child_type": "B", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "마형", "child_type": "B", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 862, "fee_1h": 1724, "fee_2h": 3448, "fee_4h": 6896}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "가형", "child_type": "B", "fee_30m": 1150, "fee_1h": 2300, "fee_2h": 4600, "fee_4h": 9200}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 2300, "fee_1h": 4600, "fee_2h": 9200, "fee_4h": 18400}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "나형", "child_type": "B", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "다형", "child_type": "B", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "라형", "child_type": "B", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "마형", "child_type": "B", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 766, "fee_1h": 1532, "fee_2h": 3064, "fee_4h": 6128}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "가형", "child_type": "B", "fee_30m": 1022, "fee_1h": 2044, "fee_2h": 4088, "fee_4h": 8176}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 2045, "fee_1h": 4090, "fee_2h": 8180, "fee_4h": 16360}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "나형", "child_type": "B", "fee_30m": 2556, "fee_1h": 5112, "fee_2h": 10224, "fee_4h": 20448}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 2556, "fee_1h": 5112, "fee_2h": 10224, "fee_4h": 20448}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "다형", "child_type": "B", "fee_30m": 2556, "fee_1h": 5112, "fee_2h": 10224, "fee_4h": 20448}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 2556, "fee_1h": 5112, "fee_2h": 10224, "fee_4h": 20448}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "라형", "child_type": "B", "fee_30m": 2556, "fee_1h": 5112, "fee_2h": 10224, "fee_4h": 20448}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 2556, "fee_1h": 5112, "fee_2h": 10224, "fee_4h": 20448}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "마형", "child_type": "B", "fee_30m": 2556, "fee_1h": 5112, "fee_2h": 10224, "fee_4h": 20448}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 1438, "fee_1h": 2876, "fee_2h": 5752, "fee_4h": 11504}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "가형", "child_type": "B", "fee_30m": 1918, "fee_1h": 3836, "fee_2h": 7672, "fee_4h": 15344}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 3836, "fee_1h": 7672, "fee_2h": 15344, "fee_4h": 30688}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "나형", "child_type": "B", "fee_30m": 4795, "fee_1h": 9590, "fee_2h": 19180, "fee_4h": 38360}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 6713, "fee_1h": 13426, "fee_2h": 26852, "fee_4h": 53704}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "다형", "child_type": "B", "fee_30m": 7192, "fee_1h": 14384, "fee_2h": 28768, "fee_4h": 57536}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 8151, "fee_1h": 16302, "fee_2h": 32604, "fee_4h": 65208}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "라형", "child_type": "B", "fee_30m": 8631, "fee_1h": 17262, "fee_2h": 34524, "fee_4h": 69048}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 9590, "fee_1h": 19180, "fee_2h": 38360, "fee_4h": 76720}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "마형", "child_type": "B", "fee_30m": 9590, "fee_1h": 19180, "fee_2h": 38360, "fee_4h": 76720}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 1079, "fee_1h": 2158, "fee_2h": 4316, "fee_4h": 8632}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "가형", "child_type": "B", "fee_30m": 1438, "fee_1h": 2876, "fee_2h": 5752, "fee_4h": 11504}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "나형", "child_type": "B", "fee_30m": 3596, "fee_1h": 7192, "fee_2h": 14384, "fee_4h": 28768}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 5034, "fee_1h": 10068, "fee_2h": 20136, "fee_4h": 40272}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "다형", "child_type": "B", "fee_30m": 5394, "fee_1h": 10788, "fee_2h": 21576, "fee_4h": 43152}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 6113, "fee_1h": 12226, "fee_2h": 24452, "fee_4h": 48904}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "라형", "child_type": "B", "fee_30m": 6473, "fee_1h": 12946, "fee_2h": 25892, "fee_4h": 51784}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 7192, "fee_1h": 14384, "fee_2h": 28768, "fee_4h": 57536}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "마형", "child_type": "B", "fee_30m": 7192, "fee_1h": 14384, "fee_2h": 28768, "fee_4h": 57536}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 959, "fee_1h": 1918, "fee_2h": 3836, "fee_4h": 7672}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "가형", "child_type": "B", "fee_30m": 1279, "fee_1h": 2558, "fee_2h": 5116, "fee_4h": 10232}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 2558, "fee_1h": 5116, "fee_2h": 10232, "fee_4h": 20464}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "나형", "child_type": "B", "fee_30m": 3197, "fee_1h": 6394, "fee_2h": 12788, "fee_4h": 25576}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 4476, "fee_1h": 8952, "fee_2h": 17904, "fee_4h": 35808}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "다형", "child_type": "B", "fee_30m": 4796, "fee_1h": 9592, "fee_2h": 19184, "fee_4h": 38368}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 5435, "fee_1h": 10870, "fee_2h": 21740, "fee_4h": 43480}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "라형", "child_type": "B", "fee_30m": 5754, "fee_1h": 11508, "fee_2h": 23016, "fee_4h": 46032}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 6394, "fee_1h": 12788, "fee_2h": 25576, "fee_4h": 51152}, {"family": "일반가정", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "마형", "child_type": "B", "fee_30m": 6394, "fee_1h": 12788, "fee_2h": 25576, "fee_4h": 51152}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 4313, "fee_1h": 8626, "fee_2h": 17252, "fee_4h": 34504}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "가형", "child_type": "B", "fee_30m": 4793, "fee_1h": 9586, "fee_2h": 19172, "fee_4h": 38344}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 6711, "fee_1h": 13422, "fee_2h": 26844, "fee_4h": 53688}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "나형", "child_type": "B", "fee_30m": 7670, "fee_1h": 15340, "fee_2h": 30680, "fee_4h": 61360}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 9588, "fee_1h": 19176, "fee_2h": 38352, "fee_4h": 76704}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "다형", "child_type": "B", "fee_30m": 10067, "fee_1h": 20134, "fee_2h": 40268, "fee_4h": 80536}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 11026, "fee_1h": 22052, "fee_2h": 44104, "fee_4h": 88208}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "라형", "child_type": "B", "fee_30m": 11506, "fee_1h": 23012, "fee_2h": 46024, "fee_4h": 92048}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 12465, "fee_1h": 24930, "fee_2h": 49860, "fee_4h": 99720}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "마형", "child_type": "B", "fee_30m": 12465, "fee_1h": 24930, "fee_2h": 49860, "fee_4h": 99720}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 3235, "fee_1h": 6470, "fee_2h": 12940, "fee_4h": 25880}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "가형", "child_type": "B", "fee_30m": 3594, "fee_1h": 7188, "fee_2h": 14376, "fee_4h": 28752}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 5032, "fee_1h": 10064, "fee_2h": 20128, "fee_4h": 40256}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "나형", "child_type": "B", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 7190, "fee_1h": 14380, "fee_2h": 28760, "fee_4h": 57520}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "다형", "child_type": "B", "fee_30m": 7550, "fee_1h": 15100, "fee_2h": 30200, "fee_4h": 60400}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 8269, "fee_1h": 16538, "fee_2h": 33076, "fee_4h": 66152}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "라형", "child_type": "B", "fee_30m": 8629, "fee_1h": 17258, "fee_2h": 34516, "fee_4h": 69032}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 9348, "fee_1h": 18696, "fee_2h": 37392, "fee_4h": 74784}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "마형", "child_type": "B", "fee_30m": 9348, "fee_1h": 18696, "fee_2h": 37392, "fee_4h": 74784}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 2875, "fee_1h": 5750, "fee_2h": 11500, "fee_4h": 23000}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "가형", "child_type": "B", "fee_30m": 3195, "fee_1h": 6390, "fee_2h": 12780, "fee_4h": 25560}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 4474, "fee_1h": 8948, "fee_2h": 17896, "fee_4h": 35792}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "나형", "child_type": "B", "fee_30m": 5113, "fee_1h": 10226, "fee_2h": 20452, "fee_4h": 40904}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 6392, "fee_1h": 12784, "fee_2h": 25568, "fee_4h": 51136}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "다형", "child_type": "B", "fee_30m": 6712, "fee_1h": 13424, "fee_2h": 26848, "fee_4h": 53696}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 7351, "fee_1h": 14702, "fee_2h": 29404, "fee_4h": 58808}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "라형", "child_type": "B", "fee_30m": 7670, "fee_1h": 15340, "fee_2h": 30680, "fee_4h": 61360}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 8310, "fee_1h": 16620, "fee_2h": 33240, "fee_4h": 66480}, {"family": "일반가정", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "마형", "child_type": "B", "fee_30m": 8310, "fee_1h": 16620, "fee_2h": 33240, "fee_4h": 66480}, {"family": "일반가정", "service": "영아종일제", "time_type": "심야/휴일", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 1438, "fee_1h": 2876, "fee_2h": 5752, "fee_4h": 11504}, {"family": "일반가정", "service": "영아종일제", "time_type": "심야/휴일", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 3836, "fee_1h": 7672, "fee_2h": 15344, "fee_4h": 30688}, {"family": "일반가정", "service": "영아종일제", "time_type": "심야/휴일", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 6713, "fee_1h": 13426, "fee_2h": 26852, "fee_4h": 53704}, {"family": "일반가정", "service": "영아종일제", "time_type": "심야/휴일", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 8151, "fee_1h": 16302, "fee_2h": 32604, "fee_4h": 65208}, {"family": "일반가정", "service": "영아종일제", "time_type": "심야/휴일", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 9590, "fee_1h": 19180, "fee_2h": 38360, "fee_4h": 76720}, {"family": "일반가정", "service": "영아종일제", "time_type": "심야/휴일", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 1079, "fee_1h": 2158, "fee_2h": 4316, "fee_4h": 8632}, {"family": "일반가정", "service": "영아종일제", "time_type": "심야/휴일", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "일반가정", "service": "영아종일제", "time_type": "심야/휴일", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 5034, "fee_1h": 10068, "fee_2h": 20136, "fee_4h": 40272}, {"family": "일반가정", "service": "영아종일제", "time_type": "심야/휴일", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 6113, "fee_1h": 12226, "fee_2h": 24452, "fee_4h": 48904}, {"family": "일반가정", "service": "영아종일제", "time_type": "심야/휴일", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 7192, "fee_1h": 14384, "fee_2h": 28768, "fee_4h": 57536}, {"family": "일반가정", "service": "영아종일제", "time_type": "심야/휴일", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 959, "fee_1h": 1918, "fee_2h": 3836, "fee_4h": 7672}, {"family": "일반가정", "service": "영아종일제", "time_type": "심야/휴일", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 2558, "fee_1h": 5116, "fee_2h": 10232, "fee_4h": 20464}, {"family": "일반가정", "service": "영아종일제", "time_type": "심야/휴일", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 4476, "fee_1h": 8952, "fee_2h": 17904, "fee_4h": 35808}, {"family": "일반가정", "service": "영아종일제", "time_type": "심야/휴일", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 5435, "fee_1h": 10870, "fee_2h": 21740, "fee_4h": 43480}, {"family": "일반가정", "service": "영아종일제", "time_type": "심야/휴일", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 6394, "fee_1h": 12788, "fee_2h": 25576, "fee_4h": 51152}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 1725, "fee_1h": 3450, "fee_2h": 6900, "fee_4h": 13800}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "가형", "child_type": "B", "fee_30m": 2301, "fee_1h": 4602, "fee_2h": 9204, "fee_4h": 18408}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 4602, "fee_1h": 9204, "fee_2h": 18408, "fee_4h": 36816}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "나형", "child_type": "B", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "다형", "child_type": "B", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "라형", "child_type": "B", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "마형", "child_type": "B", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 1293, "fee_1h": 2586, "fee_2h": 5172, "fee_4h": 10344}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "가형", "child_type": "B", "fee_30m": 1725, "fee_1h": 3450, "fee_2h": 6900, "fee_4h": 13800}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 3450, "fee_1h": 6900, "fee_2h": 13800, "fee_4h": 27600}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "나형", "child_type": "B", "fee_30m": 4314, "fee_1h": 8628, "fee_2h": 17256, "fee_4h": 34512}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 4314, "fee_1h": 8628, "fee_2h": 17256, "fee_4h": 34512}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "다형", "child_type": "B", "fee_30m": 4314, "fee_1h": 8628, "fee_2h": 17256, "fee_4h": 34512}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 4314, "fee_1h": 8628, "fee_2h": 17256, "fee_4h": 34512}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "라형", "child_type": "B", "fee_30m": 4314, "fee_1h": 8628, "fee_2h": 17256, "fee_4h": 34512}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 4314, "fee_1h": 8628, "fee_2h": 17256, "fee_4h": 34512}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "마형", "child_type": "B", "fee_30m": 4314, "fee_1h": 8628, "fee_2h": 17256, "fee_4h": 34512}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 1149, "fee_1h": 2298, "fee_2h": 4596, "fee_4h": 9192}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "가형", "child_type": "B", "fee_30m": 1533, "fee_1h": 3066, "fee_2h": 6132, "fee_4h": 12264}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 3068, "fee_1h": 6136, "fee_2h": 12272, "fee_4h": 24544}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "나형", "child_type": "B", "fee_30m": 3834, "fee_1h": 7668, "fee_2h": 15336, "fee_4h": 30672}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 3834, "fee_1h": 7668, "fee_2h": 15336, "fee_4h": 30672}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "다형", "child_type": "B", "fee_30m": 3834, "fee_1h": 7668, "fee_2h": 15336, "fee_4h": 30672}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 3834, "fee_1h": 7668, "fee_2h": 15336, "fee_4h": 30672}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "라형", "child_type": "B", "fee_30m": 3834, "fee_1h": 7668, "fee_2h": 15336, "fee_4h": 30672}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 3834, "fee_1h": 7668, "fee_2h": 15336, "fee_4h": 30672}, {"family": "일반가정", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "마형", "child_type": "B", "fee_30m": 3834, "fee_1h": 7668, "fee_2h": 15336, "fee_4h": 30672}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 639, "fee_1h": 1278, "fee_2h": 2556, "fee_4h": 5112}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 2558, "fee_1h": 5116, "fee_2h": 10232, "fee_4h": 20464}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 4476, "fee_1h": 8952, "fee_2h": 17904, "fee_4h": 35808}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 5435, "fee_1h": 10870, "fee_2h": 21740, "fee_4h": 43480}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 6395, "fee_1h": 12790, "fee_2h": 25580, "fee_4h": 51160}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 479, "fee_1h": 958, "fee_2h": 1916, "fee_4h": 3832}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 1918, "fee_1h": 3836, "fee_2h": 7672, "fee_4h": 15344}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 3357, "fee_1h": 6714, "fee_2h": 13428, "fee_4h": 26856}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 4076, "fee_1h": 8152, "fee_2h": 16304, "fee_4h": 32608}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 4796, "fee_1h": 9592, "fee_2h": 19184, "fee_4h": 38368}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 426, "fee_1h": 852, "fee_2h": 1704, "fee_4h": 3408}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 1705, "fee_1h": 3410, "fee_2h": 6820, "fee_4h": 13640}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 2984, "fee_1h": 5968, "fee_2h": 11936, "fee_4h": 23872}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 3623, "fee_1h": 7246, "fee_2h": 14492, "fee_4h": 28984}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 4263, "fee_1h": 8526, "fee_2h": 17052, "fee_4h": 34104}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "가형", "child_type": "B", "fee_30m": 959, "fee_1h": 1918, "fee_2h": 3836, "fee_4h": 7672}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "나형", "child_type": "B", "fee_30m": 3197, "fee_1h": 6394, "fee_2h": 12788, "fee_4h": 25576}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "다형", "child_type": "B", "fee_30m": 4796, "fee_1h": 9592, "fee_2h": 19184, "fee_4h": 38368}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "라형", "child_type": "B", "fee_30m": 5755, "fee_1h": 11510, "fee_2h": 23020, "fee_4h": 46040}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "마형", "child_type": "B", "fee_30m": 6395, "fee_1h": 12790, "fee_2h": 25580, "fee_4h": 51160}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "가형", "child_type": "B", "fee_30m": 719, "fee_1h": 1438, "fee_2h": 2876, "fee_4h": 5752}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "나형", "child_type": "B", "fee_30m": 2398, "fee_1h": 4796, "fee_2h": 9592, "fee_4h": 19184}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "다형", "child_type": "B", "fee_30m": 3597, "fee_1h": 7194, "fee_2h": 14388, "fee_4h": 28776}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "라형", "child_type": "B", "fee_30m": 4316, "fee_1h": 8632, "fee_2h": 17264, "fee_4h": 34528}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "마형", "child_type": "B", "fee_30m": 4796, "fee_1h": 9592, "fee_2h": 19184, "fee_4h": 38368}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "가형", "child_type": "B", "fee_30m": 639, "fee_1h": 1278, "fee_2h": 2556, "fee_4h": 5112}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "나형", "child_type": "B", "fee_30m": 2131, "fee_1h": 4262, "fee_2h": 8524, "fee_4h": 17048}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "다형", "child_type": "B", "fee_30m": 3197, "fee_1h": 6394, "fee_2h": 12788, "fee_4h": 25576}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "라형", "child_type": "B", "fee_30m": 3836, "fee_1h": 7672, "fee_2h": 15344, "fee_4h": 30688}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "마형", "child_type": "B", "fee_30m": 4263, "fee_1h": 8526, "fee_2h": 17052, "fee_4h": 34104}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 2554, "fee_1h": 5108, "fee_2h": 10216, "fee_4h": 20432}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 4473, "fee_1h": 8946, "fee_2h": 17892, "fee_4h": 35784}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 6391, "fee_1h": 12782, "fee_2h": 25564, "fee_4h": 51128}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 7350, "fee_1h": 14700, "fee_2h": 29400, "fee_4h": 58800}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 8310, "fee_1h": 16620, "fee_2h": 33240, "fee_4h": 66480}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 1915, "fee_1h": 3830, "fee_2h": 7660, "fee_4h": 15320}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 3354, "fee_1h": 6708, "fee_2h": 13416, "fee_4h": 26832}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 4793, "fee_1h": 9586, "fee_2h": 19172, "fee_4h": 38344}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 5512, "fee_1h": 11024, "fee_2h": 22048, "fee_4h": 44096}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 6232, "fee_1h": 12464, "fee_2h": 24928, "fee_4h": 49856}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 1703, "fee_1h": 3406, "fee_2h": 6812, "fee_4h": 13624}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 2982, "fee_1h": 5964, "fee_2h": 11928, "fee_4h": 23856}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 4261, "fee_1h": 8522, "fee_2h": 17044, "fee_4h": 34088}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 4900, "fee_1h": 9800, "fee_2h": 19600, "fee_4h": 39200}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 5540, "fee_1h": 11080, "fee_2h": 22160, "fee_4h": 44320}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "가형", "child_type": "B", "fee_30m": 2874, "fee_1h": 5748, "fee_2h": 11496, "fee_4h": 22992}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "나형", "child_type": "B", "fee_30m": 5112, "fee_1h": 10224, "fee_2h": 20448, "fee_4h": 40896}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "다형", "child_type": "B", "fee_30m": 6711, "fee_1h": 13422, "fee_2h": 26844, "fee_4h": 53688}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "라형", "child_type": "B", "fee_30m": 7670, "fee_1h": 15340, "fee_2h": 30680, "fee_4h": 61360}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "마형", "child_type": "B", "fee_30m": 8310, "fee_1h": 16620, "fee_2h": 33240, "fee_4h": 66480}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "가형", "child_type": "B", "fee_30m": 2155, "fee_1h": 4310, "fee_2h": 8620, "fee_4h": 17240}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "나형", "child_type": "B", "fee_30m": 3834, "fee_1h": 7668, "fee_2h": 15336, "fee_4h": 30672}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "다형", "child_type": "B", "fee_30m": 5033, "fee_1h": 10066, "fee_2h": 20132, "fee_4h": 40264}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "라형", "child_type": "B", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "마형", "child_type": "B", "fee_30m": 6232, "fee_1h": 12464, "fee_2h": 24928, "fee_4h": 49856}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "가형", "child_type": "B", "fee_30m": 1916, "fee_1h": 3832, "fee_2h": 7664, "fee_4h": 15328}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "나형", "child_type": "B", "fee_30m": 3408, "fee_1h": 6816, "fee_2h": 13632, "fee_4h": 27264}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "다형", "child_type": "B", "fee_30m": 4474, "fee_1h": 8948, "fee_2h": 17896, "fee_4h": 35792}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "라형", "child_type": "B", "fee_30m": 5113, "fee_1h": 10226, "fee_2h": 20452, "fee_4h": 40904}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "마형", "child_type": "B", "fee_30m": 5540, "fee_1h": 11080, "fee_2h": 22160, "fee_4h": 44320}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 767, "fee_1h": 1534, "fee_2h": 3068, "fee_4h": 6136}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 3068, "fee_1h": 6136, "fee_2h": 12272, "fee_4h": 24544}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 575, "fee_1h": 1150, "fee_2h": 2300, "fee_4h": 4600}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 2300, "fee_1h": 4600, "fee_2h": 9200, "fee_4h": 18400}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 511, "fee_1h": 1022, "fee_2h": 2044, "fee_4h": 4088}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 2045, "fee_1h": 4090, "fee_2h": 8180, "fee_4h": 16360}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 2556, "fee_1h": 5112, "fee_2h": 10224, "fee_4h": 20448}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 2556, "fee_1h": 5112, "fee_2h": 10224, "fee_4h": 20448}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 2556, "fee_1h": 5112, "fee_2h": 10224, "fee_4h": 20448}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "가형", "child_type": "B", "fee_30m": 1150, "fee_1h": 2300, "fee_2h": 4600, "fee_4h": 9200}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "나형", "child_type": "B", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "다형", "child_type": "B", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "라형", "child_type": "B", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "마형", "child_type": "B", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "가형", "child_type": "B", "fee_30m": 862, "fee_1h": 1724, "fee_2h": 3448, "fee_4h": 6896}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "나형", "child_type": "B", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "다형", "child_type": "B", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "라형", "child_type": "B", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "마형", "child_type": "B", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "가형", "child_type": "B", "fee_30m": 766, "fee_1h": 1532, "fee_2h": 3064, "fee_4h": 6128}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "나형", "child_type": "B", "fee_30m": 2556, "fee_1h": 5112, "fee_2h": 10224, "fee_4h": 20448}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "다형", "child_type": "B", "fee_30m": 2556, "fee_1h": 5112, "fee_2h": 10224, "fee_4h": 20448}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "라형", "child_type": "B", "fee_30m": 2556, "fee_1h": 5112, "fee_2h": 10224, "fee_4h": 20448}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "마형", "child_type": "B", "fee_30m": 2556, "fee_1h": 5112, "fee_2h": 10224, "fee_4h": 20448}, {"family": "한부모가족", "service": "영아종일제", "time_type": "심야/휴일", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 719, "fee_1h": 1438, "fee_2h": 2876, "fee_4h": 5752}, {"family": "한부모가족", "service": "영아종일제", "time_type": "심야/휴일", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "한부모가족", "service": "영아종일제", "time_type": "심야/휴일", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 5034, "fee_1h": 10068, "fee_2h": 20136, "fee_4h": 40272}, {"family": "한부모가족", "service": "영아종일제", "time_type": "심야/휴일", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 6113, "fee_1h": 12226, "fee_2h": 24452, "fee_4h": 48904}, {"family": "한부모가족", "service": "영아종일제", "time_type": "심야/휴일", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 7192, "fee_1h": 14384, "fee_2h": 28768, "fee_4h": 57536}, {"family": "한부모가족", "service": "영아종일제", "time_type": "심야/휴일", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 639, "fee_1h": 1278, "fee_2h": 2556, "fee_4h": 5112}, {"family": "한부모가족", "service": "영아종일제", "time_type": "심야/휴일", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 2557, "fee_1h": 5114, "fee_2h": 10228, "fee_4h": 20456}, {"family": "한부모가족", "service": "영아종일제", "time_type": "심야/휴일", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 4475, "fee_1h": 8950, "fee_2h": 17900, "fee_4h": 35800}, {"family": "한부모가족", "service": "영아종일제", "time_type": "심야/휴일", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 5434, "fee_1h": 10868, "fee_2h": 21736, "fee_4h": 43472}, {"family": "한부모가족", "service": "영아종일제", "time_type": "심야/휴일", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 6393, "fee_1h": 12786, "fee_2h": 25572, "fee_4h": 51144}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 959, "fee_1h": 1918, "fee_2h": 3836, "fee_4h": 7672}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 3836, "fee_1h": 7672, "fee_2h": 15344, "fee_4h": 30688}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 6713, "fee_1h": 13426, "fee_2h": 26852, "fee_4h": 53704}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 8151, "fee_1h": 16302, "fee_2h": 32604, "fee_4h": 65208}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 9590, "fee_1h": 19180, "fee_2h": 38360, "fee_4h": 76720}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 719, "fee_1h": 1438, "fee_2h": 2876, "fee_4h": 5752}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 5034, "fee_1h": 10068, "fee_2h": 20136, "fee_4h": 40272}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 6113, "fee_1h": 12226, "fee_2h": 24452, "fee_4h": 48904}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 7192, "fee_1h": 14384, "fee_2h": 28768, "fee_4h": 57536}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 639, "fee_1h": 1278, "fee_2h": 2556, "fee_4h": 5112}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 2557, "fee_1h": 5114, "fee_2h": 10228, "fee_4h": 20456}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 4475, "fee_1h": 8950, "fee_2h": 17900, "fee_4h": 35800}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 5434, "fee_1h": 10868, "fee_2h": 21736, "fee_4h": 43472}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 6393, "fee_1h": 12786, "fee_2h": 25572, "fee_4h": 51144}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "가형", "child_type": "B", "fee_30m": 1438, "fee_1h": 2876, "fee_2h": 5752, "fee_4h": 11504}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "나형", "child_type": "B", "fee_30m": 4795, "fee_1h": 9590, "fee_2h": 19180, "fee_4h": 38360}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "다형", "child_type": "B", "fee_30m": 7192, "fee_1h": 14384, "fee_2h": 28768, "fee_4h": 57536}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "라형", "child_type": "B", "fee_30m": 8631, "fee_1h": 17262, "fee_2h": 34524, "fee_4h": 69048}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 1, "grade": "마형", "child_type": "B", "fee_30m": 9590, "fee_1h": 19180, "fee_2h": 38360, "fee_4h": 76720}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "가형", "child_type": "B", "fee_30m": 1078, "fee_1h": 2156, "fee_2h": 4312, "fee_4h": 8624}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "나형", "child_type": "B", "fee_30m": 3596, "fee_1h": 7192, "fee_2h": 14384, "fee_4h": 28768}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "다형", "child_type": "B", "fee_30m": 5394, "fee_1h": 10788, "fee_2h": 21576, "fee_4h": 43152}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "라형", "child_type": "B", "fee_30m": 6472, "fee_1h": 12944, "fee_2h": 25888, "fee_4h": 51776}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 2, "grade": "마형", "child_type": "B", "fee_30m": 7192, "fee_1h": 14384, "fee_2h": 28768, "fee_4h": 57536}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "가형", "child_type": "B", "fee_30m": 958, "fee_1h": 1916, "fee_2h": 3832, "fee_4h": 7664}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "나형", "child_type": "B", "fee_30m": 3196, "fee_1h": 6392, "fee_2h": 12784, "fee_4h": 25568}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "다형", "child_type": "B", "fee_30m": 4794, "fee_1h": 9588, "fee_2h": 19176, "fee_4h": 38352}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "라형", "child_type": "B", "fee_30m": 5753, "fee_1h": 11506, "fee_2h": 23012, "fee_4h": 46024}, {"family": "한부모가족", "service": "시간제 기본형", "time_type": "심야/휴일", "children": 3, "grade": "마형", "child_type": "B", "fee_30m": 6393, "fee_1h": 12786, "fee_2h": 25572, "fee_4h": 51144}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 3834, "fee_1h": 7668, "fee_2h": 15336, "fee_4h": 30672}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 6711, "fee_1h": 13422, "fee_2h": 26844, "fee_4h": 53688}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 9588, "fee_1h": 19176, "fee_2h": 38352, "fee_4h": 76704}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 11026, "fee_1h": 22052, "fee_2h": 44104, "fee_4h": 88208}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 12465, "fee_1h": 24930, "fee_2h": 49860, "fee_4h": 99720}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 2875, "fee_1h": 5750, "fee_2h": 11500, "fee_4h": 23000}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 5032, "fee_1h": 10064, "fee_2h": 20128, "fee_4h": 40256}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 7190, "fee_1h": 14380, "fee_2h": 28760, "fee_4h": 57520}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 8269, "fee_1h": 16538, "fee_2h": 33076, "fee_4h": 66152}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 9348, "fee_1h": 18696, "fee_2h": 37392, "fee_4h": 74784}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 2556, "fee_1h": 5112, "fee_2h": 10224, "fee_4h": 20448}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 4474, "fee_1h": 8948, "fee_2h": 17896, "fee_4h": 35792}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 6392, "fee_1h": 12784, "fee_2h": 25568, "fee_4h": 51136}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 7351, "fee_1h": 14702, "fee_2h": 29404, "fee_4h": 58808}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 8310, "fee_1h": 16620, "fee_2h": 33240, "fee_4h": 66480}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "가형", "child_type": "B", "fee_30m": 4313, "fee_1h": 8626, "fee_2h": 17252, "fee_4h": 34504}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "나형", "child_type": "B", "fee_30m": 7670, "fee_1h": 15340, "fee_2h": 30680, "fee_4h": 61360}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "다형", "child_type": "B", "fee_30m": 10067, "fee_1h": 20134, "fee_2h": 40268, "fee_4h": 80536}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "라형", "child_type": "B", "fee_30m": 11506, "fee_1h": 23012, "fee_2h": 46024, "fee_4h": 92048}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 1, "grade": "마형", "child_type": "B", "fee_30m": 12465, "fee_1h": 24930, "fee_2h": 49860, "fee_4h": 99720}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "가형", "child_type": "B", "fee_30m": 3234, "fee_1h": 6468, "fee_2h": 12936, "fee_4h": 25872}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "나형", "child_type": "B", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "다형", "child_type": "B", "fee_30m": 7550, "fee_1h": 15100, "fee_2h": 30200, "fee_4h": 60400}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "라형", "child_type": "B", "fee_30m": 8628, "fee_1h": 17256, "fee_2h": 34512, "fee_4h": 69024}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 2, "grade": "마형", "child_type": "B", "fee_30m": 9348, "fee_1h": 18696, "fee_2h": 37392, "fee_4h": 74784}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "가형", "child_type": "B", "fee_30m": 2875, "fee_1h": 5750, "fee_2h": 11500, "fee_4h": 23000}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "나형", "child_type": "B", "fee_30m": 5113, "fee_1h": 10226, "fee_2h": 20452, "fee_4h": 40904}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "다형", "child_type": "B", "fee_30m": 6711, "fee_1h": 13422, "fee_2h": 26844, "fee_4h": 53688}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "라형", "child_type": "B", "fee_30m": 7670, "fee_1h": 15340, "fee_2h": 30680, "fee_4h": 61360}, {"family": "한부모가족", "service": "시간제 종합형", "time_type": "심야/휴일", "children": 3, "grade": "마형", "child_type": "B", "fee_30m": 8310, "fee_1h": 16620, "fee_2h": 33240, "fee_4h": 66480}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 1150, "fee_1h": 2300, "fee_2h": 4600, "fee_4h": 9200}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 4602, "fee_1h": 9204, "fee_2h": 18408, "fee_4h": 36816}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 862, "fee_1h": 1724, "fee_2h": 3448, "fee_4h": 6896}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 3451, "fee_1h": 6902, "fee_2h": 13804, "fee_4h": 27608}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 4314, "fee_1h": 8628, "fee_2h": 17256, "fee_4h": 34512}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 4314, "fee_1h": 8628, "fee_2h": 17256, "fee_4h": 34512}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 4314, "fee_1h": 8628, "fee_2h": 17256, "fee_4h": 34512}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 767, "fee_1h": 1534, "fee_2h": 3068, "fee_4h": 6136}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 3068, "fee_1h": 6136, "fee_2h": 12272, "fee_4h": 24544}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "가형", "child_type": "B", "fee_30m": 1725, "fee_1h": 3450, "fee_2h": 6900, "fee_4h": 13800}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "나형", "child_type": "B", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "다형", "child_type": "B", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "라형", "child_type": "B", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 1, "grade": "마형", "child_type": "B", "fee_30m": 5752, "fee_1h": 11504, "fee_2h": 23008, "fee_4h": 46016}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "가형", "child_type": "B", "fee_30m": 1294, "fee_1h": 2588, "fee_2h": 5176, "fee_4h": 10352}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "나형", "child_type": "B", "fee_30m": 4314, "fee_1h": 8628, "fee_2h": 17256, "fee_4h": 34512}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "다형", "child_type": "B", "fee_30m": 4314, "fee_1h": 8628, "fee_2h": 17256, "fee_4h": 34512}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "라형", "child_type": "B", "fee_30m": 4314, "fee_1h": 8628, "fee_2h": 17256, "fee_4h": 34512}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 2, "grade": "마형", "child_type": "B", "fee_30m": 4314, "fee_1h": 8628, "fee_2h": 17256, "fee_4h": 34512}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "가형", "child_type": "B", "fee_30m": 1150, "fee_1h": 2300, "fee_2h": 4600, "fee_4h": 9200}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "나형", "child_type": "B", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "다형", "child_type": "B", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "라형", "child_type": "B", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "한부모가족", "service": "질병감염아동지원", "time_type": "심야/휴일", "children": 3, "grade": "마형", "child_type": "B", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "청소년부모", "service": "영아종일제", "time_type": "평일 주간", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 639, "fee_1h": 1278, "fee_2h": 2556, "fee_4h": 5112}, {"family": "청소년부모", "service": "영아종일제", "time_type": "평일 주간", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 639, "fee_1h": 1278, "fee_2h": 2556, "fee_4h": 5112}, {"family": "청소년부모", "service": "영아종일제", "time_type": "평일 주간", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 639, "fee_1h": 1278, "fee_2h": 2556, "fee_4h": 5112}, {"family": "청소년부모", "service": "영아종일제", "time_type": "평일 주간", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 6395, "fee_1h": 12790, "fee_2h": 25580, "fee_4h": 51160}, {"family": "청소년부모", "service": "영아종일제", "time_type": "평일 주간", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 6395, "fee_1h": 12790, "fee_2h": 25580, "fee_4h": 51160}, {"family": "청소년부모", "service": "영아종일제", "time_type": "평일 주간", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 479, "fee_1h": 958, "fee_2h": 1916, "fee_4h": 3832}, {"family": "청소년부모", "service": "영아종일제", "time_type": "평일 주간", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 479, "fee_1h": 958, "fee_2h": 1916, "fee_4h": 3832}, {"family": "청소년부모", "service": "영아종일제", "time_type": "평일 주간", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 479, "fee_1h": 958, "fee_2h": 1916, "fee_4h": 3832}, {"family": "청소년부모", "service": "영아종일제", "time_type": "평일 주간", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 4796, "fee_1h": 9592, "fee_2h": 19184, "fee_4h": 38368}, {"family": "청소년부모", "service": "영아종일제", "time_type": "평일 주간", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 4796, "fee_1h": 9592, "fee_2h": 19184, "fee_4h": 38368}, {"family": "청소년부모", "service": "영아종일제", "time_type": "평일 주간", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 426, "fee_1h": 852, "fee_2h": 1704, "fee_4h": 3408}, {"family": "청소년부모", "service": "영아종일제", "time_type": "평일 주간", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 426, "fee_1h": 852, "fee_2h": 1704, "fee_4h": 3408}, {"family": "청소년부모", "service": "영아종일제", "time_type": "평일 주간", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 426, "fee_1h": 852, "fee_2h": 1704, "fee_4h": 3408}, {"family": "청소년부모", "service": "영아종일제", "time_type": "평일 주간", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 4263, "fee_1h": 8526, "fee_2h": 17052, "fee_4h": 34104}, {"family": "청소년부모", "service": "영아종일제", "time_type": "평일 주간", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 4263, "fee_1h": 8526, "fee_2h": 17052, "fee_4h": 34104}, {"family": "청소년부모", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 639, "fee_1h": 1278, "fee_2h": 2556, "fee_4h": 5112}, {"family": "청소년부모", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 639, "fee_1h": 1278, "fee_2h": 2556, "fee_4h": 5112}, {"family": "청소년부모", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 639, "fee_1h": 1278, "fee_2h": 2556, "fee_4h": 5112}, {"family": "청소년부모", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 6395, "fee_1h": 12790, "fee_2h": 25580, "fee_4h": 51160}, {"family": "청소년부모", "service": "시간제 기본형", "time_type": "평일 주간", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 6395, "fee_1h": 12790, "fee_2h": 25580, "fee_4h": 51160}, {"family": "청소년부모", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 479, "fee_1h": 958, "fee_2h": 1916, "fee_4h": 3832}, {"family": "청소년부모", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 479, "fee_1h": 958, "fee_2h": 1916, "fee_4h": 3832}, {"family": "청소년부모", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 479, "fee_1h": 958, "fee_2h": 1916, "fee_4h": 3832}, {"family": "청소년부모", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 4796, "fee_1h": 9592, "fee_2h": 19184, "fee_4h": 38368}, {"family": "청소년부모", "service": "시간제 기본형", "time_type": "평일 주간", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 4796, "fee_1h": 9592, "fee_2h": 19184, "fee_4h": 38368}, {"family": "청소년부모", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 426, "fee_1h": 852, "fee_2h": 1704, "fee_4h": 3408}, {"family": "청소년부모", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 426, "fee_1h": 852, "fee_2h": 1704, "fee_4h": 3408}, {"family": "청소년부모", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 426, "fee_1h": 852, "fee_2h": 1704, "fee_4h": 3408}, {"family": "청소년부모", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 4263, "fee_1h": 8526, "fee_2h": 17052, "fee_4h": 34104}, {"family": "청소년부모", "service": "시간제 기본형", "time_type": "평일 주간", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 4263, "fee_1h": 8526, "fee_2h": 17052, "fee_4h": 34104}, {"family": "청소년부모", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 2554, "fee_1h": 5108, "fee_2h": 10216, "fee_4h": 20432}, {"family": "청소년부모", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 2554, "fee_1h": 5108, "fee_2h": 10216, "fee_4h": 20432}, {"family": "청소년부모", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 2554, "fee_1h": 5108, "fee_2h": 10216, "fee_4h": 20432}, {"family": "청소년부모", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 8310, "fee_1h": 16620, "fee_2h": 33240, "fee_4h": 66480}, {"family": "청소년부모", "service": "시간제 종합형", "time_type": "평일 주간", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 8310, "fee_1h": 16620, "fee_2h": 33240, "fee_4h": 66480}, {"family": "청소년부모", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 1915, "fee_1h": 3830, "fee_2h": 7660, "fee_4h": 15320}, {"family": "청소년부모", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 1915, "fee_1h": 3830, "fee_2h": 7660, "fee_4h": 15320}, {"family": "청소년부모", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 1915, "fee_1h": 3830, "fee_2h": 7660, "fee_4h": 15320}, {"family": "청소년부모", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 6232, "fee_1h": 12464, "fee_2h": 24928, "fee_4h": 49856}, {"family": "청소년부모", "service": "시간제 종합형", "time_type": "평일 주간", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 6232, "fee_1h": 12464, "fee_2h": 24928, "fee_4h": 49856}, {"family": "청소년부모", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 1703, "fee_1h": 3406, "fee_2h": 6812, "fee_4h": 13624}, {"family": "청소년부모", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 1703, "fee_1h": 3406, "fee_2h": 6812, "fee_4h": 13624}, {"family": "청소년부모", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 1703, "fee_1h": 3406, "fee_2h": 6812, "fee_4h": 13624}, {"family": "청소년부모", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 5540, "fee_1h": 11080, "fee_2h": 22160, "fee_4h": 44320}, {"family": "청소년부모", "service": "시간제 종합형", "time_type": "평일 주간", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 5540, "fee_1h": 11080, "fee_2h": 22160, "fee_4h": 44320}, {"family": "청소년부모", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "가형", "child_type": "A", "fee_30m": 767, "fee_1h": 1534, "fee_2h": 3068, "fee_4h": 6136}, {"family": "청소년부모", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "나형", "child_type": "A", "fee_30m": 767, "fee_1h": 1534, "fee_2h": 3068, "fee_4h": 6136}, {"family": "청소년부모", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "다형", "child_type": "A", "fee_30m": 767, "fee_1h": 1534, "fee_2h": 3068, "fee_4h": 6136}, {"family": "청소년부모", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "라형", "child_type": "A", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "청소년부모", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 1, "grade": "마형", "child_type": "A", "fee_30m": 3835, "fee_1h": 7670, "fee_2h": 15340, "fee_4h": 30680}, {"family": "청소년부모", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "가형", "child_type": "A", "fee_30m": 575, "fee_1h": 1150, "fee_2h": 2300, "fee_4h": 4600}, {"family": "청소년부모", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "나형", "child_type": "A", "fee_30m": 575, "fee_1h": 1150, "fee_2h": 2300, "fee_4h": 4600}, {"family": "청소년부모", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "다형", "child_type": "A", "fee_30m": 575, "fee_1h": 1150, "fee_2h": 2300, "fee_4h": 4600}, {"family": "청소년부모", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "라형", "child_type": "A", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "청소년부모", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 2, "grade": "마형", "child_type": "A", "fee_30m": 2876, "fee_1h": 5752, "fee_2h": 11504, "fee_4h": 23008}, {"family": "청소년부모", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "가형", "child_type": "A", "fee_30m": 511, "fee_1h": 1022, "fee_2h": 2044, "fee_4h": 4088}, {"family": "청소년부모", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "나형", "child_type": "A", "fee_30m": 511, "fee_1h": 1022, "fee_2h": 2044, "fee_4h": 4088}, {"family": "청소년부모", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "다형", "child_type": "A", "fee_30m": 511, "fee_1h": 1022, "fee_2h": 2044, "fee_4h": 4088}, {"family": "청소년부모", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "라형", "child_type": "A", "fee_30m": 2556, "fee_1h": 5112, "fee_2h": 10224, "fee_4h": 20448}, {"family": "청소년부모", "service": "질병감염아동지원", "time_type": "평일 주간", "children": 3, "grade": "마형", "child_type": "A", "fee_30m": 2556, "fee_1h": 5112, "fee_2h": 10224, "fee_4h": 20448}];
+// ─────────────────────────────────────────────
+// 이용요금 기준표 (시간당, 원)
+// ─────────────────────────────────────────────
+var BASE_RATE = {
+  '시간제기본형': 12790,
+  '시간제종합형': 16620,
+  '영아종일제':   12790,
+  '질병감염아동지원': 15340
+};
 
-var sel = {family:null,service:null,time_type:null,child_type:null,grade:null,children:null};
-
-function rowMatches(r, s) {
-  return (!s.family     || r.family     === s.family)
-      && (!s.service    || r.service    === s.service)
-      && (!s.time_type  || r.time_type  === s.time_type)
-      && (!s.child_type || r.child_type === s.child_type)
-      && (!s.grade      || r.grade      === s.grade)
-      && (!s.children   || r.children   === parseInt(s.children));
-}
-
-function updateAvailability() {
-  var chips = document.querySelectorAll('[data-field]');
-  for (var i = 0; i < chips.length; i++) {
-    var chip = chips[i];
-    var field = chip.dataset.field;
-    var val = chip.dataset.value;
-    var testSel = {
-      family:     field === 'family'     ? val : sel.family,
-      service:    field === 'service'    ? val : sel.service,
-      time_type:  field === 'time_type'  ? val : sel.time_type,
-      child_type: field === 'child_type' ? val : sel.child_type,
-      grade:      field === 'grade'      ? val : sel.grade,
-      children:   field === 'children'   ? parseInt(val) : sel.children
-    };
-    // clear this field's current selection for the test
-    if (field === 'family')     testSel.family     = val;
-    if (field === 'service')    testSel.service    = val;
-    if (field === 'time_type')  testSel.time_type  = val;
-    if (field === 'child_type') testSel.child_type = val;
-    if (field === 'grade')      testSel.grade      = val;
-    if (field === 'children')   testSel.children   = parseInt(val);
-
-    // test WITHOUT this field's current selection
-    var testSel2 = {
-      family:     sel.family,
-      service:    sel.service,
-      time_type:  sel.time_type,
-      child_type: sel.child_type,
-      grade:      sel.grade,
-      children:   sel.children
-    };
-    testSel2[field] = (field === 'children') ? parseInt(val) : val;
-
-    var ok = false;
-    for (var j = 0; j < FEE_DATA.length; j++) {
-      if (rowMatches(FEE_DATA[j], testSel2)) { ok = true; break; }
-    }
-    chip.classList.toggle('unavailable', !ok);
+// ─────────────────────────────────────────────
+// 본인부담 비율표 (이미지 기준)
+// [service][grade][child_type] = 본인부담 비율(소수)
+// ─────────────────────────────────────────────
+var SELF_PAY_RATE = {
+  '시간제기본형': {
+    '가': { 'A': 0.15, 'B': 0.20 },
+    '나': { 'A': 0.40, 'B': 0.50 },
+    '다': { 'A': 0.70, 'B': 0.75 },
+    '라': { 'A': 0.85, 'B': 0.90 },
+    '마': { 'A': 1.00, 'B': 1.00 }
+  },
+  '시간제종합형': {
+    '가': { 'A': 0.35, 'B': 0.38 },
+    '나': { 'A': 0.54, 'B': 0.62 },
+    '다': { 'A': 0.77, 'B': 0.81 },
+    '라': { 'A': 0.88, 'B': 0.92 },
+    '마': { 'A': 1.00, 'B': 1.00 }
+  },
+  '영아종일제': {
+    // 영아종일제는 취학전(A형)만 해당, 시간제기본형과 동일 비율
+    '가': { 'A': 0.15 },
+    '나': { 'A': 0.40 },
+    '다': { 'A': 0.70 },
+    '라': { 'A': 0.85 },
+    '마': { 'A': 1.00 }
+  },
+  '질병감염아동지원': {
+    '가': { 'A': 0.15, 'B': 0.20 },
+    '나': { 'A': 0.40, 'B': 0.50 },
+    '다': { 'A': 0.50, 'B': 0.50 },
+    '라': { 'A': 0.50, 'B': 0.50 },
+    '마': { 'A': 0.50, 'B': 0.50 }
   }
+};
+
+// 한부모가족 가형 추가 지원 5% (가형에만 적용)
+var SINGLE_PARENT_EXTRA = 0.05;
+
+// 야간/휴일 할증: 기본요금의 50% 증액
+var NIGHT_SURCHARGE = 0.50;
+
+// 동시돌봄 할인율
+var MULTI_CHILD_DISCOUNT = { 1: 0, 2: 0.25, 3: 0.333, 4: 0.375, 5: 0.40 };
+
+// 다자녀 할인(가~라형, 2명 이상): 본인부담금의 10% 추가할인
+var MULTI_CHILD_EXTRA_DISCOUNT = 0.10;
+
+// ─────────────────────────────────────────────
+// 선택 상태
+// ─────────────────────────────────────────────
+var sel = { family: null, service: null, child_type: null, grade: null, time_type: null, children: null };
+
+// ─────────────────────────────────────────────
+// 유효성 체크 (영아종일제는 A형만)
+// ─────────────────────────────────────────────
+function isValidCombo(s) {
+  if (!s.service || !s.child_type) return true;
+  if (s.service === '영아종일제' && s.child_type === 'B') return false;
+  return true;
 }
 
-function fmtNum(n) {
-  return Number(n).toLocaleString('ko-KR');
+// ─────────────────────────────────────────────
+// 칩 가용성 업데이트
+// ─────────────────────────────────────────────
+function updateAvailability() {
+  document.querySelectorAll('[data-field]').forEach(function(chip) {
+    var field = chip.dataset.field;
+    var val = field === 'children' ? parseInt(chip.dataset.value) : chip.dataset.value;
+    var test = Object.assign({}, sel);
+    test[field] = val;
+    var ok = isValidCombo(test);
+    chip.classList.toggle('unavailable', !ok);
+  });
 }
 
-function makeGrid(r, multi) {
-  var cls = multi ? 'fee-grid multi' : 'fee-grid';
-  return '<div class="' + cls + '">'
-    + '<div class="fee-box"><div class="fee-box-label">30분</div><div class="fee-box-amount">' + fmtNum(r.fee_30m) + '</div><div class="fee-box-unit">원</div></div>'
-    + '<div class="fee-box"><div class="fee-box-label">1시간</div><div class="fee-box-amount">' + fmtNum(r.fee_1h) + '</div><div class="fee-box-unit">원</div></div>'
-    + '<div class="fee-box"><div class="fee-box-label">2시간</div><div class="fee-box-amount">' + fmtNum(r.fee_2h) + '</div><div class="fee-box-unit">원</div></div>'
-    + '<div class="fee-box"><div class="fee-box-label">4시간</div><div class="fee-box-amount">' + fmtNum(r.fee_4h) + '</div><div class="fee-box-unit">원</div></div>'
-    + '</div>';
+// ─────────────────────────────────────────────
+// 핵심 계산 함수 (1시간 기준 본인부담금)
+// ─────────────────────────────────────────────
+function calcFee(s) {
+  var baseRate = BASE_RATE[s.service];
+
+  // 야간/휴일 할증
+  var rate = s.time_type === '야간휴일' ? baseRate * (1 + NIGHT_SURCHARGE) : baseRate;
+
+  // 본인부담 비율
+  var selfRateObj = SELF_PAY_RATE[s.service][s.grade];
+  if (!selfRateObj || selfRateObj[s.child_type] === undefined) return null;
+  var selfRate = selfRateObj[s.child_type];
+
+  // 한부모가족 가형: 추가 5% 지원 → 본인부담 비율 5% 감소
+  if (s.family === '한부모가족' && s.grade === '가') {
+    selfRate = Math.max(0, selfRate - SINGLE_PARENT_EXTRA);
+  }
+
+  // 1인 기본 본인부담금 (1시간)
+  var selfPay1h = Math.round(rate * selfRate);
+
+  // 동시돌봄 할인 적용
+  var n = s.children;
+  var multiDiscount = MULTI_CHILD_DISCOUNT[n] || 0;
+  var selfPayAfterMulti = Math.round(selfPay1h * (1 - multiDiscount));
+
+  // 다자녀 할인: 가~라형이고 2명 이상
+  var extraDiscount = 0;
+  if (n >= 2 && s.grade !== '마') {
+    extraDiscount = MULTI_CHILD_EXTRA_DISCOUNT;
+    selfPayAfterMulti = Math.round(selfPayAfterMulti * (1 - extraDiscount));
+  }
+
+  return {
+    baseRate: baseRate,
+    rateAfterSurcharge: rate,
+    selfRate: selfRate,
+    selfPay1h_before: selfPay1h,       // 동시돌봄 할인 전 1인 단가
+    selfPay1h: selfPayAfterMulti,       // 최종 1인 단가 (1h)
+    selfPay30m: Math.round(selfPayAfterMulti / 2),
+    selfPay2h: selfPayAfterMulti * 2,
+    selfPay4h: selfPayAfterMulti * 4,
+    total1h: selfPayAfterMulti * n,
+    total30m: Math.round(selfPayAfterMulti / 2) * n,
+    total2h: selfPayAfterMulti * 2 * n,
+    total4h: selfPayAfterMulti * 4 * n,
+    multiDiscount: multiDiscount,
+    extraDiscount: extraDiscount,
+    isSurcharge: s.time_type === '야간휴일',
+    n: n
+  };
 }
 
+// ─────────────────────────────────────────────
+// 숫자 포맷
+// ─────────────────────────────────────────────
+function fmt(n) { return Number(n).toLocaleString('ko-KR'); }
+function pct(r) { return Math.round(r * 100) + '%'; }
+
+// ─────────────────────────────────────────────
+// 렌더링
+// ─────────────────────────────────────────────
 function render() {
   var wrapper = document.getElementById('result-wrapper');
-  var missing = 0;
-  var fields = ['family','service','time_type','child_type','grade','children'];
-  for (var i = 0; i < fields.length; i++) {
-    if (sel[fields[i]] === null) missing++;
-  }
+  var fields = ['family','service','child_type','grade','time_type','children'];
+  var missing = fields.filter(function(f){ return sel[f] === null; }).length;
 
   if (missing > 0) {
     wrapper.innerHTML = '<div class="incomplete-prompt"><div class="icon">🧮</div>' + missing + '개 조건을 더 선택하면 이용요금이 자동 계산됩니다.</div>';
     return;
   }
 
-  var result = [];
-  for (var i = 0; i < FEE_DATA.length; i++) {
-    if (rowMatches(FEE_DATA[i], sel)) result.push(FEE_DATA[i]);
-  }
-
-  if (result.length === 0) {
-    wrapper.innerHTML = '<div class="no-result">선택하신 조건에 해당하는 요금 정보가 없습니다.<br><small style="font-weight:400;font-size:13px">일부 조합(예: 한부모가족 영아종일제 평일 주간, 청소년부모 B형)은 지원 대상이 아닙니다.</small></div>';
+  // 유효성 체크
+  if (!isValidCombo(sel)) {
+    wrapper.innerHTML = '<div class="no-result">영아종일제는 취학전(A형) 아동만 이용 가능합니다.</div>';
     return;
   }
 
-  var r = result[0];
-  var n = parseInt(sel.children);
-  var isMulti = n >= 2;
-  var timeLabel = sel.time_type === '심야/휴일' ? '심야·휴일' : '평일 주간';
+  var r = calcFee(sel);
+  if (!r) {
+    wrapper.innerHTML = '<div class="no-result">선택하신 조건의 요금 정보가 없습니다.</div>';
+    return;
+  }
 
-  var perLabel = isMulti ? '1인 단가 본인부담금' : '본인부담금';
+  var n = r.n;
+  var isMulti = n >= 2;
+  var serviceLabels = { '시간제기본형':'시간제 기본형', '시간제종합형':'시간제 종합형', '영아종일제':'영아종일제', '질병감염아동지원':'질병감염아동지원' };
+  var timeLabel = sel.time_type === '야간휴일' ? '야간·휴일' : '평일 주간';
+
+  // 적용 할인 배지
+  var badges = [];
+  if (r.isSurcharge) badges.push('야간·휴일 할증 +50%');
+  if (r.multiDiscount > 0) badges.push(n + '명 동시돌봄 할인 -' + pct(r.multiDiscount));
+  if (r.extraDiscount > 0) badges.push('다자녀 할인 -' + pct(r.extraDiscount));
+  if (sel.family === '한부모가족' && sel.grade === '가') badges.push('한부모가족 가형 추가지원 -5%');
 
   var html = '<div class="result-card">';
+
+  // 헤더
   html += '<div class="result-header">';
   html += '<div class="result-header-title">계산 결과</div>';
   html += '<div class="result-tags">';
   html += '<span class="result-tag">' + sel.family + '</span>';
-  html += '<span class="result-tag">' + sel.service + '</span>';
+  html += '<span class="result-tag">' + serviceLabels[sel.service] + '</span>';
   html += '<span class="result-tag">' + timeLabel + '</span>';
   html += '<span class="result-tag">아동 ' + n + '명</span>';
   html += '<span class="result-tag">' + sel.child_type + '형</span>';
-  html += '<span class="result-tag">' + sel.grade + '</span>';
+  html += '<span class="result-tag">' + sel.grade + '형</span>';
   html += '</div></div>';
 
   html += '<div class="result-body">';
 
-  if (isMulti) {
-    html += '<div class="multi-note"><strong>' + n + '명 동시 돌봄</strong> — 아래는 1인 단가이며, 합계는 단가 × ' + n + '입니다.</div>';
+  // 적용 할인/할증 배지
+  if (badges.length > 0) {
+    html += '<div class="discount-badges">';
+    badges.forEach(function(b){ html += '<div class="badge-item">✓ ' + b + '</div>'; });
+    html += '</div>';
   }
 
-  html += '<div class="fee-section-label">' + perLabel + '</div>';
-  html += makeGrid(r, false);
+  // 계산 과정
+  html += '<div class="calc-breakdown">';
+  html += '<div class="calc-row"><span class="calc-label">기본 이용요금</span><span class="calc-value">' + fmt(r.baseRate) + '원/h</span></div>';
+  if (r.isSurcharge) {
+    html += '<div class="calc-row"><span class="calc-label">야간·휴일 할증 (+50%)</span><span class="calc-value">' + fmt(r.rateAfterSurcharge) + '원/h</span></div>';
+  }
+  html += '<div class="calc-row"><span class="calc-label">본인부담 비율 (' + pct(r.selfRate) + ')</span><span class="calc-value">' + fmt(r.selfPay1h_before) + '원/h</span></div>';
+  if (r.multiDiscount > 0) {
+    html += '<div class="calc-row"><span class="calc-label">동시돌봄 할인 (-' + pct(r.multiDiscount) + ')</span><span class="calc-value">→ ' + fmt(r.selfPay1h) + '원/h</span></div>';
+  }
+  if (r.extraDiscount > 0) {
+    html += '<div class="calc-row"><span class="calc-label">다자녀 추가할인 (-' + pct(r.extraDiscount) + ')</span><span class="calc-value">→ ' + fmt(r.selfPay1h) + '원/h</span></div>';
+  }
+  html += '<div class="calc-row divider"><strong class="calc-label">1인 최종 단가 (1시간)</strong><span class="calc-value"><strong>' + fmt(r.selfPay1h) + '원</strong></span></div>';
+  html += '</div>';
 
+  // 1인 단가 그리드
+  html += '<div class="fee-section">';
+  html += '<div class="fee-section-label">1인 본인부담금 <span class="label-badge">단가</span></div>';
+  html += '<div class="fee-grid">';
+  html += feeBox('30분', r.selfPay30m, false);
+  html += feeBox('1시간', r.selfPay1h, false);
+  html += feeBox('2시간', r.selfPay2h, false);
+  html += feeBox('4시간', r.selfPay4h, false);
+  html += '</div></div>';
+
+  // 합계 그리드 (2명 이상)
   if (isMulti) {
-    var total = {fee_30m: r.fee_30m * n, fee_1h: r.fee_1h * n, fee_2h: r.fee_2h * n, fee_4h: r.fee_4h * n};
-    html += '<div class="fee-section-label multi">' + n + '명 합계 본인부담금</div>';
-    html += makeGrid(total, true);
+    html += '<div class="fee-section">';
+    html += '<div class="fee-section-label total-label">' + n + '명 합계 본인부담금 <span class="label-badge">단가 × ' + n + '</span></div>';
+    html += '<div class="fee-grid">';
+    html += feeBox('30분', r.total30m, true);
+    html += feeBox('1시간', r.total1h, true);
+    html += feeBox('2시간', r.total2h, true);
+    html += feeBox('4시간', r.total4h, true);
+    html += '</div></div>';
   }
 
+  // 안내사항
   html += '<div class="notice"><ul>';
   html += '<li>2026년 기준 <strong>본인부담금</strong>(정부지원금 제외 실납부액)입니다.</li>';
-  html += '<li>마형은 정부지원 미판정으로 전액 본인 부담입니다.</li>';
-  html += '<li>2명 이상 동시 돌봄 시 1인 단가 × 아동 수로 합산됩니다.</li>';
+  html += '<li>야간(오후 10시~오전 6시)·휴일(일요일·법정공휴일)은 기본요금의 <strong>50% 할증</strong>이며 중복 적용되지 않습니다.</li>';
+  html += '<li>동시돌봄 할인: 2명 25% / 3명 33.3% / 4명 37.5% / 5명 40%</li>';
+  html += '<li>다자녀 할인(가~라형, 2명 이상): 본인부담금의 <strong>10% 추가 할인</strong></li>';
+  html += '<li>한부모가족·청소년부모·조손·장애부모·장애아동 가정의 <strong>가형</strong>은 정부지원 5% 추가 지원됩니다.</li>';
+  html += '<li>영아종일제는 취학전(A형) 아동만 이용 가능합니다.</li>';
   html += '<li>실제 청구 금액은 기관에 따라 소액 차이가 날 수 있습니다.</li>';
   html += '</ul></div>';
 
@@ -281,24 +441,44 @@ function render() {
   wrapper.innerHTML = html;
 }
 
+function feeBox(label, amount, isTotal) {
+  var cls = isTotal ? 'fee-box total' : 'fee-box';
+  return '<div class="' + cls + '">'
+    + '<div class="fee-box-label">' + label + '</div>'
+    + '<div class="fee-box-amount">' + fmt(amount) + '</div>'
+    + '<div class="fee-box-unit">원</div>'
+    + '</div>';
+}
+
+// ─────────────────────────────────────────────
+// 이벤트
+// ─────────────────────────────────────────────
 document.querySelectorAll('[data-field]').forEach(function(chip) {
   chip.addEventListener('click', function() {
     if (this.classList.contains('unavailable')) return;
     var field = this.dataset.field;
-    var val = this.dataset.value;
+    var val = field === 'children' ? parseInt(this.dataset.value) : this.dataset.value;
 
-    document.querySelectorAll('[data-field="' + field + '"]').forEach(function(c) {
-      c.classList.remove('selected');
-    });
-
-    var current = (field === 'children') ? sel.children : sel[field];
-    var clicked = (field === 'children') ? parseInt(val) : val;
-
-    if (current === clicked) {
+    var current = sel[field];
+    // 같은 거 누르면 해제
+    if (current === val) {
       sel[field] = null;
+      this.classList.remove('selected');
     } else {
+      document.querySelectorAll('[data-field="' + field + '"]').forEach(function(c){ c.classList.remove('selected'); });
       this.classList.add('selected');
-      sel[field] = clicked;
+      sel[field] = val;
+    }
+
+    // 영아종일제 선택 시 B형 자동 해제
+    if (field === 'service' && val === '영아종일제' && sel.child_type === 'B') {
+      sel.child_type = null;
+      document.querySelectorAll('[data-field="child_type"]').forEach(function(c){ c.classList.remove('selected'); });
+    }
+    // B형 선택 시 영아종일제 자동 해제
+    if (field === 'child_type' && val === 'B' && sel.service === '영아종일제') {
+      sel.service = null;
+      document.querySelectorAll('[data-field="service"]').forEach(function(c){ c.classList.remove('selected'); });
     }
 
     updateAvailability();
