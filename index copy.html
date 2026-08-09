@@ -422,11 +422,11 @@
     <div class="nav-item" onclick="switchSection('duties', this)"><span class="nav-icon">📌</span> 담당 업무</div>
     <div class="nav-item" onclick="switchSection('nas', this)"><span class="nav-icon">🗂</span> NAS 경로</div>
     
+ 
 <!-- ============================================================ -->
 <!-- ① SIDEBAR ITEM -->
 <!-- ============================================================ -->
 <div class="nav-item" onclick="switchSection('guideline', this)"><span class="nav-icon">📝</span> 지침</div>
- 
   </nav>
 
   <main class="main">
@@ -1284,24 +1284,7 @@
         </div>
       </div>
     </div>
-<!-- ============================================================ -->
-<!-- ② SECTION CONTENT -->
-<!-- ============================================================ -->
-<div id="guideline" class="section">
-  <h1 class="section-title"><span class="icon">📝</span> 지침</h1>
-  <div class="alert info">📌 아래 자료는 <b>아이돌봄 광역지원센터 공식 답변</b>을 정리한 것입니다. (2026년 7월 기준)<br>기존 매뉴얼(이용자/선생님 등 탭)과 내용이 겹치면 그쪽 설명이 우선입니다.</div>
- 
-  <div class="card">
-    <div class="card-header" onclick="toggleCard(this)">
-      <span class="badge gray">신규/변경 지침</span>
-      <span class="card-title">지침 모음 (PDF)</span>
-      <span class="card-toggle open">▲</span>
-    </div>
-    <div class="card-body open">
-      <div id="guideline-list"><!-- JS로 자동 생성됨 --></div>
-    </div>
-  </div>
-</div>
+
   </main>
 </div>
 
@@ -1935,84 +1918,9 @@ function clearSearch() {
   doSearch('');
 }
 
-
-
 // ─── 초기화 ───
-
-
-/* ============================================================
-   PDF 추가 방법: 아래 배열에 한 줄씩 추가
-   - category : 그룹 이름 (기존과 동일하게 쓰면 같은 그룹에 묶임)
-   - date     : YYYY-MM (최신순 정렬 + 화면 표시용)
-   - title    : 목록에 표시될 제목
-   - file     : /guidelines/ 폴더에 올린 실제 파일명
-   - keywords : 검색에 걸리게 할 키워드 (띄어쓰기로 구분, 여러 개 가능)
-   ============================================================ */
-const guidelineDocs = [
-  // 예시 — 실제 PDF 올리신 후 이런 식으로 추가하세요
-  // { category: '이용요금', date: '2026-07', title: '2026년 7월 이용요금 변경 안내', file: '2026-07_이용요금변경안내.pdf', keywords: '이용요금 인상 시간당단가 변경' },
-     { category: '이용요금',date: '2026-07', title: '아이돌봄지원_사례_답변_7월', file: '아이돌봄지원_사례_답변_7월.pdf', keywords: '정부지원 연장보육 타정부지원' },
-     { category: '서울형',date: '2026-07', title: '서울형 설명', file: '26년_서울형_사업안내.pdf', keywords: '등하원, 병원동행' },
-
-];
- 
-// 그룹(카테고리) 표시 순서 — 새 카테고리를 쓰면 자동으로 맨 뒤에 추가됨
-const GUIDELINE_CATEGORY_ORDER = ['자격/대상', '이용요금', '서비스 신청·변경', '대체돌봄', '환불·취소', '선생님 매칭', '기타'];
- 
-function renderGuidelines() {
-  const container = document.getElementById('guideline-list');
-  if (!container) return;
- 
-  if (guidelineDocs.length === 0) {
-    container.innerHTML = '<div class="alert warn">아직 등록된 지침이 없습니다.</div>';
-    return;
-  }
- 
-  // 최신순 정렬
-  const docs = [...guidelineDocs].sort((a, b) => b.date.localeCompare(a.date));
- 
-  // 카테고리별로 묶기
-  const grouped = {};
-  docs.forEach(d => {
-    const cat = d.category || '기타';
-    if (!grouped[cat]) grouped[cat] = [];
-    grouped[cat].push(d);
-  });
- 
-  // 정해진 순서 먼저, 새 카테고리는 뒤에 추가
-  const cats = [...GUIDELINE_CATEGORY_ORDER.filter(c => grouped[c]), ...Object.keys(grouped).filter(c => !GUIDELINE_CATEGORY_ORDER.includes(c))];
- 
-  let html = '';
-  cats.forEach((cat, idx) => {
-    const items = grouped[cat];
-    html += `
-      <div class="sub-section">
-        <div class="sub-header" onclick="toggleSub(this)">
-          <span class="sub-num">${idx + 1}</span>
-          <span class="sub-title">${cat} (${items.length})</span>
-          <span class="sub-toggle ${idx === 0 ? 'open' : ''}">${idx === 0 ? '▲' : '▼'}</span>
-        </div>
-        <div class="sub-body ${idx === 0 ? 'open' : ''}">
-          ${items.map(d => `
-            <div class="qa">
-              <div class="qa-q">${d.title} <span style="color:var(--text3);font-weight:400;">(${d.date})</span></div>
-              <div class="qa-a">
-                키워드: ${d.keywords || '-'}<br>
-                <a href="./guidelines/${d.file}" target="_blank">📄 PDF 열기</a>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-    `;
-  });
- 
-  container.innerHTML = html;
-}
 renderCalendar();
 loadChecklist();
-renderGuidelines();
-
 </script>
 </body>
 </html>
