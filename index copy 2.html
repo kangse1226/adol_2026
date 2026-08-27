@@ -48,6 +48,8 @@
     font-size: 14px;
     -webkit-text-size-adjust: 100%;
   }
+
+  /* ── 헤더 ── */
   .site-header {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
@@ -64,6 +66,8 @@
   .site-header .logo { font-size: 18px; font-weight: 700; color: var(--green); letter-spacing: -0.5px; white-space: nowrap; }
   .site-header .subtitle { font-size: 11px; color: var(--text3); border-left: 1px solid var(--border); padding-left: 10px; margin-left: 2px; white-space: nowrap; }
   .header-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+
+  /* 바로가기 */
   .shortcut-bar { display: flex; align-items: center; gap: 4px; }
   .shortcut-btn {
     font-size: 11px;
@@ -101,6 +105,8 @@
   .shortcut-menu a:last-child { border-bottom: none; }
   .shortcut-menu a:hover { background: var(--green-bg); color: var(--green-text); }
   .shortcut-menu a .sm-icon { font-size: 14px; }
+
+  /* 검색 */
   .search-wrap { position: relative; display: flex; align-items: center; }
   .search-input {
     width: 180px; padding: 5px 28px 5px 12px;
@@ -115,7 +121,11 @@
   .search-count.found { color: var(--green); font-weight: 600; }
   .search-count.none { color: var(--red); }
   mark { background: #fef08a; color: #713f12; border-radius: 2px; padding: 0 1px; }
+
+  /* ── 레이아웃 ── */
   .layout { display: flex; min-height: calc(100vh - var(--header-height)); }
+
+  /* ── 사이드바 ── */
   .sidebar {
     width: var(--sidebar-width); min-width: var(--sidebar-width);
     background: var(--surface); border-right: 1px solid var(--border);
@@ -134,16 +144,24 @@
   .nav-item.active { border-left-color: var(--green); background: var(--green-bg); color: var(--green-text); font-weight: 600; }
   .nav-item .nav-icon { font-size: 14px; }
   .sidebar-sep { height: 1px; background: var(--border); margin: 6px 1rem; }
+
+  /* ── 메인 ── */
   .main { flex: 1; padding: 1.75rem 2rem; max-width: 900px; min-width: 0; }
+
+  /* ── 섹션 ── */
   .section { display: none; }
   .section.active { display: block;}
   .section-title { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 10px; }
   .section-title .icon { font-size: 22px; }
+
+  /* ── 알림 박스 ── */
   .alert { border-radius: var(--radius-sm); padding: 0.7rem 1rem; margin-bottom: 0.85rem; font-size: 13px; line-height: 1.65; border-left: 3px solid; }
   .alert.info    { background: var(--blue-bg);   color: var(--blue-text);  border-color: #378ADD; }
   .alert.success { background: var(--green-bg);  color: var(--green-text); border-color: var(--green); }
   .alert.warn    { background: var(--amber-bg);  color: var(--amber);      border-color: #EF9F27; }
   .alert.danger  { background: var(--red-bg);    color: var(--red);        border-color: #E24B4A; }
+
+  /* ── 카드 ── */
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 0.85rem; overflow: hidden; }
   .card-header { padding: 0.8rem 1.15rem; background: var(--surface2); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
   .card-header:hover { filter: brightness(0.97); }
@@ -151,6 +169,8 @@
   .card-toggle { color: var(--text3); font-size: 11px; transition: transform 0.2s; }
   .card-body { padding: 1.1rem; display: none; }
   .card-body.open { display: block; }
+
+  /* ── 뱃지 ── */
   .badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; display: inline-block; white-space: nowrap; }
   .badge.green  { background: var(--green-bg); color: var(--green-text); }
   .badge.blue   { background: var(--blue-bg);  color: var(--blue-text); }
@@ -158,22 +178,33 @@
   .badge.red    { background: var(--red-bg);   color: var(--red); }
   .badge.purple { background: var(--purple-bg); color: var(--purple); }
   .badge.gray   { background: var(--gray-bg);  color: var(--gray-text); }
+
+  /* ── 스크립트 ── */
   .script { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.8rem 0.9rem; margin: 0.5rem 0; font-size: 13px; line-height: 1.75; }
   .script b { color: var(--green); font-weight: 600; }
+
+  /* ── Q&A ── */
   .qa { border-left: 2px solid var(--border2); margin-bottom: 0.85rem; padding-left: 0.9rem; }
   .qa-q { font-size: 11px; font-weight: 600; color: var(--text3); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
   .qa-a { font-size: 13px; color: var(--text); line-height: 1.7; }
   .qa-a ul { padding-left: 1.1rem; margin-top: 4px; }
   .qa-a li { margin-bottom: 2px; }
+
+  /* ── 플로우 ── */
   .flow { display: flex; flex-direction: column; gap: 5px; margin: 0.5rem 0; }
   .flow-step { display: flex; align-items: flex-start; gap: 9px; }
   .step-num { min-width: 20px; height: 20px; border-radius: 50%; background: var(--green); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 3px; flex-shrink: 0; }
   .step-text { font-size: 13px; color: var(--text); line-height: 1.65; }
+
+  /* ── 테이블 ── */
   .tbl { width: 100%; border-collapse: collapse; font-size: 12px; margin: 0.65rem 0; }
   .tbl th { background: var(--surface2); color: var(--text2); font-weight: 600; padding: 6px 9px; border: 1px solid var(--border); text-align: left; font-size: 11px; }
   .tbl td { padding: 6px 9px; border: 1px solid var(--border); color: var(--text); vertical-align: top; }
   .tbl tr:hover td { background: var(--surface2); }
+
   hr { border: none; border-top: 1px solid var(--border); margin: 0.85rem 0; }
+
+  /* ── FAQ ── */
   .faq-item { border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 0.4rem; overflow: hidden; }
   .faq-header { display: flex; align-items: center; gap: 8px; padding: 0.6rem 0.9rem; background: var(--bg); cursor: pointer; user-select: none; }
   .faq-header:hover { background: var(--surface2); }
@@ -185,6 +216,8 @@
   .faq-memo { min-height: 70px; width: 100%; border: 1px dashed var(--border2); border-radius: var(--radius-sm); padding: 0.6rem 0.8rem; font-size: 13px; color: var(--text); line-height: 1.7; outline: none; background: var(--surface2); transition: border-color 0.15s, background 0.15s; font-family: inherit; }
   .faq-memo:focus { border-color: var(--green); background: var(--surface); border-style: solid; }
   .faq-memo:empty::before { content: attr(placeholder); color: var(--text3); pointer-events: none; }
+
+  /* ── 서브섹션 ── */
   .sub-section { margin-bottom: 0.6rem; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
   .sub-header { display: flex; align-items: center; gap: 8px; padding: 0.6rem 0.9rem; background: var(--bg); cursor: pointer; user-select: none; }
   .sub-header:hover { background: var(--surface2); }
@@ -193,7 +226,11 @@
   .sub-toggle { font-size: 11px; color: var(--text3); }
   .sub-body { padding: 0.8rem 0.9rem; display: none; background: var(--surface); }
   .sub-body.open { display: block; }
+
+  /* ── NAS 경로 ── */
   .nas-path { font-family: 'Courier New', monospace; font-size: 11px; background: #1e1e2e; color: #a6e3a1; padding: 6px 10px; border-radius: 5px; margin: 3px 0; overflow-x: auto; white-space: nowrap; }
+
+  /* ═══ 달력 ═══ */
   .calendar-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 1rem; }
   .cal-header { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem 1rem; border-bottom: 1px solid var(--border); }
   .cal-year-month { display: flex; flex-direction: column; }
@@ -232,6 +269,8 @@
   .cal-event.amber  { background: #fef3c7; color: #92400e; }
   .cal-event.purple { background: #ede9fe; color: #5b21b6; }
   .cal-event.gray   { background: #f3f4f6; color: #4b5563; }
+
+  /* 일정 모달 */
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 999; display: none; align-items: center; justify-content: center; padding: 1rem; }
   .modal-overlay.open { display: flex; }
   .modal { background: var(--surface); border-radius: var(--radius); box-shadow: 0 20px 60px rgba(0,0,0,0.2); width: 100%; max-width: 420px; max-height: 85vh; overflow-y: auto; }
@@ -257,6 +296,8 @@
   .modal-add-btn { padding: 7px 14px; background: var(--green); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
   .modal-add-btn:hover { background: #1d4ed8; }
   .no-events { font-size: 12px; color: var(--text3); font-style: italic; padding: 4px 0; }
+
+  /* 매일 체크리스트 */
   .checklist-card { background: var(--surface); border: 2px solid var(--today-border); border-radius: var(--radius); padding: 1.1rem; margin-bottom: 1rem; }
   .checklist-title { font-size: 14px; font-weight: 700; color: var(--today-text); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px; }
   .checklist-item { display: flex; align-items: flex-start; gap: 8px; padding: 5px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
@@ -264,11 +305,15 @@
   .checklist-item input[type=checkbox] { margin-top: 3px; flex-shrink: 0; accent-color: var(--green); width: 14px; height: 14px; cursor: pointer; }
   .checklist-item label { font-size: 12.5px; color: var(--text); line-height: 1.5; cursor: pointer; }
   .checklist-item.checked label { text-decoration: line-through; color: var(--text3); }
+
+  /* 검색 숨김 */
   .search-hidden { display: none !important; }
   .search-active .section { display: block !important; }
   .search-active .card-body { display: block !important; }
   .search-active .faq-body { display: block !important; }
   .search-active .sub-body { display: block !important; }
+
+  /* ─────────────────── 모바일 ─────────────────── */
   @media (max-width: 768px) {
     :root { --sidebar-width: 0px; --header-height: 52px; }
     .site-header { padding: 0 0.75rem; gap: 6px; }
@@ -279,6 +324,8 @@
     .search-input { width: 90px; font-size: 12px; padding: 5px 24px 5px 9px; }
     .search-input:focus { width: 130px; }
     .search-count { display: none; }
+
+    /* 사이드바 → 슬라이드 오버레이 */
     .sidebar {
       position: fixed; top: 0; left: 0; height: 100vh; z-index: 300;
       transform: translateX(-100%); width: 240px; min-width: 240px;
@@ -288,8 +335,13 @@
     .sidebar.mob-open { transform: translateX(0); }
     .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 299; }
     .sidebar-overlay.open { display: block; }
+
+    /* 햄버거 버튼 */
     .mob-menu-btn { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface2); cursor: pointer; font-size: 16px; color: var(--text2); flex-shrink: 0; }
+
     .main { padding: 1rem; }
+
+    /* 달력 모바일 */
     .cal-header { padding: 1rem 1rem 0.75rem; }
     .cal-month { font-size: 26px; }
     .cal-year { font-size: 12px; }
@@ -299,20 +351,28 @@
     .cal-day-num { font-size: 12px; }
     .cal-event { font-size: 9px; padding: 1px 3px; border-radius: 2px; }
     .cal-weekday { font-size: 10px; }
+
+    /* 테이블 모바일 스크롤 */
     .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .tbl { min-width: 420px; }
+
+    /* 섹션 제목 */
     .section-title { font-size: 17px; }
   }
+
   @media (min-width: 769px) {
     .mob-menu-btn { display: none; }
     .sidebar-overlay { display: none !important; }
   }
+
+  /* 업무 메뉴 숨기기 */
   #duties { display: none !important; }
   .nav-item[onclick*="duties"] { display: none !important; }
 </style>
 </head>
 <body>
 
+<!-- 오버레이 -->
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
 <header class="site-header">
@@ -321,6 +381,7 @@
   <span class="subtitle">2026 업무 매뉴얼</span>
 
   <div class="header-right">
+    <!-- 바로가기 드롭다운 -->
     <div class="shortcut-dropdown" id="shortcutDropdown">
       <button class="shortcut-dropdown-btn" onclick="toggleDropdown()">🔗 바로가기 ▾</button>
       <div class="shortcut-menu">
@@ -335,6 +396,7 @@
         
       </div>
     </div>
+    <!-- 검색 -->
     <div class="search-wrap">
       <span class="search-count" id="searchCount"></span>
       <input class="search-input" id="searchInput" type="text" placeholder="🔍 검색..." oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')clearSearch()">
@@ -345,6 +407,7 @@
 
 <div class="layout">
 
+  <!-- 사이드바 -->
   <nav class="sidebar" id="sidebar">
     <div class="sidebar-label">메뉴</div>
     <div class="nav-item active" onclick="switchSection('calendar', this)"><span class="nav-icon">📆</span> 달력</div>
@@ -359,15 +422,20 @@
     <div class="nav-item" onclick="switchSection('duties', this)"><span class="nav-icon">📌</span> 담당 업무</div>
     <div class="nav-item" onclick="switchSection('nas', this)"><span class="nav-icon">🗂</span> NAS 경로</div>
     
+<!-- ============================================================ -->
+<!-- ① SIDEBAR ITEM -->
+<!-- ============================================================ -->
 <div class="nav-item" onclick="switchSection('guideline', this)"><span class="nav-icon">📝</span> 지침</div>
  
   </nav>
 
   <main class="main">
 
+    <!-- ═══ 달력 ═══ -->
     <div id="calendar" class="section active">
       <h1 class="section-title"><span class="icon">📆</span> 팀 일정 달력</h1>
 
+      <!-- 매일 아침 체크리스트 -->
       <div class="checklist-card" id="morning-card">
         <div class="checklist-title">☑️ 매일 아침 확인 리스트</div>
         <div class="checklist-item" onclick="toggleCheck(this,'m0')">
@@ -419,6 +487,7 @@
       <div class="alert info">📌 중요 일정 공유</div>
     </div>
 
+    <!-- ═══ 응대 기본 ═══ -->
     <div id="greeting" class="section">
       <h1 class="section-title"><span class="icon">📢</span> 응대 기본</h1>
       <div class="alert info">전화 응대 원칙: 천천히 용건을 듣고 → 필요한 답변을 드린다. 모르면 기다려달라하고 확인한다. 서로 소통한 내용이 맞는지 확인한다</div>
@@ -501,6 +570,7 @@
       </div>
     </div>
 
+    <!-- ═══ 이용자 ═══ -->
     <div id="user" class="section">
       <h1 class="section-title"><span class="icon">👨‍👩‍👧</span> 이용자</h1>
 
@@ -634,91 +704,9 @@
           <div class="faq-item"><div class="faq-header" onclick="toggleFaq(this)"><span class="faq-tag">Q7</span><span class="faq-title">어린이집/기관 다니는데 9시반에 등원해요/3시에 하원해요</span><span class="faq-toggle">▼</span></div><div class="faq-body"><div class="faq-body open"><div class="script" style="margin:0">실제 활동시간이 다 포함되게 신청서 넣어야 함. 하원시간 조정 가능한지도 물어보기.<br>타기관(어린이집·유치원) 다니는지 반드시 확인! 선생님과 이용자 모두에게 확인 필요.</div></div></div></div>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge blue">대기·비정기 응대</span>
-          <span class="card-title">대기·비정기 관련 응대 멘트</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="qa"><div class="qa-q">대기 얼마나 걸려요? 아무리 캐물어도</div><div class="qa-a">확답 드릴 수 없다, 선생님이 계셔야 연계 가능하다고 안내함</div></div>
-          <div class="qa"><div class="qa-q">비정기 구해줘요~~</div><div class="qa-a">찾아보겠으나 확답은 어렵다, 단기 AI가 그게 더 빠르다고 안내함</div></div>
-          <div class="qa"><div class="qa-q">너무 오래 기다린 이용자인데 연계 연락 안 온다고 전화옴</div><div class="qa-a">법정 가점, 대기가점을 리스트업하여 순차적으로 연계 도와드리고 있으며, 법정 가점과 대기가점이 높으신 분들이 많으신 상황이라 이용자님께서 오래 기다리시게 했다고 안내함</div></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge blue">할인·요금 관련</span>
-          <span class="card-title">두자녀 할인 · 동시돌봄 할인 · 요금 안내</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="alert warn">동시돌봄 할인은 같은날짜, 같은시간, 한 선생님이 두 아동을 돌보는 경우 할인이 적용됨<br>다자녀 할인 10% 할인 기준은 정부지원시간 사용 시에 추가지원이 가능함</div>
-          <div class="alert info">두자녀 이상 이용요금 10% 관련 안내<br>- 아동 정보에 아동이 2명 이상 등록된 정부지원대상자인 경우 이용요금이 추가 10% 감면됨(정부지원금으로 처리)<br>- 아동이 2명이나 1명만 등록되었을 경우에는 적용이 안 되므로, 통화 등으로 알게 된 경우 아동 정보 등록하도록 안내함. 애기 등록 안 하면 나중에 재계산해야 하니 미리 챙겨야 함</div>
-          <div class="qa"><div class="qa-q">1년 960시간 넘으면 이용 못하나요?</div><div class="qa-a">1년 960시간은 이용자의 정부지원시간에 대한 부분이고, 정부지원시간 소진 시에도 자부담으로 서비스 이용 가능함. 1년 960시간 이상 사용 후에도(같은 선생님으로 이용할 경우 해당 선생님 주 52시간 초과근무만 아니면) 이용 가능하다고 안내함</div></div>
-          <div class="qa"><div class="qa-q">돌봄 아동 추가 기준</div><div class="qa-a">가. 동시 돌봄: 영아종일제서비스 또는 시간제서비스 이용가정이 동일 시간대에 2명 이상 아동에 대해 아이돌봄 서비스를 신청하는 경우<br>나. 이용 요금: 이용아동 수별 할인율 차등 적용. 아동 추가는 2명 이상부터 아동별로 각각 50%씩 감액함</div></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge blue">취소 처리 실무</span>
-          <span class="card-title">신청서 취소(미확인) 건 처리 예시 및 지침</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="qa"><div class="qa-q">취소 정기 기록 양식</div><div class="qa-a">이용자, 아동, 선생님(생년월일) / 시작일 / 취소요청시간 / 취소사유 / 처리: 24시간 이내 이용자 사유로 취소, 패널티 1회, 취소수수료 12,790원 적용</div></div>
-          <div class="qa"><div class="qa-q">취소 단기 기록 양식</div><div class="qa-a">이용자, 아동, 선생님(생년월일) / 시작일 / 배정 시간 / 취소요청시간 / 취소사유 / 처리: 배정 후 1시간 이내 취소</div></div>
-          <div class="alert warn">취소사유가 아동 병원인 경우 증빙서류 제출을 안내함<br>패널티 월 2회인 경우 안내가 필요함<br>면책금(취소수수료의 2배) 부담 시 이용제한 사유에 해당하는 취소건 1회를 차감함</div>
-          <div class="alert info">단기서비스의 경우 서비스 시작 기준 24시간 이전 취소 신청 시 월 취소 이용제한(패널티) 건수(월 3건, 1개월 이용제한)에 포함되지 않음<br>단기서비스의 경우 아이돌보미 서비스 연계 후 1시간 이내 취소 신청 시 취소수수료를 면제할 수 있음</div>
-          <div class="alert info">월 취소 제한: 연계 이전의 경우 해당없음, 연계 이후 취소건에 한하여 적용됨. 서비스 시작 시간 기준 72시간 이내 취소(24시간 이내 취소 포함) 신청 건 기준 월 3건 이상일 경우 서비스 이용 1개월 제한됨<br>단, 면책금(취소수수료의 2배)을 부담할 시 이용제한 사유에 해당하는 서비스 취소 1건이 차감됨<br>72시간 이내 서비스를 취소하였으나 취소수수료 면제 사유에 해당할 경우 월 3건 기준에 미포함됨</div>
-          <div class="alert info">동일한 이용일에 대한 2건 이상의 돌봄을 취소할 경우 월 취소제한 판정 시 1건으로 산정함<br>예시: 동일한 이용일에 아동 A, B, C에 대해 각각 개별건으로 돌봄을 신청한 경우, 취소수수료는 건당 부과하나 월 취소제한 판정 시 1건으로 산입함</div>
-          <div class="qa"><div class="qa-q">돌봄이 제공되지 못한 경우</div><div class="qa-a">아이돌보미가 서비스 예정시각에 방문하였으나 이용가정의 폐문 또는 아동의 부재로 돌봄 서비스를 제공하지 못한 경우, 이용자는 정부지원 없이 이용요금 전액을 부담하며 서비스제공기관에서는 아이돌보미에게 예정된 서비스 연계 건에 대한 수당을 모두 지급함<br><br>아이돌보미가 서비스 배정 후 서비스를 제공하지 못하는 경우, 질병이나 그 밖의 부득이한 사유로 결근하고자 하는 경우에는 사전에 소속부서의 장의 승인을 받아야 하며, 승인을 받지 않은 경우 무단결근으로 취업규칙 등에 따른 징계의 대상이 될 수 있음</div></div>
-          <div class="alert danger">이용자가 선생님이 아파서 취소했다고 연락하면 선생님한테도 확인하고, 또 다른 일정이 있는지 체크해서 그것도 취소인지 확인해야 함</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge blue">정부지원판정 실무</span>
-          <span class="card-title">정부지원판정 확인 시 주의사항</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="alert warn">정부지원판정 관련 정확하게 확인해야 함. 주민센터인지 복지로인지, 그냥 이용자가 아동정보만 등록한 건지 확인함<br>이용자가 2명 다 신청했는데 주민센터에서 누락한 것일 수도 있으니 한 명 판정이 빠져있으면 우리가 확인해보겠다고 안내함<br>판정 시점, 처리자를 잘 확인함<br>이용자가 정부지원판정을 신청한 건지, 그냥 문의만 한 건지 제대로 확인해야 함</div>
-          <div class="qa"><div class="qa-q">정부지원판정을 받지 않은 경우</div><div class="qa-a">정부지원판정을 받지 않아도 아동을 등록만 하면(막 태어난 아동도 등록하면 등록한 날부터 적용) 두자녀 할인이 적용된다고 안내함. 정부지원판정은 꼭 행정복지센터에 문의하시라 안내함</div></div>
-          <div class="qa"><div class="qa-q">경증장애·중증장애 돌봄</div><div class="qa-a">경증장애는 돌봄이 가능하나 어렵고, 중증장애는 돌봄이 불가능함(아이 등록은 되지만 정부지원판정이 나오지 않음)</div></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge blue">주소변경 실무</span>
-          <span class="card-title">이용자 주소변경 처리 상세</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="qa"><div class="qa-q">주소 변경 시 절차</div><div class="qa-a">정확한 변경 시점, 주소를 확인함. 변경할 일정 기간을 정확히 선택한 후, 전체 신청서를 선택하여 선택 주소갱신을 체크하면 최신 이용자 주소로 변경됨</div></div>
-          <div class="qa"><div class="qa-q">돌봄장소 오기재 수정</div><div class="qa-a">돌보미가정으로 잘못 체크된 건을 이용자가정으로 변경할 때는 신청서 한 건당 들어가서 돌봄장소 체크를 변경 후 저장함</div></div>
-          <div class="qa"><div class="qa-q">주소변경 전 확인사항</div><div class="qa-a">활동일지 미승인 확인(정기, 단기), 예치금 확인, 이용자 변경 주소 확인, 웹메모 삭제를 먼저 함<br>가~라형: 이사간 곳에서 전입신고 후 정부지원판정을 받으면 이관처리됨을 안내함<br>마형: 변경된 주소지 가족센터로 이관처리하겠다고 안내함<br>이용문의는 이사간 곳 가족센터로 문의하도록 안내함</div></div>
-          <div class="alert info">면접비 환불은 선생님 사유일 때만 가능함</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge blue">월마감 관련(이용자)</span>
-          <span class="card-title">월마감 시 이용자 주의 안내</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="alert danger">안내했음에도 이용자·선생님 모두 기간 내 변경사항 요청 및 서류 미제출 시 처리 불가, 자부담임을 통보하고 기다리지 말아야 함. 이런 상황이 최대한 발생하지 않도록 미리 안내하고, 해당 상황 발생 시 보라T에게 꼭 보고함</div>
-        </div>
-      </div>
     </div>
 
+    <!-- ═══ 일정 관리 ═══ -->
     <div id="schedule" class="section">
       <h1 class="section-title"><span class="icon">📅</span> 일정 관리</h1>
       <div class="alert success">원칙: 무조건 선 신청 후 활동! (다칠 경우 보험 배상 문제)- 서비스 시작시간 전에 승인 필수!</div>
@@ -736,7 +724,7 @@
             <li>당일·지나간 일정은 이용자 신청 불가 → <b>센터에서 처리</b></li>
             <li>내일 이후 일정은 이용자가 앱으로 직접 신청 가능</li>
           </ul></div></div>
-          <div class="qa"><div class="qa-q">단기서비스</div><div class="qa-a">5일 전 ~ 4시간 전 신청 가능 / AI 매칭 (30분 내 배정 없으면 자동 취소) / 매번 신청 필요 / 선생님 바뀔 수 있음<br>긴급단기는 2~4시간 전 신청이며, 시작일 2시간 전 일정은 신청이 안 되어 센터로 연락해서 신청함</div>
+          <div class="qa"><div class="qa-q">단기서비스</div><div class="qa-a">5일 전 ~ 4시간 전 신청 가능 / AI 매칭 (30분 내 배정 없으면 자동 취소) / 매번 신청 필요 / 선생님 바뀔 수 있음</div>
          ◦단기서비스의 경우 서비스 시작 기준 24시간 이전 취소 신청시 
 월 패널티 건수(월 3건, 1개월 이용제한)에 포함되지 않음<br>
  ◦선생님 배정 후 1시간 이내 취소 신청 시 
@@ -773,6 +761,7 @@
       </div>
     </div>
 
+    <!-- ═══ 선생님 ═══ -->
     <div id="carer" class="section">
       <h1 class="section-title"><span class="icon">👩‍🍼</span> 선생님</h1>
 
@@ -783,7 +772,7 @@
           <span class="card-toggle open">▲</span>
         </div>
         <div class="card-body open">
-          <div class="alert info">중간시간대: 09:00~15:00 / 하원시간대: 16:00 이후 (신규 연계 시 주의!)<br>면접: 최소 30분~최대 1시간, 일요일도 가능</div>
+          <div class="alert info">중간시간대: 09:00~15:00 / 하원시간대: 16:00 이후 (신규 연계 시 주의!)<br>면접: 날짜 상관없음, 최소 30분~최대 1시간, 일요일도 가능</div>
           <div class="flow">
             <div class="flow-step"><div class="step-num">1</div><div class="step-text">정기연계표(대기가점 순 실대기가정, 긴급가정, 민원가정, 둘째출산 가정) 게시</div></div>
             <div class="flow-step"><div class="step-num">2</div><div class="step-text">댓글 순차대로 연락(카페 댓글로만 접수)</div></div>
@@ -792,10 +781,8 @@
             <div class="flow-step"><div class="step-num">5</div><div class="step-text">하루돌봄 결과 정기 협의 시 카톡 공유</div></div>
             <div class="flow-step"><div class="step-num">6</div><div class="step-text">서비스 이용 주의사항 알림톡</div></div>
           </div>
-          <div class="alert warn">신규 연계는 1명 면접/하루돌봄으로 진행<br>3개월 미만 아동은 연계 지양 (안전상의 사유로 3개월 이후 돌봄 권유드린다고 해도 자부담해서라도 이용하겠다하면 *이용자 작성 요청사항 꼭 확인 *돌봄 요청사항 꼭 다시 확인 *동의서 3부 작성필 (직인))</div>
-          <div class="alert danger">⚠️ 이용자 가정에서 돌봄하는 게 원칙 — 선생님이 차 운전 절대 금지!</div>
-                    <div class="alert danger">⚠️ 아동 있는 시간에 서비스제공/ 아동이 없으면 선생님 퇴근임. 7~9시인데 8시 반에 등원하면 이용자 가정으로 다시 돌아와 집안일 한다? NO</div>
-
+          <div class="alert warn">신규 연계는 1명 면접/일시연계가 원칙 (3명씩 안 함)<br>3개월 미만 아동은 연계 불가 (서약서 내도 안 됨, 우리 합의 안함)</div>
+          <div class="alert danger">⚠️ 이용자 가정에서 돌봄하는 게 원칙 — 선생님 차 운전 절대 금지!</div>
         </div>
       </div>
 
@@ -837,7 +824,6 @@
             <tr><td>신청 불가</td><td>휴일불가(월~토만 가능), 연장근로 있는 경우, 휴직 중, 지나간 날- 지나간 연차 불가능(예외: 선생님 아픔, 이용자 일정 취소, 1:1문의글로 미리 신청했으나 처리가 늦음- 이 세 경우는 보정처리) </td></tr>
           </table></div>
           <div class="alert warn">연차 보정(연차보정> 차감, 요청 시간, 요청날짜 시간대 체크, 소정근로시간 적용) 후 반드시 확인: 활동내역 › 주차별활동 › 이름검색 → 해당 날짜에 시간 정상 반영되었는지, 연차에만 시간 들어갔는지 확인!</div>
-          <div class="alert info">다음달 연차를 미리 승인했는데 선생님이 퇴사하여 연차 관련 챙기기 어려움이 발생할 수 있어서, 연차는 다음달 미리 신청하지 않고 최대한 해당주차 연차만 승인함<br>선생님이 왜 연차 미리 승인 안 해주냐고 따지면: 선생님 근로시간이 다 확인된 후에 승인해드리고 있다고 안내함</div>
         </div>
       </div>
 
@@ -862,8 +848,8 @@
             <tr><td>둘째출산 종료수당</td><td>50,000원 1회 (90일 경과 시)</td></tr>
                         <tr><td>기관연계 가산수당</td><td>+7,960원/시간 </td></tr>
                                     <tr><td>기관연계 교통비</td><td>4시간 미만(3.5시간)까지 교통비 지급</td></tr>
-                                    <tr><td>기관연계 영아활동(수기)</td><td>+2,000원/시간</td></tr>
-                                                                        <tr><td>기관연계 유아활동(수기)</td><td>+1,000원/시간</td></tr>
+                                    <tr><td>기관연계 영아활동(수기)</td><td></td></tr>
+                                                                        <tr><td>기관연계 유아활동(수기)</td><td></td></tr>
 
 
 
@@ -931,40 +917,9 @@
           <div class="alert info">채용 순서: 서류접수 → 합격자발표 → 인적성검사 → 면접 → 최종합격</div>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge purple">아이돌봄사 유선 응대</span>
-          <span class="card-title">아이돌봄사(선생님) 유선 안내·연락 원칙</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="qa"><div class="qa-q">종료 시기 안내</div><div class="qa-a">이용자가 종료 시기를 선생님한테 말한다고 하면, 저희도 선생님께 한번 더 말씀드리겠다고 하고 선생님께 꼭 말해야 함</div></div>
-          <div class="qa"><div class="qa-q">대기 중 장소이탈</div><div class="qa-a">대기기간도 근로시간인데, 대기 중 장소이탈하면 논의가 필요함</div></div>
-          <div class="qa"><div class="qa-q">1:1문의글 변경요청 많은 선생님</div><div class="qa-a">월말에 꼭 최종 확인 부탁드린다고 유선 또는 문자로 연락함</div></div>
-          <div class="qa"><div class="qa-q">월 소정근로 50~60시간 유선 안내</div><div class="qa-a">5일 이상 남은 주 월요일에 유선연락함<br>주15시간 안내 시 보수교육 주차면 소정근로시간 추후 적용으로 기재함</div></div>
-          <div class="qa"><div class="qa-q">아이돌봄사 유선 연락 시</div><div class="qa-a">정기·단기·보수교육 수강 여부 확인 후 연락함(활동 중 연락은 지양함)</div></div>
-          <div class="qa"><div class="qa-q">이용자-선생님 다툼 언급 시</div><div class="qa-a">이용자가 선생님과 다퉜다는 표현을 하면 돌봄관련이면 저희도 알아야 하므로, 어떤 내용이었는지 아이관련이었는지 물어봐서 확인해야 함</div></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge purple">연계 원칙</span>
-          <span class="card-title">연계 관련 공지·주의사항</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="alert danger">[정기연계 관련 포스트잇 꼭 전달해주세요]<br>정기연계건은 기존대로 처리하되 누락건이 발생하지 않도록 연계 담당자와 교차검증이 필요함<br>포스트잇에 통화받은사람/통화일/이용자/돌보미명/용건간단히(예: 하루돌봄 6/16 16-18) 등으로 적어서 꼭 연계담당자에게 전달해야 함. 전달하는 행위를 잊지 않는 것만으로도 놓치지 않을 수 있음</div>
-          <div class="alert warn">연계는 반드시 센터를 통해서 진행해야 함. 지정연계는 안 됨(정기연계 중인 이용자가 정기연계 선생님과 정기일정이 아닌 다른 일정을 어쩌다 한번 이용 시 해주는 것일 뿐임)<br>아이돌봄사가 이용자의 연계 요청에 된다고 하면 절대 안 됨</div>
-          <div class="qa"><div class="qa-q">이용자 사유로 종료 후 새 연계 원할 때</div><div class="qa-a">새로 대기가 필요함을 안내함. 단, 법정 가점 포함하여 대기하는 것이며 맨 뒤로 대기순번이 밀리는 게 아님</div></div>
-          <div class="qa"><div class="qa-q">선생님 사유로 연계 불발 시 응대 예시</div><div class="qa-a">돌봄 중 보호자 있는 경우마다 다 연계를 거부하실 건지, 그렇게 가리시면 가실 수 있는 가정이 없으시다고 안내함. 또 이용자가 센터에 알려주신 정보가 나중에 바뀔 수도 있는 부분이고, 처음 연계 때는 보호자가 안 계시다가 이용자 사정에 따라 나중에는 보호자가 같이 계실 수도 있다고 설명하며, 선생님께서 돌봄 시 보호자 있는 상황이 구체적으로 어떤 점이 불편하신 건지 여쭤봄<br><br>연계 시 이용자에게 돌봄 중 보호자가 있는지 여쭤보고, 선생님 연령대를 안내하며, 선생님에게 요청사항이 있는지 여쭤봄. 선생님에게는 활동이 없는 것이 맞는지, 연계표 정보를 전부 확인한 것이 맞는지 짚어가며 확인하고, 이용자에게 확인하고 싶은 정보가 있는지 여쭤봄</div></div>
-          <div class="qa"><div class="qa-q">이용자-아이돌봄사 연계 시 주의사항</div><div class="qa-a">신청서에 있는 이용자 요청사항을 확인함</div></div>
-          <div class="alert danger">3개월 미만 영아 돌봄 시 주의사항: 생후 3개월 미만의 너무 어린 연령이라 센터에서 걱정이 많이 되므로 마스크 필수 착용, 옷도 면 소재로 착용, 위생을 철저히 부탁드린다고 안내함. 영아돌봄 연계 시 나이 많은 선생님은 안 됨<br>모든 연계 시 이용자에게 꼭 선생님 연령을 고지해야 함</div>
-        </div>
-      </div>
     </div>
 
+    <!-- ═══ 시스템 ═══ -->
     <div id="system" class="section">
       <h1 class="section-title"><span class="icon">🖥</span> 시스템</h1>
 
@@ -1044,20 +999,9 @@
           <div class="alert warn">이용자에게 정부지원판정 등급 암시하는 표현 절대 금지! (예: "정부지원시간 때문에" → "기관 이용 때문에"로 표현)</div>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge gray">시스템 메모</span>
-          <span class="card-title">시스템 관련 참고사항</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="qa"><div class="qa-q">신청서 수정 버튼</div><div class="qa-a">신청서 수정 버튼이 옛날엔 재계산이어서 재계산이라고 부름. 지금도 신청서 수정을 누르면 재계산된다고 팝업이 뜸</div></div>
-          <div class="qa"><div class="qa-q">문자 발송 수단</div><div class="qa-a">시스템 문자 외의 다른 수단으로는 문자발송이 불가함(지침 근거). 이미지는 링크 형식으로 발송됨</div></div>
-        </div>
-      </div>
     </div>
 
+    <!-- ═══ 행정/예산 ═══ -->
     <div id="admin" class="section">
       <h1 class="section-title"><span class="icon">📋</span> 행정/예산</h1>
 
@@ -1073,7 +1017,6 @@
           <div class="qa"><div class="qa-q">제출 서류</div><div class="qa-a">근무상황부 1장 + 시간외사전승인요청서 2장(세로)</div></div>
           <div class="qa"><div class="qa-q">시간외/연차 사용 기준</div><div class="qa-a">주 15시간 → 시간외보상 / 주 12시간 → 시간외보상+수당 / 초과 시 탄력근무<br>연차 3시간 쓸 경우: 휴게시간 감안해서 5시간 근무 → 12시 출근 지문<br>전일 쉬는 경우: 8시간 연차 사용</div></div>
           <div class="alert warn">팀회의·전체회의 회의록 꼭 첨부 + 사진 찍기!<br>시간외수당·보상 등록: 등록 날짜 당일 안 됨 → 전날로 변경 (먼저 시간외 올려도 되는지 여쭤보고!). 신청서는 시간외보상, 휴가쓸 때는 대휴</div>
-          <div class="qa" style="margin-top:0.85rem"><div class="qa-q">출장 정산</div><div class="qa-a">출장 다녀오면 익월 15일로 품의서 작성하여 바로 지애T에게 드려야함</div></div>
         </div>
       </div>
 
@@ -1111,8 +1054,6 @@
             <li>엑셀에서 번호 가져올 때 주의 / 공문대장 엑셀에 바로바로 기입!</li>
             <li>품의서 한 개 만들었으면 같은 거 다시 복사 NO (중복 확인·삭제)</li>
             <li>적요 자세하게: 구입/재구입/(담당자 이름) 등 → 비고에도 작성</li>
-            <li>품의서 쓸 때 사업명이 주어라고 생각하고 지출인지 입금인지 생각해서 작성함</li>
-            <li>진짜로 수입한 게 아닌데 수입이라고 하면 안 되므로, 그 경우 마이너스 수입결의서가 생김. 마이너스 지출결의서란 건 없고 여입결의서라고 함</li>
           </ul></div></div>
           <div class="alert info">품의서 작성 예시:<br>1. 지출내용: 사무용품비-도장 재구입(김보라)<br>2. 지출일자: 납기일이내<br>3. 지출내역: 도장 1개×8,550원=8,550원<br>4. 지출금액: 8,550원(금팔천오백오십원정)<br>5. 지출방법: 카드결제<br>6. 지 출 처: 쿠팡<br>7. 비    고: 각인 방향 변경으로 인한 재구입</div>
         </div>
@@ -1136,7 +1077,6 @@
             <div class="flow-step"><div class="step-num">7</div><div class="step-text">이체확인증 PDF 저장 후 파일 교체 + 프린트 (처리일시·이체액 노란색 하이라이트)</div></div>
             <div class="flow-step"><div class="step-num">8</div><div class="step-text">지출결의서 작성: 지출결의서(맨앞) → 이체확인증 → 품의서·붙임서류 순서!</div></div>
           </div>
-          <div class="alert info">이나라 카드 사용 시 바로 품의서 작성, 이나라 집행등록까지 해야함<br>이나라도움이 국고임. 2026년 예산정리(국고+시비) 엑셀 시트에는 n월 활동분을 n월 열에 작성함. 제수당(이나라도움)에는 국고제수당을 작성함</div>
           <div class="nas-path">\\192.168.0.86\은평구건다\2026 아이돌봄팀\1. ★26년 예산&사업계획서</div>
         </div>
       </div>
@@ -1156,127 +1096,6 @@
             <div class="flow-step"><div class="step-num">5</div><div class="step-text">취소수수료 확인 / 판정등급 마 제외 전체 보기 / K열(이용시간-정부시간) 0 아닌 건 확인</div></div>
           </div>
           <div class="alert info">실적: 15일 새벽 업데이트. 업데이트되면 유미팀장님께 보고</div>
-          <div class="alert warn">월마감 전 체크리스트(정기, 단기 신청서, 교육, 활동일지, 면담, 기관연계):<br>
-          정부지원시간(시설미이용/자부담) 안내 확인<br>
-          판정등급 변경(재계산)대상 0건 확인<br>
-          신청서 취소, 완료 제외 0건 확인<br>
-          활동일지 대기 0건 확인<br>
-          연차 대기 0건 확인<br>
-          취소수수료 시스템 반영(정부, 본인부담, 증빙서류, 금액) 확인<br>
-          면담 시 수당지급인 선생님 시스템 등록되었는지 확인 필요<br>
-          면접자관리(완료임으로 확인, 선생님 거절 시 면접비 지급되지 않으므로 자동합격처리(=면접비지급됨)되지 않도록 체크 필요)<br>
-          면접금은 급여대장에는 쓰지만 급여로 이체하는 것이 아니고 따로 지급되므로, 급여대장에서 수식이 안 걸린 게 맞음</div>
-          <div class="alert danger">안내했음에도 이용자·선생님 모두 기간 내 변경사항 요청 및 서류 미제출 시 처리 불가, 자부담임을 통보하고, 기다리지 말기. 이런 상황이 최대한 발생하지 않도록 미리 안내하고, 해당 상황 발생 시 보라T에게 꼭 보고함</div>
-          <div class="script">월마감 안내 문자 예시<br>오늘 6월 일정이 마감됩니다.<br>6월 아이돌봄서비스 신청서에 대한 변경사항 및 일정 누락 여부를 확인해주시기 바라며, 아직 변경되지 않은 일정이 있다면 오늘 12:00까지 꼭 센터로 연락주시기 바랍니다. 기한 이후 변경 요청 또는 증빙서류 제출 시 변경이 어려워 이용금액에 대한 자부담이 발생할 수 있습니다.<br><br>또한 방학 기간 동안 9:00~16:00(어린이집)/ 9:00~13:00(유치원) 시간에 아이돌봄서비스를 이용하실 경우 방학확인서·방학안내문 또는 시설 미이용 확인서 제출에 의한 입증이 필요하여 1:1문의로 서류 제출 및 기간을 적어주시기 바랍니다.<br><br>증빙서류를 제출하지 않고 서비스를 이용하실 경우, 100% 본인부담으로 요금이 적용되오니 참고해주시길 바랍니다.</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge green">공과금</span>
-          <span class="card-title">공과금 납부 처리</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="alert warn">공과금 나가면 아래 경로에 있는 엑셀 파일에 입력이 필수임</div>
-          <div class="nas-path">나스 › ★2026 운영지원팀 › ★공통 › 2026공과금대장(엑셀)</div>
-          <div class="qa"><div class="qa-q">공과금 납부 순서</div><div class="qa-a">
-            <ul>
-              <li>이나라도움에서 지난달 "재사용"으로 선택해서 처리함</li>
-              <li>세금계산서는 메일로 오면 납부하면 됨. 무조건 5시까지 처리함</li>
-              <li>기존 품의서 묶인 것대로: 1. 품의서 작성 및 결재, 2. 이나라 집행등록, 이체 순서로 진행함</li>
-              <li>세목은 우선 2026년예산정리(국고+시비)와 지난달 것을 보고 처리함. 한 행 저장하고 신규입력함</li>
-              <li>메일에서 전자세금계산서 확인·인쇄는 순서대로 진행함</li>
-              <li>이체확인증도 품의서 상 묶인 것들끼리 같이 뽑음</li>
-              <li>금액, 통장번호 잘 확인함</li>
-              <li>25일에는 쿠쿠, KT, 에스원, LG로 검색해서 확인함</li>
-            </ul>
-          </div></div>
-          <div class="qa"><div class="qa-q">일반집행(세목우선) 처리 순서</div><div class="qa-a">보조세목(엑셀 또는 지난달 참고) → 집행용도(품의서 적요=품목) → 증빙선택: 전자세금계산서 조회 → 전자(세금)계산서 추가 조회/등록 클릭 → 승인번호 입력 → 추가 → 증빙조회요청 → 닫기 → 검색 → 방금 추가한 것 클릭하고 저장(자동계산, 원단위 확인!) → 사업자 확인 → 은행 고르고 자주쓰는 거래처 계좌(계좌조회) 체크 → 계좌번호 입력 후 누르고 번호 입력 → 저장 → 실명조회</div></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge green">4대보험</span>
-          <span class="card-title">4대보험 적용 기준</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="alert info">4대보험은 월 소정근로시간이 60시간 이상인 경우 적용되며, 60시간 미만인 경우에는 국민연금과 건강보험이 상실 처리되어 2대보험만 적용됨<br><br>따라서 8월 소정근로시간이 60시간 이상인 경우에는 4대보험이 적용되며, 9월 소정근로시간이 60시간 미만인 경우에는 국민연금과 건강보험이 상실 처리됨</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge green">종사자 교육</span>
-          <span class="card-title">2026 종사자 교육 관련 공지</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="alert warn">법정 의무교육(11시간), 한가원(10시간), 보수교육(10시간)을 연내 모두 이수해야 함<br>또한 이수 완료 후 개인별 교육이수현황 엑셀표에 기입과 수료증 등록이 필요함</div>
-          <div class="qa"><div class="qa-q">이수현황표 경로</div><div class="qa-a">나스 › 1. 각종취합 › ★2026년 개인별 교육이수현황(엑셀)</div></div>
-          <div class="qa"><div class="qa-q">수료증 경로</div><div class="qa-a">나스 › 1. 각종취합 › ★2026년 개인별 교육이수현황 › 개인 폴더</div></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge green">근로계약</span>
-          <span class="card-title">근로계약서 처리</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="alert danger">센터장님께 꼭 근로계약서를 보고드린 후에 진행해야함(변경된 게 있을 수 있음)</div>
-          <div class="qa"><div class="qa-q">등록 경로</div><div class="qa-a">사업기관현황 › 조회 › 사업기관현황상세보기 › 근로계약서 양식 등록</div></div>
-          <div class="qa"><div class="qa-q">작성 시 주의사항</div><div class="qa-a">
-            <ul>
-              <li>계약일은 26년이어야 함</li>
-              <li>주휴일은 일요일로 함</li>
-              <li>제목은 이전과 동일하게 함</li>
-              <li>서명 4개가 다 들어가야 함(주의!)</li>
-            </ul>
-          </div></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge green">급여 처리</span>
-          <span class="card-title">급여 처리 메모</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="alert info">시작은 급여정산 다 하면 수기정산부터 함. 근로시간보정까지 끝나면 월을 체크하고, 3개는 체크하지 않고 불러오기 함</div>
-          <div class="qa"><div class="qa-q">용어 정리</div><div class="qa-a">보조금 = 이나라도움 / 정부지원금 = 예탁금 / 돌보미 활동자 수당은 예탁금 총액에서 나머지 금액으로 계산함</div></div>
-          <div class="qa"><div class="qa-q">수기급여관리대장 작성 순서</div><div class="qa-a">상단표에 명확한 것을 먼저 입력함(정기·단기·기관연계 이용자, 정부지원금, 시비만 값 입력 등). 그리고 품의서에 확실한 금액들(취소수수료·퇴직연금 등)을 작성함. 그 다음 값을 맞춰보며 빼고 더하고 함. 다 맞춰본 다음 최종적으로 뭐랑 뭐가 같아야 하는데, 안 같으면 그게 긴급단기인지 그 달의 특이사항인지 확인하고 논리적이면 넘어가고 메모에 남김<br><br>다음달 급여대장을 만들 때는 메모·색·굵은 글씨를 없애고 수식을 전부 하나씩 다 확인함. 특이사항 있는 선생님들은 이름과 해당 칸에 색칠하고 메모를 남김. 4대보험 관련 특이사항(고용보험이 없다던가)도 확인해서 메모를 남김</div></div>
-          <div class="alert warn">급여대장 원천별 금액을 확인함. 급여 수기계산과 시스템 금액이 다른 건 부장님께 말씀드리고, 시스템 금액으로 붙이며, 급여 관리대장에서도 시스템 기준 금액으로 수정이 필요함(수기계산은 이용자기준이고 시스템은 선생님 지급 기준이어서 차액이 발생함)</div>
-          <div class="qa"><div class="qa-q">급여대장 vs 연계상황부</div><div class="qa-a">선생님에게 주는 돈은 급여대장에 적고, 기관에서 우리센터에게 주는 돈(즉 우리가 받는 돈)은 연계상황부에 적음. 단, 연계상황부에는 선생님에게 우리 센터가 줄 영아·유아돌봄수당만 추가함<br><br>이용자가 내는 금액과 선생님이 받는 금액은 다르므로 시스템과 수기계산에서 차이가 발생함(예: 취소수수료). 정부지원금에는 영아/유아수당이 추가되어 있어서 이를 제해야 진짜 정부지원금이 나옴. 기관연계도 급여관리 시스템에서 붙여넣어야 함. 단, 영아·유아돌봄수당은 수기계산한 것을 기타수당(과세)에 넣는데, 지애T도 써야 하므로 =숫자+숫자 형태로 입력함</div></div>
-          <div class="qa"><div class="qa-q">최종 정산 순서</div><div class="qa-a">모든 것 확인 후 근로시간 보정 › 급여정산 선택 › 급여 선생님 명단 생성(퇴사자는 대상삭제 처리)<br><br>최종명단을 각 담당 시트로 붙여넣고, 우리급여대장 수식을 한 열씩 밑으로 다 끌고, 컨트롤백틱을 눌러서 전체 수식을 다 확인함<br><br>급여정산 후 엑셀파일을 다운받아서 우리급여대장에 한 열씩(한 번에 여러 열 붙이지 않기) 값만 붙여넣기 함(무조건 값만 붙이는 것임)<br><br>취소수수료 금액이 수기관리대장과 일치하는지 검수함<br><br>이대사대 보험을 확인함<br><br>서울형 검수하고 확정되면 내 기타내역작성 시트에서 전체급여명단으로 수식을 걸어 만듦</div></div>
-          <div class="alert danger">10일에 원천세가 나가야 하니 이틀 전인 8일에는 서휘를 보내야 함. 10일 오전 내로 원천세가 나가야 함. 서휘 기다리는 동안 기타내역 수식 엑셀시트에서 기타내역 값을 복사해다가 붙여넣고, 품의서를 작성하며 상단표에서 금액을 맞춤</div>
-          <div class="qa"><div class="qa-q">영아·유아수당 계산</div><div class="qa-a">영아수당, 유아수당은 중복 가능하여 지급총액에 값을 붙여넣고, 영아돌봄시간은 지급액을 2000원으로 나누면 되고, 유아는 1000원으로 나눔</div></div>
-          <div class="qa"><div class="qa-q">퇴사자 처리</div><div class="qa-a">퇴사자 발생하면 연차미사용수당 확인함(지애T와 크로스체크). 퇴직자가 있으면 챙겨야 하며, 퇴직금 반환자가 있으면 표준근로계약서와 총근로기간에 대한 급여대장(박○연 돌봄사 참고)을 보내야 함. 퇴직금반환 증빙은 연계상황부로 만듦<br><br>퇴직금 이체 확인서는 국민은행에 15일까지 발송 필요함. 신규입사자 가입자명단도 제출함. 국민은행에서 이체확인증 답신이 오면 지출결의서 붙임서류로 추가하면 됨</div></div>
-          <div class="nas-path">\\192.168.0.86\은평구건다\2026 아이돌봄팀\2. 돌보미\3. 채용\3. 지원자관리 (개인서류)\2026</div>
-          <div class="alert info">국민은행에서 26년 신규입사자 가입자 명부를 요청한 경우, 1차로 가입자명부+가입자등록신청서 pdf를 위 경로에 넣어두면 됨</div>
-          <div class="qa"><div class="qa-q">공휴일·주휴일 수당</div><div class="qa-a">주휴일(일요일)과 법정·대체 공휴일이 겹친 경우 큰 금액을 지급함. 휴일활동수당은 일요일(주휴일)에 근무했을 때 지급함. 유급휴일수당은 근로 여부와 관계없이 공휴일에 지급하되, 이전 4주간 소정근로시간이 주 15시간 이상인 근로자만 대상임<br><br>돈 주는 쉬는 날은 주휴일, 노동절, 공휴일임. 명절 수당은 미리 준비해야 함</div></div>
-          <div class="script">시스템 공지 예시<br>'5.1. 노동절', '7.17. 제헌절'의 공휴일 지정에 따른 이용요금 및 활동수당을 안내드리오니 아이돌봄서비스 이용 및 업무에 참고하시기 바랍니다.<br><br>○ 이용요금: 휴일요금<br>○ 활동수당: 휴일수당+유급휴일수당<br><br>※ (참고) 향후 공휴일의 지정, 대체공휴일 지정 등의 변동사항 발생 시 다음과 같이 이용요금 및 활동수당이 적용됨<br>- 공휴일: (이용요금) 휴일요금, (활동수당) 휴일수당+유급휴일수당<br>- 대체공휴일: (이용요금) 평일요금, (활동수당) 휴일수당+유급휴일수당<br>- 명절연휴: 명절 전 별도 안내</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header" onclick="toggleCard(this)">
-          <span class="badge green">주휴수당</span>
-          <span class="card-title">주휴수당 · 유급휴일수당 계산법</span>
-          <span class="card-toggle">▼</span>
-        </div>
-        <div class="card-body">
-          <div class="qa"><div class="qa-q">주휴수당 계산식</div><div class="qa-a">
-            1. 해당 주를 포함한 이전 3주 소정근로시간 ÷ (4주 통상근로일수 ÷ 5) = 평균 소정근로시간이며, 15시간 이상이면 주휴수당 대상자가 됨<br><br>
-            2. 대상자인 경우: 해당 주를 포함한 이전 3주 소정근로시간 ÷ 4주 통상근로일수 × 11,120원 = 주휴수당
-          </div></div>
-          <div class="alert info">주휴수당을 위해 필요한 소정근로시간은 한 주에 15시간 이상임<br>주휴수당이 적용되는 근무시간은 평일(월~토) 오전 6시~오후 10시 사이에 활동 시간과 연차 사용시간을 합쳐서 하루 8시간까지 적용함<br>휴일은 연차 사용이 불가하며, 활동 시에도 소정근로시간이 적용되지 않음(예: 수요일이라도 휴일이면 소정근로시간 미적용)</div>
-          <div class="qa"><div class="qa-q">계산 예시</div><div class="qa-a">주휴수당은 해당주차와 이전 3주차(총 4주) 동안의 소정근로시간을 해당 4주의 통상근로일수를 5로 나눈 값으로 나누었을 때 나온 값이 15 이상이어야 지급됨<br><br>예: 7월 1주차는 (6월 2·3·4주, 7월 1주)의 소정근로시간 68시간을 (4주 통상근로일수 18일÷5=3.6)으로 나눈 값이 18로, 15보다 크므로 주휴수당이 지급됨<br><br>7월 2주차는 소정근로시간 56시간을 4.8로 나눈 값이 11.6으로 15보다 작아서 주휴수당이 미지급됨</div></div>
-          <div class="alert warn">유급휴일수당은 이전 4주간의 평균 소정근로시간이 주 15시간 이상인 근로자만 해당하므로, 그 기준에 못 미치면 유급휴일수당 지급 대상에서 제외됨</div>
         </div>
       </div>
 
@@ -1297,6 +1116,8 @@
       </div>
     </div>
 
+    <!-- ═══ 주의사항 ═══ -->
+     
     <div id="caution" class="section">
       <h1 class="section-title"><span class="icon">⚠️</span> 주의사항</h1>
 
@@ -1334,10 +1155,7 @@
             ❌ 배정 취소 대신 → 신청서 취소로 처리 (사유 명확히·카톡공유·관리대장 작성)<br>
             ❌ 비정기 연계 게시 시 문자 2건 동시 발송 주의하기<br>
             ❌ 돈 관련 처리는 반드시 보라T 확인 후 처리, 수수료 발생 건은 처리 전 이용자에게 안내필요 <br>
-            ❌ 양식 준수 필수 (서류 작성 시)!<br>
-            ❌ 절대 아동학대를 내가 먼저 언급하면 안 됨<br>
-            ❌ 개인정보 유출 안 됨<br>
-            ❌ 하루돌봄 확정되어 신청서 넣기 전까지는 이용자 이름·선생님 이름 공개 안 됨
+            ❌ 양식 준수 필수 (서류 작성 시)! 
           </div>
         </div>
       </div>
@@ -1375,6 +1193,7 @@
       </div>
     </div>
 
+    <!-- ═══ 담당 업무 ═══ -->
     <div id="duties" class="section">
       <h1 class="section-title"><span class="icon">📌</span> 담당 업무</h1>
       <div class="alert info">각 항목을 클릭해서 내용을 직접 입력하세요.</div>
@@ -1438,6 +1257,7 @@
       </div>
     </div>
 
+    <!-- ═══ NAS 경로 ═══ -->
     <div id="nas" class="section">
       <h1 class="section-title"><span class="icon">🗂</span> NAS 경로</h1>
       <div class="alert info">아래 경로를 복사해서 파일 탐색기 주소창에 붙여넣으세요.</div>
@@ -1464,6 +1284,9 @@
         </div>
       </div>
     </div>
+<!-- ============================================================ -->
+<!-- ② SECTION CONTENT -->
+<!-- ============================================================ -->
 <div id="guideline" class="section">
   <h1 class="section-title"><span class="icon">📝</span> 지침</h1>
   <div class="alert info">📌 아래 자료는 <b>아이돌봄 광역지원센터 공식 답변</b>을 정리한 것입니다. (2026년 7월 기준)<br>기존 매뉴얼(이용자/선생님 등 탭)과 내용이 겹치면 그쪽 설명이 우선입니다.</div>
@@ -1482,6 +1305,7 @@
   </main>
 </div>
 
+<!-- 달력 이벤트 모달 -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="modal-header">
@@ -1509,6 +1333,7 @@
 </div>
 
 <script>
+// ─── 사이드바 ───
 function toggleSidebar() {
   const sb = document.getElementById('sidebar');
   const ov = document.getElementById('sidebarOverlay');
@@ -1519,6 +1344,8 @@ function closeSidebar() {
   document.getElementById('sidebar').classList.remove('mob-open');
   document.getElementById('sidebarOverlay').classList.remove('open');
 }
+
+// ─── 섹션 전환 ───
 function switchSection(id, el) {
   clearSearch();
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -1529,6 +1356,8 @@ function switchSection(id, el) {
   window.scrollTo(0, 0);
   if (id === 'duties') setTimeout(renderFixedScheduleEditor, 50);
 }
+
+// ─── 바로가기 드롭다운 ───
 function toggleDropdown() {
   document.getElementById('shortcutDropdown').classList.toggle('open');
 }
@@ -1536,12 +1365,16 @@ document.addEventListener('click', function(e) {
   const d = document.getElementById('shortcutDropdown');
   if (d && !d.contains(e.target)) d.classList.remove('open');
 });
+
+// ─── 달력 데이터 ───
 let calYear = new Date().getFullYear();
 let calMonth = new Date().getMonth();
 let selectedDate = null;
 let selectedColor = 'blue';
 const STORAGE_KEY = 'adol_calendar_events_2026';
 const CHECKLIST_KEY = 'adol_checklist_date';
+
+// Safari 포함 localStorage 안전 래퍼
 const storage = {
   get(key) {
     try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch { return null; }
@@ -1550,14 +1383,18 @@ const storage = {
     try { localStorage.setItem(key, JSON.stringify(val)); return true; } catch { return false; }
   }
 };
+
 function loadEvents() {
   return storage.get(STORAGE_KEY) || {};
 }
 function saveEvents(ev) {
   storage.set(STORAGE_KEY, ev);
 }
+
+// ─── 공휴일 (2026) ───
 const MONTHS_KO = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
 const DAYS_KO   = ['일','월','화','수','목','금','토'];
+
 const HOLIDAYS_2026 = {
   '2026-01-01': '새해', '2026-01-28': '설연휴', '2026-01-29': '설날', '2026-01-30': '설연휴',
   '2026-03-01': '삼일절', '2026-05-05': '어린이날', '2026-05-25': '부처님오신날',
@@ -1566,22 +1403,27 @@ const HOLIDAYS_2026 = {
   '2026-10-03': '개천절', '2026-10-09': '한글날',
   '2026-12-25': '크리스마스'
 };
+
 function renderCalendar() {
   const today = new Date();
   document.getElementById('calYear').textContent = calYear + '년';
   document.getElementById('calMonth').textContent = MONTHS_KO[calMonth];
+
   const firstDay = new Date(calYear, calMonth, 1).getDay();
   const lastDate = new Date(calYear, calMonth + 1, 0).getDate();
   const prevLastDate = new Date(calYear, calMonth, 0).getDate();
   const userEvents = loadEvents();
   const fixedEvents = getFixedEventsForMonth(calYear, calMonth);
+
   let html = '';
   let dayCount = 1;
   let nextCount = 1;
   const totalCells = Math.ceil((firstDay + lastDate) / 7) * 7;
+
   for (let i = 0; i < totalCells; i++) {
     let d, cls = '', isCurrentMonth = false;
     const col = i % 7;
+
     if (i < firstDay) {
       d = prevLastDate - firstDay + i + 1;
       cls = 'other-month';
@@ -1593,20 +1435,26 @@ function renderCalendar() {
       d = nextCount++;
       cls = 'other-month';
     }
+
     const isToday = isCurrentMonth && d === today.getDate() && calMonth === today.getMonth() && calYear === today.getFullYear();
     if (isToday) cls += ' today';
     if (col === 0) cls += ' sunday';
     if (col === 6) cls += ' saturday';
+
     const dateKey = isCurrentMonth
       ? `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`
       : null;
+
     const fixedDay  = (dateKey && fixedEvents[dateKey]) ? fixedEvents[dateKey] : [];
     const userDay   = (dateKey && userEvents[dateKey])  ? userEvents[dateKey]  : [];
     const allEvents = [...fixedDay, ...userDay];
+
     const holiday = dateKey ? HOLIDAYS_2026[dateKey] : null;
     if (holiday && isCurrentMonth) cls += ' sunday';
+
     const holidayHtml = holiday
       ? `<div class="cal-event red" style="font-size:9px;">${holiday}</div>` : '';
+
     const maxShow = holiday ? 1 : 2;
     const evHtml = allEvents.slice(0, maxShow).map(ev =>
       `<div class="cal-event ${ev.color}" title="${ev.text}" style="${ev.fixed ? 'opacity:0.85;' : ''}">${ev.text}</div>`
@@ -1614,11 +1462,14 @@ function renderCalendar() {
     const moreCount = allEvents.length - maxShow;
     const moreHtml = moreCount > 0
       ? `<div class="cal-event gray">+${moreCount}개</div>` : '';
+
     const clickFn = isCurrentMonth ? `onclick="openModal('${dateKey}')"` : '';
     html += `<div class="cal-day ${cls}" ${clickFn}><span class="cal-day-num">${d}</span>${holidayHtml}${evHtml}${moreHtml}</div>`;
   }
   document.getElementById('calDays').innerHTML = html;
 }
+
+// ─── 터치 스와이프 (모바일 달력) ───
 let touchStartX = 0;
 let touchStartY = 0;
 document.addEventListener('touchstart', function(e) {
@@ -1639,6 +1490,7 @@ document.addEventListener('touchend', function(e) {
     touchStartX = 0;
   }
 }, { passive: true });
+
 function changeMonth(dir) {
   calMonth += dir;
   if (calMonth < 0) { calMonth = 11; calYear--; }
@@ -1651,6 +1503,8 @@ function goToday() {
   calMonth = t.getMonth();
   renderCalendar();
 }
+
+// ─── 모달 ───
 function openModal(dateKey) {
   selectedDate = dateKey;
   const [y, m, d] = dateKey.split('-');
@@ -1666,6 +1520,7 @@ function closeModal(e) {
     document.getElementById('modalOverlay').classList.remove('open');
   }
 }
+
 function renderModalEvents() {
   const userEvents = loadEvents();
   const fixedEventsMonth = getFixedEventsForMonth(
@@ -1676,7 +1531,9 @@ function renderModalEvents() {
   const fixedDay = (selectedDate && fixedEventsMonth[selectedDate]) ? fixedEventsMonth[selectedDate] : [];
   const container = document.getElementById('modalEvents');
   const dotColors = { blue:'#93c5fd', green:'#6ee7b7', red:'#fca5a5', amber:'#fcd34d', purple:'#c4b5fd', gray:'#d1d5db' };
+
   let html = '';
+
   if (fixedDay.length > 0) {
     html += `<div style="font-size:10px;font-weight:600;color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em;">📅 정기 업무</div>`;
     html += fixedDay.map(ev => `
@@ -1687,6 +1544,7 @@ function renderModalEvents() {
       </div>`).join('');
     if (userDay.length > 0) html += `<div style="height:6px;"></div>`;
   }
+
   if (userDay.length > 0) {
     if (fixedDay.length > 0) html += `<div style="font-size:10px;font-weight:600;color:var(--text3);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em;">✏️ 내 일정</div>`;
     html += userDay.map((ev, i) => `
@@ -1697,14 +1555,17 @@ function renderModalEvents() {
         <button class="modal-event-delete" onclick="deleteEvent(${i})" title="삭제">✕</button>
       </div>`).join('');
   }
+
   if (!html) {
     html = '<div class="no-events">등록된 일정이 없습니다.</div>';
   }
   container.innerHTML = html;
 }
+
 function escapeHtml(str) {
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
 function startEditEvent(idx) {
   const events = loadEvents();
   const ev = events[selectedDate][idx];
@@ -1713,6 +1574,7 @@ function startEditEvent(idx) {
   const input = document.getElementById(`edit-input-${idx}`);
   if (input) { input.focus(); input.select(); }
 }
+
 function confirmEditEvent(idx) {
   const input = document.getElementById(`edit-input-${idx}`);
   if (!input) return;
@@ -1752,16 +1614,21 @@ function selectColor(el) {
   el.classList.add('selected');
   selectedColor = el.dataset.color;
 }
+
+// ─── 체크리스트 (날짜 기반 자동 리셋) ───
+// ✅ 버그 수정: loadChecklist()에서 undefined 변수 'item' 참조 제거
 function toggleCheck(item, key) {
   const cb = item.querySelector('input[type=checkbox]');
   cb.checked = !cb.checked;
   item.classList.toggle('checked', cb.checked);
   saveChecklist();
 }
+
 function getTodayStr() {
   const t = new Date();
   return `${t.getFullYear()}-${t.getMonth()+1}-${t.getDate()}`;
 }
+
 function saveChecklist() {
   const allIds = ['m0','m1','m2','m3','m4','m5','m6'];
   const states = {};
@@ -1771,6 +1638,7 @@ function saveChecklist() {
   });
   storage.set(CHECKLIST_KEY, { date: getTodayStr(), states });
 }
+
 function loadChecklist() {
   const saved = storage.get(CHECKLIST_KEY);
   if (!saved || saved.date !== getTodayStr()) return;
@@ -1779,6 +1647,7 @@ function loadChecklist() {
     const el = document.getElementById(id);
     if (el) {
       el.checked = checked;
+      // 부모 .checklist-item 요소에 checked 클래스 적용
       if (checked) {
         const itemEl = el.closest('.checklist-item');
         if (itemEl) itemEl.classList.add('checked');
@@ -1786,7 +1655,10 @@ function loadChecklist() {
     }
   });
 }
+
+// ─── 월별 정기업무 달력 연동 ───
 const FIXED_SCHEDULE_KEY = 'adol_fixed_schedule_2026';
+
 const DEFAULT_FIXED = [
   { day: '1~25',    label: '당월 정기신청 기간',   color: 'blue' },
   { day: '11~25',   label: '익월 정기신청 기간',   color: 'green' },
@@ -1799,7 +1671,11 @@ const DEFAULT_FIXED = [
   { day: '매주 수', label: '주15시간 안내',     color: 'blue' },
   { day: '22', label: '이용자, 선생님 월마감 안내',     color: 'red' },
   { day: '매주 목', label: '아돌 팀회의(17시)',     color: 'gray' },
+  // 매주 수요일마다 '주15시간 안내' 일정이 자동으로 생성되도록 설정
+
+
 ];
+
 function loadFixedSchedule() {
   return storage.get(FIXED_SCHEDULE_KEY) || DEFAULT_FIXED;
 }
@@ -1816,6 +1692,7 @@ function saveFixedSchedule() {
   renderCalendar();
   showToast('✅ 저장되고 달력에 반영되었습니다!');
 }
+
 function showToast(msg) {
   let t = document.getElementById('toast');
   if (!t) {
@@ -1828,18 +1705,21 @@ function showToast(msg) {
   t.style.opacity = '1';
   setTimeout(() => { t.style.opacity = '0'; }, 2200);
 }
+
 function renderFixedScheduleEditor() {
   const data = loadFixedSchedule();
   const colors = ['blue','green','red','amber','purple','gray'];
   const colorLabels = { blue:'🔵', green:'🟢', red:'🔴', amber:'🟡', purple:'🟣', gray:'⚪' };
   const container = document.getElementById('fixed-schedule-editor');
   if (!container) return;
+
   const headerHtml = `<div style="display:grid;grid-template-columns:90px 1fr 60px 32px;gap:6px;margin-bottom:4px;padding:0 2px;">
     <span style="font-size:11px;font-weight:600;color:var(--text3);">날짜/시기</span>
     <span style="font-size:11px;font-weight:600;color:var(--text3);">업무 내용</span>
     <span style="font-size:11px;font-weight:600;color:var(--text3);">색상</span>
     <span></span>
   </div>`;
+
   const rowsHtml = data.map((item, i) => `
     <div class="fs-row" style="display:grid;grid-template-columns:90px 1fr 60px 32px;gap:6px;margin-bottom:4px;align-items:center;">
       <input class="fs-day modal-input" value="${escapeHtml(item.day)}" placeholder="예: 14, 말일" style="padding:5px 8px;font-size:12px;">
@@ -1849,8 +1729,10 @@ function renderFixedScheduleEditor() {
       </select>
       <button onclick="removeFixedRow(this)" style="width:28px;height:28px;border:1px solid var(--border2);border-radius:6px;background:var(--surface2);color:var(--red);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;">✕</button>
     </div>`).join('');
+
   container.innerHTML = headerHtml + rowsHtml;
 }
+
 function addFixedScheduleRow() {
   const container = document.getElementById('fixed-schedule-editor');
   const colors = ['blue','green','red','amber','purple','gray'];
@@ -1868,13 +1750,16 @@ function addFixedScheduleRow() {
   container.appendChild(row);
   row.querySelector('.fs-day').focus();
 }
+
 function removeFixedRow(btn) {
   btn.closest('.fs-row').remove();
 }
+
 function getFixedEventsForMonth(year, month) {
   const data = loadFixedSchedule();
   const lastDay = new Date(year, month + 1, 0).getDate();
   const result = {};
+
   function getNthWeekday(year, month, weekday, nths) {
     const dates = [];
     let count = 0;
@@ -1886,12 +1771,14 @@ function getFixedEventsForMonth(year, month) {
     }
     return dates;
   }
+
   function addToResult(d, label, color) {
     if (d < 1 || d > lastDay) return;
     const key = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     if (!result[key]) result[key] = [];
     result[key].push({ text: label, color, fixed: true });
   }
+
   data.forEach(({ day, label, color }) => {
     const d = day.trim();
     if (d === '말일') {
@@ -1913,7 +1800,10 @@ function getFixedEventsForMonth(year, month) {
       getNthWeekday(year, month, 4, [1,2,3,4,5]).forEach(n => addToResult(n, label, color));
     }
   });
-  if (year === 2026 && month === 5) {
+
+
+  // ─── 💡 여기에 2026년 6월 전용 일정을 안전하게 추가해줍니다 ───
+  if (year === 2026 && month === 5) { // 5는 6월을 의미해!
     const juneEvents = {
       '2026-06-09': [{ text: '전체회의', color: 'gray', fixed: true }],
       '2026-06-16': [{ text: '현장점검+지도점검', color: 'red', fixed: true }],
@@ -1921,13 +1811,18 @@ function getFixedEventsForMonth(year, month) {
       '2026-06-19': [{ text: '돌봄사 노사협의회', color: 'purple', fixed: true }],
       '2026-06-30': [{ text: '전체회의', color: 'gray', fixed: true }]
     };
+
+    // 기존에 계산된 고정 일정과 충돌 없이 합치기
     Object.entries(juneEvents).forEach(([dateKey, events]) => {
       if (!result[dateKey]) result[dateKey] = [];
       result[dateKey].push(...events);
     });
   }
+
   return result;
 }
+
+// ─── 담당업무 항목 자동 생성 ───
 function buildDutyFaqs(containerId, count) {
   const c = document.getElementById(containerId);
   if (!c) return;
@@ -1947,6 +1842,8 @@ function buildDutyFaqs(containerId, count) {
   c.innerHTML = html;
 }
 ['duties-account','duties-seoul','duties-hire','duties-connect','duties-case'].forEach(id => buildDutyFaqs(id, 10));
+
+// ─── 토글 함수 ───
 function toggleFaq(header) {
   const body = header.nextElementSibling;
   const icon = header.querySelector('.faq-toggle');
@@ -1969,6 +1866,8 @@ function toggleCard(header) {
   icon.classList.toggle('open', !isOpen);
   icon.textContent = isOpen ? '▼' : '▲';
 }
+
+// ─── 검색 ───
 let originalContents = null;
 function saveOriginals() {
   if (originalContents) return;
@@ -2035,26 +1934,54 @@ function clearSearch() {
   input.value = '';
   doSearch('');
 }
+
+
+
+// ─── 초기화 ───
+
+
+/* ============================================================
+   PDF 추가 방법: 아래 배열에 한 줄씩 추가
+   - category : 그룹 이름 (기존과 동일하게 쓰면 같은 그룹에 묶임)
+   - date     : YYYY-MM (최신순 정렬 + 화면 표시용)
+   - title    : 목록에 표시될 제목
+   - file     : /guidelines/ 폴더에 올린 실제 파일명
+   - keywords : 검색에 걸리게 할 키워드 (띄어쓰기로 구분, 여러 개 가능)
+   ============================================================ */
 const guidelineDocs = [
+  // 예시 — 실제 PDF 올리신 후 이런 식으로 추가하세요
+  // { category: '이용요금', date: '2026-07', title: '2026년 7월 이용요금 변경 안내', file: '2026-07_이용요금변경안내.pdf', keywords: '이용요금 인상 시간당단가 변경' },
      { category: '이용요금',date: '2026-07', title: '아이돌봄지원_사례_답변_7월', file: '아이돌봄지원_사례_답변_7월.pdf', keywords: '정부지원 연장보육 타정부지원' },
      { category: '서울형',date: '2026-07', title: '서울형 설명', file: '26년_서울형_사업안내.pdf', keywords: '등하원, 병원동행' },
+
 ];
+ 
+// 그룹(카테고리) 표시 순서 — 새 카테고리를 쓰면 자동으로 맨 뒤에 추가됨
 const GUIDELINE_CATEGORY_ORDER = ['자격/대상', '이용요금', '서비스 신청·변경', '대체돌봄', '환불·취소', '선생님 매칭', '기타'];
+ 
 function renderGuidelines() {
   const container = document.getElementById('guideline-list');
   if (!container) return;
+ 
   if (guidelineDocs.length === 0) {
     container.innerHTML = '<div class="alert warn">아직 등록된 지침이 없습니다.</div>';
     return;
   }
+ 
+  // 최신순 정렬
   const docs = [...guidelineDocs].sort((a, b) => b.date.localeCompare(a.date));
+ 
+  // 카테고리별로 묶기
   const grouped = {};
   docs.forEach(d => {
     const cat = d.category || '기타';
     if (!grouped[cat]) grouped[cat] = [];
     grouped[cat].push(d);
   });
+ 
+  // 정해진 순서 먼저, 새 카테고리는 뒤에 추가
   const cats = [...GUIDELINE_CATEGORY_ORDER.filter(c => grouped[c]), ...Object.keys(grouped).filter(c => !GUIDELINE_CATEGORY_ORDER.includes(c))];
+ 
   let html = '';
   cats.forEach((cat, idx) => {
     const items = grouped[cat];
@@ -2079,11 +2006,13 @@ function renderGuidelines() {
       </div>
     `;
   });
+ 
   container.innerHTML = html;
 }
 renderCalendar();
 loadChecklist();
 renderGuidelines();
+
 </script>
 </body>
 </html>
